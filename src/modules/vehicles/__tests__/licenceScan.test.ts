@@ -34,7 +34,9 @@ describe('decideLicenceResult — gates', () => {
   });
 
   it('never exposes the national ID or the dates', () => {
-    const r = decideLicenceResult(base) as Record<string, unknown>;
+    // Via `unknown`: LicenceScanResult has no index signature, so TS rejects the
+    // direct assertion. The point here is to inspect the shape at runtime.
+    const r = decideLicenceResult(base) as unknown as Record<string, unknown>;
     expect(r).not.toHaveProperty('idNumber');
     expect(r).not.toHaveProperty('dates');
     expect(JSON.stringify(r)).not.toContain('9001015800086');

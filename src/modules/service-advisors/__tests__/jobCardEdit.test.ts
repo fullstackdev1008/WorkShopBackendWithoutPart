@@ -103,53 +103,70 @@ describe('resolveEditOutcome', () => {
     }
   });
 
-  // Scenario 2 — edit with estimate impact, PARTS_CONFIRMED preserves status + flag
-  it('PARTS_CONFIRMED + affecting + parts → status preserved, flag set, requests regenerated', () => {
+  // ── Parts-free workflow ────────────────────────────────────────────────────
+  // An edit must never route a card into the Parts Manager. The single
+  // exception is a LEGACY card already sitting in PENDING_PARTS.
+
+  // Test 3 — editing a shared/approved parts card does not recreate the gate
+  it('PARTS_CONFIRMED + affecting + parts → shareable, no flag, no regeneration', () => {
     const o = resolveEditOutcome('PARTS_CONFIRMED', true, true);
     expect(o).toMatchObject({
       statusChanged: false,
       targetStatus: 'PARTS_CONFIRMED',
-      setReconfirmationFlag: true,
-      regeneratePartRequests: true, // Scenario 3 — auto regeneration
+      setReconfirmationFlag: false,
+      regeneratePartRequests: false,
       invalidateApproval: false,
     });
   });
 
-  it('PARTS_CONFIRMED + affecting + labour-only → no flag, no regeneration (nothing to reconfirm)', () => {
+  it('PARTS_CONFIRMED + affecting + labour-only → no flag, no regeneration', () => {
     const o = resolveEditOutcome('PARTS_CONFIRMED', true, false);
     expect(o).toMatchObject({ setReconfirmationFlag: false, regeneratePartRequests: false, statusChanged: false });
   });
 
-  it('PENDING_PARTS + affecting + parts → preserved, regenerated', () => {
+  // Test 4 — legacy PENDING_PARTS cards stay compatible with the old PM flow.
+  // Editing FK-cascades the card's part_requests away, so when parts remain we
+  // must regenerate them or the card is stranded (nothing for the PM to action,
+  // and shareEstimate's legacy PENDING_PARTS guard blocks sharing forever).
+  it('LEGACY PENDING_PARTS + affecting + parts → preserved, requests regenerated', () => {
     const o = resolveEditOutcome('PENDING_PARTS', true, true);
     expect(o).toMatchObject({ targetStatus: 'PENDING_PARTS', statusChanged: false, regeneratePartRequests: true });
   });
 
-  it('PENDING_PARTS + affecting + no parts → moves to PARTS_CONFIRMED (nothing to await)', () => {
+  it('LEGACY PENDING_PARTS + affecting + no parts → moves to PARTS_CONFIRMED (nothing to await)', () => {
     const o = resolveEditOutcome('PENDING_PARTS', true, false);
     expect(o).toMatchObject({ targetStatus: 'PARTS_CONFIRMED', statusChanged: true, regeneratePartRequests: false });
     expect(o.vehicleStatus).toBe('Job Card (Parts Approval Done)');
   });
 
-  // Scenarios 3 + 6 — post-share regression + approval invalidation
-  it('SHARED + affecting + parts → regress to PENDING_PARTS, invalidate approval, regenerate', () => {
+  // Test 3 — post-share regression lands somewhere directly shareable, never
+  // back in the Parts Manager queue. Approval still invalidated (the customer
+  // approved different numbers).
+  it('SHARED + affecting + parts → PARTS_CONFIRMED (shareable), invalidate approval, NO regeneration', () => {
     const o = resolveEditOutcome('SHARED', true, true);
     expect(o).toMatchObject({
-      targetStatus: 'PENDING_PARTS',
+      targetStatus: 'PARTS_CONFIRMED',
       statusChanged: true,
-      regeneratePartRequests: true,
+      regeneratePartRequests: false,
       invalidateApproval: true,
       setReconfirmationFlag: false,
     });
-    expect(o.vehicleStatus).toBe('Job Card (Pending Parts Approval)');
+    expect(o.targetStatus).not.toBe('PENDING_PARTS');
+    expect(o.vehicleStatus).toBe('Job Card (Parts Approval Done)');
   });
 
-  it('APPROVED + affecting + parts → regress to PENDING_PARTS + invalidate approval', () => {
+  it('APPROVED + affecting + parts → PARTS_CONFIRMED, invalidate approval, never PENDING_PARTS', () => {
     const o = resolveEditOutcome('APPROVED', true, true);
-    expect(o).toMatchObject({ targetStatus: 'PENDING_PARTS', statusChanged: true, invalidateApproval: true });
+    expect(o).toMatchObject({
+      targetStatus: 'PARTS_CONFIRMED',
+      statusChanged: true,
+      invalidateApproval: true,
+      regeneratePartRequests: false,
+    });
+    expect(o.targetStatus).not.toBe('PENDING_PARTS');
   });
 
-  it('PARTIALLY_APPROVED + affecting + labour-only → regress to PARTS_CONFIRMED + invalidate approval', () => {
+  it('PARTIALLY_APPROVED + affecting + labour-only → PARTS_CONFIRMED + invalidate approval', () => {
     const o = resolveEditOutcome('PARTIALLY_APPROVED', true, false);
     expect(o).toMatchObject({
       targetStatus: 'PARTS_CONFIRMED',
@@ -160,15 +177,40 @@ describe('resolveEditOutcome', () => {
   });
 
   // R2 — no DRAFT reset for MODIFICATION_REQUESTED
-  it('MODIFICATION_REQUESTED + affecting + parts → PENDING_PARTS (never DRAFT) + invalidate approval', () => {
+  it('MODIFICATION_REQUESTED + affecting + parts → PARTS_CONFIRMED (never DRAFT, never PENDING_PARTS)', () => {
     const o = resolveEditOutcome('MODIFICATION_REQUESTED', true, true);
-    expect(o.targetStatus).toBe('PENDING_PARTS');
+    expect(o.targetStatus).toBe('PARTS_CONFIRMED');
     expect(o.targetStatus).not.toBe('DRAFT');
+    expect(o.targetStatus).not.toBe('PENDING_PARTS');
     expect(o.invalidateApproval).toBe(true);
   });
 
-  it('DRAFT + affecting → stays DRAFT, no regeneration (SA requests parts explicitly)', () => {
+  it('DRAFT + affecting + parts → stays DRAFT and directly shareable, no regeneration', () => {
     const o = resolveEditOutcome('DRAFT', true, true);
     expect(o).toMatchObject({ targetStatus: 'DRAFT', statusChanged: false, regeneratePartRequests: false });
+  });
+
+  // Test 2 — no editable pre-approval status can send a card to the Parts
+  // Manager, and none sets the reconfirmation flag. PENDING_PARTS is excluded:
+  // it is legacy-only and unreachable by cards created under this workflow.
+  it('no non-legacy status can regress into PENDING_PARTS or set the reconfirmation flag', () => {
+    const statuses = ['DRAFT', 'PARTS_CONFIRMED', 'SHARED', 'APPROVED', 'PARTIALLY_APPROVED', 'MODIFICATION_REQUESTED'];
+    for (const s of statuses) {
+      for (const hasParts of [true, false]) {
+        const o = resolveEditOutcome(s, true, hasParts);
+        expect(o.targetStatus, `${s} hasParts=${hasParts}`).not.toBe('PENDING_PARTS');
+        expect(o.setReconfirmationFlag, `${s} hasParts=${hasParts}`).toBe(false);
+        expect(o.regeneratePartRequests, `${s} hasParts=${hasParts}`).toBe(false);
+      }
+    }
+  });
+
+  // Test 1 / 6 — carrying parts must not change the outcome for any
+  // non-legacy status. Parts are estimate data, not a workflow trigger.
+  it('hasParts does not alter the outcome for any non-legacy status', () => {
+    const statuses = ['DRAFT', 'PARTS_CONFIRMED', 'SHARED', 'APPROVED', 'PARTIALLY_APPROVED', 'MODIFICATION_REQUESTED'];
+    for (const s of statuses) {
+      expect(resolveEditOutcome(s, true, true), s).toEqual(resolveEditOutcome(s, true, false));
+    }
   });
 });

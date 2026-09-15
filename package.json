@@ -4,7 +4,7 @@
   "description": "Security Gate Vehicle Entry System API",
   "main": "dist/server.js",
   "scripts": {
-    "dev": "nodemon ./src/server.ts",
+    "dev": "nodemon./src/server.ts",
     "build": "tsc && node scripts/copy-drizzle.mjs",
     "start": "node dist/server.js",
     "db:generate": "drizzle-kit generate --config=drizzle.config.ts",

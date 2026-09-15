@@ -11,9 +11,13 @@
  *   - must the prior customer approval be invalidated?
  *
  * Design: job-card STATUS remains the single source of truth. Pre-share cases
- * preserve status (PARTS_CONFIRMED uses a reconfirmation flag to block Share);
- * post-share cases perform a controlled regression (never DRAFT) so the card
- * re-enters the existing parts→share→approve cycle.
+ * preserve status; post-share cases perform a controlled regression (never
+ * DRAFT) into a directly shareable state so the card re-enters the
+ * share→approve cycle.
+ *
+ * Parts note: an edit never routes a card into the Parts Manager. Parts on a
+ * line item are estimate/costing data, not a workflow step. The one exception is
+ * a LEGACY card already sitting in PENDING_PARTS — see that case below.
  */
 
 export type JobCardStatus =
@@ -142,25 +146,33 @@ export function resolveEditOutcome(
 
   switch (status) {
     case 'DRAFT':
-      // No confirmation existed; SA still requests parts explicitly later.
+      // Stays DRAFT and stays directly shareable, parts or not.
       return toStatus('DRAFT', {});
     case 'PENDING_PARTS':
+      // LEGACY ONLY — a card created under the old flow that is still waiting on
+      // the Parts Manager. New cards never reach this status. Editing rebuilds
+      // job_card_items, which FK-cascades its part_requests away, so when parts
+      // remain we MUST regenerate them: otherwise the card sits in PENDING_PARTS
+      // with nothing for the PM to action and can never be shared again.
       return hasParts
         ? toStatus('PENDING_PARTS', { regeneratePartRequests: true })
         : toStatus('PARTS_CONFIRMED', {}); // no parts left to await → shareable
     case 'PARTS_CONFIRMED':
-      // Preserve status; block Share via the flag until re-confirmed.
-      return hasParts
-        ? toStatus('PARTS_CONFIRMED', { regeneratePartRequests: true, setReconfirmationFlag: true })
-        : toStatus('PARTS_CONFIRMED', {}); // labour-only → nothing to reconfirm
+      // Reachable two ways: a legacy card the PM already cleared, and the target
+      // of the regression below. Either way the card is shareable and an edit
+      // must not send it back to the Parts Manager — no regeneration, no
+      // reconfirmation flag. (Not renamed: the enum label is load-bearing for
+      // existing rows and must not be deleted.)
+      return toStatus('PARTS_CONFIRMED', {});
     case 'SHARED':
     case 'APPROVED':
     case 'PARTIALLY_APPROVED':
     case 'MODIFICATION_REQUESTED':
-      // Controlled regression + invalidate the prior customer approval. Never DRAFT.
-      return hasParts
-        ? toStatus('PENDING_PARTS', { regeneratePartRequests: true, invalidateApproval: true })
-        : toStatus('PARTS_CONFIRMED', { invalidateApproval: true });
+      // Controlled regression + invalidate the prior customer approval. The
+      // customer approved a different set of numbers, so their approval can't
+      // stand — but the card lands in a directly shareable state rather than
+      // back in the Parts Manager queue. Never DRAFT.
+      return toStatus('PARTS_CONFIRMED', { invalidateApproval: true });
     default:
       // Any unforeseen status: preserve, do nothing risky.
       return make({});

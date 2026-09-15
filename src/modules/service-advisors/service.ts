@@ -1691,8 +1691,21 @@ export async function shareEstimate(request: FastifyRequest) {
 
     const currencyCode = jobCard.currencyCode || 'ZAR';
 
-    // A prior estimate-affecting edit invalidated the parts confirmation while
-    // preserving status — block sharing until parts are re-confirmed.
+    // ── Parts gate removed from the estimate path ────────────────────────────
+    // A job card may CONTAIN parts (job_card_items.parts_required drives the
+    // estimate, the invoice and the Evolve RO) without that requiring any Parts
+    // Manager action. Including a part in an estimate is not the same thing as
+    // running the parts-request workflow, so a DRAFT card with parts now shares
+    // directly: DRAFT → SHARED.
+    //
+    // The two guards below are LEGACY-ONLY. Nothing in the current workflow puts
+    // a card into PENDING_PARTS or sets partsReconfirmationRequired (see
+    // resolveEditOutcome), so they can only be reached by a card created under
+    // the old flow that still has live part_requests rows. They stay so those
+    // in-flight cards finish through the Parts Manager exactly as before.
+
+    // Legacy: a prior estimate-affecting edit invalidated an old parts
+    // confirmation while preserving status. Never set on new cards.
     if (jobCard.partsReconfirmationRequired) {
       return error(
         HttpStatus.BAD_REQUEST,
@@ -1700,6 +1713,8 @@ export async function shareEstimate(request: FastifyRequest) {
       );
     }
 
+    // Legacy: card is mid-flight in the old Parts Manager workflow with pending
+    // part_requests. Never reached by new cards.
     if (jobCard.status === 'PENDING_PARTS') {
       return error(
         HttpStatus.BAD_REQUEST,
@@ -1707,30 +1722,9 @@ export async function shareEstimate(request: FastifyRequest) {
       );
     }
 
-    if (jobCard.status === 'DRAFT') {
-      // Check if any items require parts confirmation
-      const itemsWithParts = await db
-        .select({ id: jobCardItems.id })
-        .from(jobCardItems)
-        .where(
-          and(
-            eq(jobCardItems.jobCardId, id),
-            isNotNull(jobCardItems.partsRequired),
-            sql`UPPER(${jobCardItems.partsRequired}) <> 'LABOUR'`,
-          ),
-        )
-        .limit(1);
-
-      if (itemsWithParts.length > 0) {
-        return error(
-          HttpStatus.BAD_REQUEST,
-          'This job card has items requiring parts confirmation. Please request Parts Confirmation before sharing with the customer.',
-        );
-      }
-    }
-
-    // DRAFT = first share. PARTS_CONFIRMED = SA shares after PM confirms parts.
-    // MODIFICATION_REQUESTED = a tech-raised part was priced by PM mid-repair;
+    // DRAFT = first share (with or without parts). PARTS_CONFIRMED = legacy card
+    // the PM already cleared, and the target an estimate-affecting edit regresses
+    // to. MODIFICATION_REQUESTED = a tech-raised part was priced by PM mid-repair;
     // SA reviews the new line item and re-shares for customer re-approval.
     if (
       jobCard.status !== 'DRAFT' &&
@@ -2862,13 +2856,18 @@ export async function completeItemWork(request: FastifyRequest) {
         return error(HttpStatus.BAD_REQUEST, 'Signature is required before completing');
       }
 
-      // Part-swap evidence — mandatory whenever the item involves a physical
-      // part replacement (partsRequired set) or is a warranty claim. Three
-      // distinct photos required: old part, new part out of box, new part
-      // installed in the vehicle. Skipped for pure-labour items.
+      // Part-swap evidence — mandatory for WARRANTY CLAIMS only. Three distinct
+      // photos required: old part, new part out of box, new part installed in
+      // the vehicle. The OEM needs this evidence to settle the claim, so it is
+      // an independent warranty requirement and stays.
+      //
+      // It is no longer triggered by partsRequired alone. Carrying a part on an
+      // estimate line is a pricing/costing fact, not a parts-workflow step, and
+      // keying the photo gate off it re-created a parts dependency at completion
+      // for every ordinary job card.
       // (Note: legacy REPAIR-type photos remain readable in history but are
       // no longer required — the three part photos cover the same evidence.)
-      const requiresPartPhotos = !!item.isWarrantyClaim || !!(item.partsRequired && item.partsRequired.trim().length > 0);
+      const requiresPartPhotos = !!item.isWarrantyClaim;
       if (requiresPartPhotos) {
         const need = [
           { type: 'OLD_PART' as const, label: 'old part' },

@@ -8,11 +8,16 @@ import {
 } from '../evolveLabour';
 
 // Convenience to build an item row with sensible defaults.
+// Every required field of LabourItemRow must be present in the base literal:
+// spreading a Partial<> over it makes any field it omits optional, which no
+// longer satisfies the interface.
 const row = (over: Partial<LabourItemRow>): LabourItemRow => ({
   id: 'i1',
   desc: 'Job',
   hoursWorked: '1.00',
   hoursSold: '1.00',
+  estimatedHours: null,
+  jobGroup: null,
   evolveLineNumber: null,
   evolveTechnicianNo: 6,
   ...over,
