@@ -1,0 +1,2259 @@
+{
+  "info": {
+    "name": "Security Gate Vehicle Entry API",
+    "_postman_id": "sg-vehicle-entry-api-2024",
+    "description": "Complete API collection for the Security Gate Vehicle Entry System.\nFastify + TypeScript + Drizzle ORM + PostgreSQL.\nAll IDs are UUIDs.\n\nStandard error response format:\n{\n  \"status\": false,\n  \"statusCode\": 400,\n  \"error\": \"Validation Error\",\n  \"message\": \"field: error details\"\n}",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "base_url", "value": "http://localhost:3000", "type": "string" },
+    { "key": "customer_id", "value": "", "type": "string" },
+    { "key": "vehicle_id", "value": "", "type": "string" },
+    { "key": "image_id", "value": "", "type": "string" },
+    { "key": "accessory_id", "value": "", "type": "string" },
+    { "key": "check_in_id", "value": "", "type": "string" },
+    { "key": "photo_id", "value": "", "type": "string" },
+    { "key": "inspection_id", "value": "", "type": "string" },
+    { "key": "inspection_item_id", "value": "", "type": "string" },
+    { "key": "inspection_photo_id", "value": "", "type": "string" },
+    { "key": "make_id", "value": "", "type": "string" },
+    { "key": "job_card_id", "value": "", "type": "string" },
+    { "key": "job_card_item_id", "value": "", "type": "string" },
+    { "key": "part_id", "value": "", "type": "string" },
+    { "key": "auth_token", "value": "", "type": "string" }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      { "key": "token", "value": "{{auth_token}}", "type": "string" }
+    ]
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Login (QC Inspector)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData.data && jsonData.data.token) {",
+                  "    pm.collectionVariables.set('auth_token', jsonData.data.token);",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"qc@workshop.com\",\n  \"password\": \"password123\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/auth/login",
+              "host": ["{{base_url}}"],
+              "path": ["api", "auth", "login"]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "status": "OK",
+              "code": 200,
+              "body": "{\n  \"status\": true,\n  \"message\": \"Login successful\",\n  \"data\": {\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...\",\n    \"user\": {\n      \"id\": \"user-uuid\",\n      \"username\": \"qc_inspector\",\n      \"email\": \"qc@workshop.com\",\n      \"role\": {\n        \"name\": \"QC Inspector\",\n        \"slug\": \"qc-inspector\"\n      }\n    }\n  }\n}"
+            },
+            {
+              "name": "Invalid Credentials",
+              "status": "Unauthorized",
+              "code": 401,
+              "body": "{\n  \"status\": false,\n  \"statusCode\": 401,\n  \"error\": \"App Error\",\n  \"message\": \"Invalid email or password\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Login (Parts Manager)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData.data && jsonData.data.token) {",
+                  "    pm.collectionVariables.set('auth_token', jsonData.data.token);",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"partsmanager@workshop.com\",\n  \"password\": \"password123\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/auth/login",
+              "host": ["{{base_url}}"],
+              "path": ["api", "auth", "login"]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "status": "OK",
+              "code": 200,
+              "body": "{\n  \"status\": true,\n  \"message\": \"Login successful\",\n  \"data\": {\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...\",\n    \"user\": {\n      \"id\": \"user-uuid\",\n      \"username\": \"parts_manager\",\n      \"email\": \"partsmanager@workshop.com\",\n      \"role\": {\n        \"name\": \"Parts Manager\",\n        \"slug\": \"parts-manager\"\n      }\n    }\n  }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Login (Security Gate Keeper)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData.data && jsonData.data.token) {",
+                  "    pm.collectionVariables.set('auth_token', jsonData.data.token);",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"gatekeeper@workshop.com\",\n  \"password\": \"password123\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/auth/login",
+              "host": ["{{base_url}}"],
+              "path": ["api", "auth", "login"]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "status": "OK",
+              "code": 200,
+              "body": "{\n  \"status\": true,\n  \"message\": \"Login successful\",\n  \"data\": {\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...\",\n    \"user\": {\n      \"id\": \"user-uuid\",\n      \"username\": \"gate_keeper\",\n      \"email\": \"gatekeeper@workshop.com\",\n      \"role\": {\n        \"name\": \"Security Gate Keeper\",\n        \"slug\": \"security-gate-keeper\"\n      }\n    }\n  }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Register User",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"new_user\",\n  \"email\": \"newuser@workshop.com\",\n  \"password\": \"password123\",\n  \"roleSlug\": \"customer\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/auth/register",
+              "host": ["{{base_url}}"],
+              "path": ["api", "auth", "register"]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "status": "Created",
+              "code": 201,
+              "body": "{\n  \"status\": true,\n  \"message\": \"User registered successfully\",\n  \"data\": {\n    \"user\": {\n      \"id\": \"user-uuid\",\n      \"username\": \"new_user\",\n      \"email\": \"newuser@workshop.com\",\n      \"createdAt\": \"2025-12-15T09:00:00.000Z\",\n      \"role\": {\n        \"name\": \"Customer\",\n        \"slug\": \"customer\"\n      }\n    }\n  }\n}"
+            },
+            {
+              "name": "Duplicate Email",
+              "status": "Conflict",
+              "code": 409,
+              "body": "{\n  \"status\": false,\n  \"statusCode\": 409,\n  \"error\": \"Conflict\",\n  \"message\": \"A record with this value already exists\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get Profile",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{auth_token}}" }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/auth/profile",
+              "host": ["{{base_url}}"],
+              "path": ["api", "auth", "profile"]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "status": "OK",
+              "code": 200,
+              "body": "{\n  \"status\": true,\n  \"message\": \"Profile fetched successfully\",\n  \"data\": {\n    \"id\": \"user-uuid\",\n    \"username\": \"qc_inspector\",\n    \"email\": \"qc@workshop.com\",\n    \"isActive\": true,\n    \"role\": {\n      \"name\": \"QC Inspector\",\n      \"slug\": \"qc-inspector\"\n    },\n    \"createdAt\": \"2025-12-15T09:00:00.000Z\"\n  }\n}"
+            },
+            {
+              "name": "Unauthorized",
+              "status": "Unauthorized",
+              "code": 401,
+              "body": "{\n  \"status\": false,\n  \"statusCode\": 401,\n  \"error\": \"App Error\",\n  \"message\": \"Authentication required. Please provide a valid token.\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Customers",
+      "item": [
+        {
+          "name": "Search Customers",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/customers/search?q=ravi",
+              "host": ["{{base_url}}"],
+              "path": ["api", "customers", "search"],
+              "query": [{ "key": "q", "value": "ravi" }]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "status": "OK",
+              "code": 200,
+              "body": "{\n  \"status\": true,\n  \"message\": \"Customers fetched successfully\",\n  \"data\": [\n    {\n      \"id\": \"a1b2c3d4-e5f6-7890-abcd-ef1234567890\",\n      \"crmReferenceNo\": \"CRM-001\",\n      \"custSequenceId\": \"SEQ-001\",\n      \"customerType\": \"I\",\n      \"firstName\": \"Ravi\",\n      \"lastName\": \"Varma\",\n      \"companyName\": null,\n      \"primaryEmail\": \"ravi@example.com\",\n      \"activeCustomer\": true,\n      \"contactNumber\": \"0812345678\"\n    }\n  ]\n}"
+            },
+            {
+              "name": "Validation Error - Missing Query",
+              "status": "Bad Request",
+              "code": 400,
+              "body": "{\n  \"status\": false,\n  \"statusCode\": 400,\n  \"error\": \"Validation Error\",\n  \"message\": \"q: Search query is required\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Create Customer",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"crmReferenceNo\": \"CRM-001\",\n  \"custSequenceId\": \"SEQ-001\",\n  \"customerType\": \"I\",\n  \"activeCustomer\": true,\n  \"leadType\": \"Walk-in\",\n  \"leadSource\": \"Showroom\",\n  \"title\": \"Mr\",\n  \"firstName\": \"Ravi\",\n  \"lastName\": \"Varma\",\n  \"idNumber\": \"9001015800082\",\n  \"birthDate\": \"1990-01-01\",\n  \"gender\": \"M\",\n  \"language\": \"E\",\n  \"citizen\": true,\n  \"primaryEmail\": \"ravi@example.com\",\n  \"addresses\": [\n    {\n      \"addressType\": \"physical\",\n      \"addressLine1\": \"123 Main Road\",\n      \"city\": \"Johannesburg\",\n      \"provinceId\": 3,\n      \"areaCode\": \"2000\",\n      \"country\": \"South Africa\"\n    }\n  ],\n  \"contacts\": [\n    {\n      \"contactType\": \"cell\",\n      \"countryCode\": \"+27\",\n      \"contactNumber\": \"0812345678\"\n    },\n    {\n      \"contactType\": \"work\",\n      \"countryCode\": \"+27\",\n      \"contactNumber\": \"0111234567\"\n    }\n  ],\n  \"profile\": {\n    \"occupation\": \"Engineer\",\n    \"receiveEmail\": true,\n    \"receiveSms\": true,\n    \"receiveMarketingAll\": false,\n    \"csiConsentService\": true\n  }\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/customers",
+              "host": ["{{base_url}}"],
+              "path": ["api", "customers"]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "status": "Created",
+              "code": 201,
+              "body": "{\n  \"status\": true,\n  \"message\": \"Customer created successfully\",\n  \"data\": {\n    \"id\": \"a1b2c3d4-e5f6-7890-abcd-ef1234567890\",\n    \"crmReferenceNo\": \"CRM-001\",\n    \"custSequenceId\": \"SEQ-001\",\n    \"customerType\": \"I\",\n    \"firstName\": \"Ravi\",\n    \"lastName\": \"Varma\",\n    \"activeCustomer\": true,\n    \"leadType\": \"Walk-in\",\n    \"leadSource\": \"Showroom\",\n    \"primaryEmail\": \"ravi@example.com\",\n    \"isActive\": true,\n    \"createdAt\": \"2024-01-15T09:30:00.000Z\",\n    \"addresses\": [...],\n    \"contacts\": [...],\n    \"profile\": {...}\n  }\n}"
+            },
+            {
+              "name": "Validation Error",
+              "status": "Bad Request",
+              "code": 400,
+              "body": "{\n  \"status\": false,\n  \"statusCode\": 400,\n  \"error\": \"Validation Error\",\n  \"message\": \"crmReferenceNo: CRM reference number is required, customerType: Customer type is required\"\n}"
+            },
+            {
+              "name": "Duplicate CRM Reference",
+              "status": "Conflict",
+              "code": 409,
+              "body": "{\n  \"status\": false,\n  \"statusCode\": 409,\n  \"error\": \"Conflict Error\",\n  \"message\": \"Customer with this CRM reference and sequence ID already exists\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get Customer Details",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/customers/{{customer_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "customers", "{{customer_id}}"]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "status": "OK",
+              "code": 200,
+              "body": "{\n  \"status\": true,\n  \"message\": \"Customer details fetched successfully\",\n  \"data\": {\n    \"id\": \"a1b2c3d4-e5f6-7890-abcd-ef1234567890\",\n    \"crmReferenceNo\": \"CRM-001\",\n    \"custSequenceId\": \"SEQ-001\",\n    \"customerType\": \"I\",\n    \"firstName\": \"Ravi\",\n    \"lastName\": \"Varma\",\n    \"primaryEmail\": \"ravi@example.com\",\n    \"activeCustomer\": true,\n    \"isActive\": true,\n    \"addresses\": [\n      {\n        \"id\": \"...\",\n        \"addressType\": \"physical\",\n        \"addressLine1\": \"123 Main Road\",\n        \"city\": \"Johannesburg\"\n      }\n    ],\n    \"contacts\": [\n      {\n        \"id\": \"...\",\n        \"contactType\": \"cell\",\n        \"countryCode\": \"+27\",\n        \"contactNumber\": \"0812345678\"\n      }\n    ],\n    \"profile\": {\n      \"id\": \"...\",\n      \"occupation\": \"Engineer\",\n      \"receiveEmail\": true,\n      \"receiveSms\": true\n    }\n  }\n}"
+            },
+            {
+              "name": "Invalid UUID",
+              "status": "Bad Request",
+              "code": 400,
+              "body": "{\n  \"status\": false,\n  \"statusCode\": 400,\n  \"error\": \"Validation Error\",\n  \"message\": \"id: Invalid customer ID format\"\n}"
+            },
+            {
+              "name": "Not Found",
+              "status": "Not Found",
+              "code": 404,
+              "body": "{\n  \"status\": false,\n  \"statusCode\": 404,\n  \"error\": \"Not Found Error\",\n  \"message\": \"Customer not found\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Update Customer",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"firstName\": \"Ravi Kumar\",\n  \"primaryEmail\": \"ravi.kumar@example.com\",\n  \"contacts\": [\n    {\n      \"contactType\": \"cell\",\n      \"countryCode\": \"+27\",\n      \"contactNumber\": \"0819876543\"\n    }\n  ]\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/customers/{{customer_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "customers", "{{customer_id}}"]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "status": "OK",
+              "code": 200,
+              "body": "{\n  \"status\": true,\n  \"message\": \"Customer updated successfully\",\n  \"data\": {\n    \"id\": \"a1b2c3d4-e5f6-7890-abcd-ef1234567890\",\n    \"firstName\": \"Ravi Kumar\",\n    \"lastName\": \"Varma\",\n    \"primaryEmail\": \"ravi.kumar@example.com\",\n    \"addresses\": [...],\n    \"contacts\": [...],\n    \"profile\": {...}\n  }\n}"
+            },
+            {
+              "name": "Validation Error - Empty Body",
+              "status": "Bad Request",
+              "code": 400,
+              "body": "{\n  \"status\": false,\n  \"statusCode\": 400,\n  \"error\": \"Validation Error\",\n  \"message\": \"At least one field must be provided to update\"\n}"
+            },
+            {
+              "name": "Not Found",
+              "status": "Not Found",
+              "code": 404,
+              "body": "{\n  \"status\": false,\n  \"statusCode\": 404,\n  \"error\": \"Not Found Error\",\n  \"message\": \"Customer not found\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Delete Customer",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/customers/{{customer_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "customers", "{{customer_id}}"]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "status": "OK",
+              "code": 200,
+              "body": "{\n  \"status\": true,\n  \"message\": \"Customer deleted successfully\"\n}"
+            },
+            {
+              "name": "Has Linked Vehicles",
+              "status": "Bad Request",
+              "code": 400,
+              "body": "{\n  \"status\": false,\n  \"statusCode\": 400,\n  \"error\": \"Validation Error\",\n  \"message\": \"Cannot delete customer with linked vehicles. Please remove associated vehicles first.\"\n}"
+            },
+            {
+              "name": "Not Found",
+              "status": "Not Found",
+              "code": 404,
+              "body": "{\n  \"status\": false,\n  \"statusCode\": 404,\n  \"error\": \"Not Found Error\",\n  \"message\": \"Customer not found\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get Vehicles by Customer ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/customers/{{customer_id}}/vehicles",
+              "host": ["{{base_url}}"],
+              "path": ["api", "customers", "{{customer_id}}", "vehicles"]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "status": "OK",
+              "code": 200,
+              "body": "{\n  \"status\": true,\n  \"message\": \"Customer vehicles fetched successfully\",\n  \"data\": {\n    \"customer\": {\n      \"id\": \"a1b2c3d4-e5f6-7890-abcd-ef1234567890\",\n      \"crmReferenceNo\": \"CRM-001\",\n      \"customerType\": \"I\",\n      \"firstName\": \"Ravi\",\n      \"lastName\": \"Varma\",\n      \"companyName\": null,\n      \"primaryEmail\": \"ravi@example.com\"\n    },\n    \"vehicles\": [],\n    \"total\": 0\n  }\n}"
+            },
+            {
+              "name": "Invalid UUID",
+              "status": "Bad Request",
+              "code": 400,
+              "body": "{\n  \"status\": false,\n  \"statusCode\": 400,\n  \"error\": \"Validation Error\",\n  \"message\": \"id: Invalid customer ID format\"\n}"
+            },
+            {
+              "name": "Not Found",
+              "status": "Not Found",
+              "code": 404,
+              "body": "{\n  \"status\": false,\n  \"statusCode\": 404,\n  \"error\": \"Not Found Error\",\n  \"message\": \"Customer not found\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Vehicles",
+      "item": [
+        {
+          "name": "Add Vehicle",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"customerId\": \"a1b2c3d4-e5f6-7890-abcd-ef1234567890\",\n  \"vin\": \"WBAPH5C52BA123456\",\n  \"brand\": \"BMW\",\n  \"model\": \"3 Series\",\n  \"manufacturingYear\": 2024,\n  \"odometerLast\": 15000,\n  \"priority\": \"STANDARD\",\n  \"modelVariant\": \"320i\",\n  \"registrationNumber\": \"BL00MYZN\",\n  \"engineNumber\": \"ENG123456\",\n  \"extColour\": \"White\",\n  \"intColour\": \"Black\",\n  \"fuelType\": \"Petrol\",\n  \"transmissionType\": \"Automatic\",\n  \"bodyType\": \"Sedan\",\n  \"noOfDoors\": 4,\n  \"noOfPassengers\": 5,\n  \"condition\": \"New\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/vehicles",
+              "host": ["{{base_url}}"],
+              "path": ["api", "vehicles"]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "status": "Created",
+              "code": 201,
+              "body": "{\n  \"status\": true,\n  \"message\": \"Vehicle added successfully\",\n  \"data\": {\n    \"id\": \"b2c3d4e5-f6a7-8901-bcde-f12345678901\",\n    \"customerId\": \"a1b2c3d4-e5f6-7890-abcd-ef1234567890\",\n    \"vin\": \"WBAPH5C52BA123456\",\n    \"brand\": \"BMW\",\n    \"model\": \"3 Series\",\n    \"manufacturingYear\": 2024,\n    \"odometerLast\": 15000,\n    \"registrationNumber\": \"BL00MYZN\",\n    \"status\": \"In Queue\",\n    \"priority\": \"STANDARD\",\n    \"entryTime\": \"2024-01-15T09:30:00.000Z\"\n  }\n}"
+            },
+            {
+              "name": "Validation Error",
+              "status": "Bad Request",
+              "code": 400,
+              "body": "{\n  \"status\": false,\n  \"statusCode\": 400,\n  \"error\": \"Validation Error\",\n  \"message\": \"brand: Brand is required, vin: VIN is required, manufacturingYear: Manufacturing year is required\"\n}"
+            },
+            {
+              "name": "Customer Not Found",
+              "status": "Not Found",
+              "code": 404,
+              "body": "{\n  \"status\": false,\n  \"statusCode\": 404,\n  \"error\": \"Not Found Error\",\n  \"message\": \"Customer not found\"\n}"
+            },
+            {
+              "name": "Duplicate VIN",
+              "status": "Conflict",
+              "code": 409,
+              "body": "{\n  \"status\": false,\n  \"statusCode\": 409,\n  \"error\": \"Conflict Error\",\n  \"message\": \"VIN already exists\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Search Vehicle",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/vehicles/search?vin=WBAPH",
+              "host": ["{{base_url}}"],
+              "path": ["api", "vehicles", "search"],
+              "query": [{ "key": "vin", "value": "WBAPH" }]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "status": "OK",
+              "code": 200,
+              "body": "{\n  \"status\": true,\n  \"message\": \"Vehicles fetched successfully\",\n  \"data\": [\n    {\n      \"id\": \"b2c3d4e5-f6a7-8901-bcde-f12345678901\",\n      \"vin\": \"WBAPH5C52BA123456\",\n      \"registrationNumber\": \"BL00MYZN\",\n      \"brand\": \"BMW\",\n      \"model\": \"3 Series\",\n      \"manufacturingYear\": 2024,\n      \"status\": \"In Queue\",\n      \"entryTime\": \"2024-01-15T09:30:00.000Z\",\n      \"customer\": {\n        \"id\": \"a1b2c3d4-e5f6-7890-abcd-ef1234567890\",\n        \"fullName\": \"Ravi Varma\",\n        \"email\": \"ravi@example.com\"\n      },\n      \"imageCount\": 3\n    }\n  ]\n}"
+            },
+            {
+              "name": "Validation Error - Missing VIN",
+              "status": "Bad Request",
+              "code": 400,
+              "body": "{\n  \"status\": false,\n  \"statusCode\": 400,\n  \"error\": \"Validation Error\",\n  \"message\": \"vin: VIN is required\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get Vehicle Details",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/vehicles/{{vehicle_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "vehicles", "{{vehicle_id}}"]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "status": "OK",
+              "code": 200,
+              "body": "{\n  \"status\": true,\n  \"message\": \"Vehicle details fetched successfully\",\n  \"data\": {\n    \"vehicle\": {\n      \"id\": \"b2c3d4e5-f6a7-8901-bcde-f12345678901\",\n      \"vin\": \"WBAPH5C52BA123456\",\n      \"brand\": \"BMW\",\n      \"model\": \"3 Series\",\n      \"manufacturingYear\": 2024,\n      \"registrationNumber\": \"BL00MYZN\",\n      \"status\": \"In Queue\",\n      \"entryTime\": \"2024-01-15T09:30:00.000Z\"\n    },\n    \"customer\": {\n      \"id\": \"a1b2c3d4-e5f6-7890-abcd-ef1234567890\",\n      \"crmReferenceNo\": \"CRM-001\",\n      \"customerType\": \"I\",\n      \"firstName\": \"Ravi\",\n      \"lastName\": \"Varma\",\n      \"companyName\": null,\n      \"primaryEmail\": \"ravi@example.com\",\n      \"fullName\": \"Ravi Varma\"\n    },\n    \"images\": [],\n    \"imageCount\": 0\n  }\n}"
+            },
+            {
+              "name": "Invalid UUID",
+              "status": "Bad Request",
+              "code": 400,
+              "body": "{\n  \"status\": false,\n  \"statusCode\": 400,\n  \"error\": \"Validation Error\",\n  \"message\": \"id: Invalid vehicle ID format\"\n}"
+            },
+            {
+              "name": "Not Found",
+              "status": "Not Found",
+              "code": 404,
+              "body": "{\n  \"status\": false,\n  \"statusCode\": 404,\n  \"error\": \"Not Found Error\",\n  \"message\": \"Vehicle not found\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "List All Vehicles",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/vehicles?page=1&limit=10&sortOrder=desc",
+              "host": ["{{base_url}}"],
+              "path": ["api", "vehicles"],
+              "query": [
+                { "key": "page", "value": "1" },
+                { "key": "limit", "value": "10" },
+                { "key": "status", "value": "In Queue", "disabled": true },
+                { "key": "dateFrom", "value": "2026-02-19", "disabled": true },
+                { "key": "dateTo", "value": "2026-02-19", "disabled": true },
+                { "key": "vin", "value": "", "disabled": true },
+                { "key": "sortOrder", "value": "desc" }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "status": "OK",
+              "code": 200,
+              "body": "{\n  \"status\": true,\n  \"message\": \"Vehicles fetched successfully\",\n  \"data\": [\n    {\n      \"id\": \"b2c3d4e5-f6a7-8901-bcde-f12345678901\",\n      \"vin\": \"WBAPH5C52BA123456\",\n      \"registrationNumber\": \"BL00MYZN\",\n      \"brand\": \"BMW\",\n      \"model\": \"3 Series\",\n      \"manufacturingYear\": 2024,\n      \"odometerLast\": 15000,\n      \"status\": \"In Queue\",\n      \"priority\": \"STANDARD\",\n      \"entryTime\": \"2024-01-15T09:30:00.000Z\",\n      \"customerName\": \"Ravi Varma\",\n      \"imageCount\": 3,\n      \"inspectionId\": null\n    }\n  ],\n  \"stats\": {\n    \"pendingInspection\": 5,\n    \"inProgress\": 3,\n    \"completed\": 2,\n    \"avgTimeInside\": \"2h 15m\"\n  },\n  \"pagination\": {\n    \"page\": 1,\n    \"limit\": 10,\n    \"total\": 1,\n    \"totalPages\": 1\n  }\n}"
+            },
+            {
+              "name": "Validation Error - Invalid Date",
+              "status": "Bad Request",
+              "code": 400,
+              "body": "{\n  \"status\": false,\n  \"statusCode\": 400,\n  \"error\": \"Validation Error\",\n  \"message\": \"dateFrom: dateFrom must be in YYYY-MM-DD format (e.g. 2026-02-19)\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Update Vehicle",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"brand\": \"Honda\",\n  \"model\": \"Civic\",\n  \"status\": \"Ready\",\n  \"extColour\": \"Red\",\n  \"odometerLast\": 18500\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/vehicles/{{vehicle_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "vehicles", "{{vehicle_id}}"]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "status": "OK",
+              "code": 200,
+              "body": "{\n  \"status\": true,\n  \"message\": \"Vehicle updated successfully\",\n  \"data\": {\n    \"id\": \"b2c3d4e5-f6a7-8901-bcde-f12345678901\",\n    \"vin\": \"WBAPH5C52BA123456\",\n    \"brand\": \"Honda\",\n    \"model\": \"Civic\",\n    \"status\": \"Ready\"\n  }\n}"
+            },
+            {
+              "name": "Validation Error - Empty Body",
+              "status": "Bad Request",
+              "code": 400,
+              "body": "{\n  \"status\": false,\n  \"statusCode\": 400,\n  \"error\": \"Validation Error\",\n  \"message\": \"At least one field must be provided to update\"\n}"
+            },
+            {
+              "name": "Invalid UUID",
+              "status": "Bad Request",
+              "code": 400,
+              "body": "{\n  \"status\": false,\n  \"statusCode\": 400,\n  \"error\": \"Validation Error\",\n  \"message\": \"id: Invalid vehicle ID format\"\n}"
+            },
+            {
+              "name": "Not Found",
+              "status": "Not Found",
+              "code": 404,
+              "body": "{\n  \"status\": false,\n  \"statusCode\": 404,\n  \"error\": \"Not Found Error\",\n  \"message\": \"Vehicle not found\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Delete Vehicle",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/vehicles/{{vehicle_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "vehicles", "{{vehicle_id}}"]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "status": "OK",
+              "code": 200,
+              "body": "{\n  \"status\": true,\n  \"message\": \"Vehicle and associated images deleted successfully\"\n}"
+            },
+            {
+              "name": "Invalid UUID",
+              "status": "Bad Request",
+              "code": 400,
+              "body": "{\n  \"status\": false,\n  \"statusCode\": 400,\n  \"error\": \"Validation Error\",\n  \"message\": \"id: Invalid vehicle ID format\"\n}"
+            },
+            {
+              "name": "Not Found",
+              "status": "Not Found",
+              "code": 404,
+              "body": "{\n  \"status\": false,\n  \"statusCode\": 404,\n  \"error\": \"Not Found Error\",\n  \"message\": \"Vehicle not found\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Extract Vehicle Info (VIN & Odometer from Image)",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "images",
+                  "type": "file",
+                  "src": [],
+                  "description": "Upload a vehicle image (jpg, jpeg, png, webp, gif) to extract VIN and odometer reading using Claude Vision AI"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/api/vehicles/extract-info",
+              "host": ["{{base_url}}"],
+              "path": ["api", "vehicles", "extract-info"]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "status": "OK",
+              "code": 200,
+              "body": "{\n  \"status\": true,\n  \"message\": \"Vehicle info extracted successfully\",\n  \"data\": {\n    \"vin\": \"WBAPH5C52BA123456\",\n    \"odometerReading\": 15230,\n    \"confidence\": {\n      \"vin\": \"high\",\n      \"odometer\": \"medium\"\n    },\n    \"rawText\": \"VIN: WBAPH5C52BA123456, ODO: 15230 km\"\n  }\n}"
+            },
+            {
+              "name": "Success - No VIN Found",
+              "status": "OK",
+              "code": 200,
+              "body": "{\n  \"status\": true,\n  \"message\": \"Vehicle info extracted successfully\",\n  \"data\": {\n    \"vin\": null,\n    \"odometerReading\": null,\n    \"confidence\": {\n      \"vin\": \"not_found\",\n      \"odometer\": \"not_found\"\n    },\n    \"rawText\": \"No VIN or odometer reading visible in this image\"\n  }\n}"
+            },
+            {
+              "name": "Validation Error - No File",
+              "status": "Bad Request",
+              "code": 400,
+              "body": "{\n  \"status\": false,\n  \"statusCode\": 400,\n  \"error\": \"Validation Error\",\n  \"message\": \"No file uploaded\"\n}"
+            },
+            {
+              "name": "Validation Error - Unsupported Type",
+              "status": "Bad Request",
+              "code": 400,
+              "body": "{\n  \"status\": false,\n  \"statusCode\": 400,\n  \"error\": \"Validation Error\",\n  \"message\": \"Unsupported image type: application/pdf. Supported: jpeg, png, webp, gif\"\n}"
+            },
+            {
+              "name": "Internal Server Error",
+              "status": "Internal Server Error",
+              "code": 500,
+              "body": "{\n  \"status\": false,\n  \"statusCode\": 500,\n  \"error\": \"Internal Server Error\",\n  \"message\": \"Something went wrong\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Vehicle Images",
+      "item": [
+        {
+          "name": "Upload Images",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "images",
+                  "type": "file",
+                  "src": [],
+                  "description": "Select 1-8 image files (jpg, jpeg, png, webp)"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/api/vehicles/{{vehicle_id}}/images",
+              "host": ["{{base_url}}"],
+              "path": ["api", "vehicles", "{{vehicle_id}}", "images"]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "status": "Created",
+              "code": 201,
+              "body": "{\n  \"status\": true,\n  \"message\": \"2 image(s) uploaded successfully\",\n  \"data\": {\n    \"uploaded\": [\n      {\n        \"id\": \"c3d4e5f6-a7b8-9012-cdef-123456789012\",\n        \"vehicleId\": \"b2c3d4e5-f6a7-8901-bcde-f12345678901\",\n        \"imagePath\": \"uploads/uuid-1.jpg\",\n        \"createdAt\": \"2024-01-15T09:35:00.000Z\"\n      }\n    ],\n    \"photosCaptured\": \"2/8\"\n  }\n}"
+            },
+            {
+              "name": "Invalid Vehicle UUID",
+              "status": "Bad Request",
+              "code": 400,
+              "body": "{\n  \"status\": false,\n  \"statusCode\": 400,\n  \"error\": \"Validation Error\",\n  \"message\": \"vehicleId: Invalid vehicle ID format\"\n}"
+            },
+            {
+              "name": "Vehicle Not Found",
+              "status": "Not Found",
+              "code": 404,
+              "body": "{\n  \"status\": false,\n  \"statusCode\": 404,\n  \"error\": \"Not Found Error\",\n  \"message\": \"Vehicle not found\"\n}"
+            },
+            {
+              "name": "Max Images Reached",
+              "status": "Bad Request",
+              "code": 400,
+              "body": "{\n  \"status\": false,\n  \"statusCode\": 400,\n  \"error\": \"Validation Error\",\n  \"message\": \"Maximum 8 images allowed per vehicle\"\n}"
+            },
+            {
+              "name": "Invalid File Type",
+              "status": "Bad Request",
+              "code": 400,
+              "body": "{\n  \"status\": false,\n  \"statusCode\": 400,\n  \"error\": \"Validation Error\",\n  \"message\": \"Only image files (jpg, jpeg, png, webp) are allowed\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Replace Image",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "images",
+                  "type": "file",
+                  "src": [],
+                  "description": "New image file to replace the existing one"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/api/vehicles/{{vehicle_id}}/images/{{image_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "vehicles", "{{vehicle_id}}", "images", "{{image_id}}"]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "status": "OK",
+              "code": 200,
+              "body": "{\n  \"status\": true,\n  \"message\": \"Image replaced successfully\",\n  \"data\": {\n    \"id\": \"c3d4e5f6-a7b8-9012-cdef-123456789012\",\n    \"vehicleId\": \"b2c3d4e5-f6a7-8901-bcde-f12345678901\",\n    \"imagePath\": \"uploads/new-uuid.jpg\",\n    \"createdAt\": \"2024-01-15T09:35:00.000Z\"\n  }\n}"
+            },
+            {
+              "name": "Invalid UUID",
+              "status": "Bad Request",
+              "code": 400,
+              "body": "{\n  \"status\": false,\n  \"statusCode\": 400,\n  \"error\": \"Validation Error\",\n  \"message\": \"vehicleId: Invalid vehicle ID format, imageId: Invalid image ID format\"\n}"
+            },
+            {
+              "name": "Not Found",
+              "status": "Not Found",
+              "code": 404,
+              "body": "{\n  \"status\": false,\n  \"statusCode\": 404,\n  \"error\": \"Not Found Error\",\n  \"message\": \"Image not found for this vehicle\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Delete Image",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/vehicles/{{vehicle_id}}/images/{{image_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "vehicles", "{{vehicle_id}}", "images", "{{image_id}}"]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "status": "OK",
+              "code": 200,
+              "body": "{\n  \"status\": true,\n  \"message\": \"Image deleted successfully\"\n}"
+            },
+            {
+              "name": "Invalid UUID",
+              "status": "Bad Request",
+              "code": 400,
+              "body": "{\n  \"status\": false,\n  \"statusCode\": 400,\n  \"error\": \"Validation Error\",\n  \"message\": \"vehicleId: Invalid vehicle ID format, imageId: Invalid image ID format\"\n}"
+            },
+            {
+              "name": "Not Found",
+              "status": "Not Found",
+              "code": 404,
+              "body": "{\n  \"status\": false,\n  \"statusCode\": 404,\n  \"error\": \"Not Found Error\",\n  \"message\": \"Image not found for this vehicle\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Vehicle Accessories",
+      "item": [
+        {
+          "name": "List Accessories",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/vehicles/{{vehicle_id}}/accessories",
+              "host": ["{{base_url}}"],
+              "path": ["api", "vehicles", "{{vehicle_id}}", "accessories"]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "status": "OK",
+              "code": 200,
+              "body": "{\n  \"status\": true,\n  \"message\": \"Accessories fetched successfully\",\n  \"data\": [\n    {\n      \"id\": \"d4e5f6a7-b8c9-0123-def0-123456789abc\",\n      \"vehicleId\": \"b2c3d4e5-f6a7-8901-bcde-f12345678901\",\n      \"accessoryCode\": \"ACC-001\",\n      \"accessoryName\": \"Roof Rack\",\n      \"accessoryType\": \"Exterior\",\n      \"quantity\": 1,\n      \"unitPrice\": \"2500.00\",\n      \"totalPrice\": \"2500.00\",\n      \"isFactoryFitted\": true,\n      \"isActive\": true,\n      \"createdAt\": \"2024-01-15T09:30:00.000Z\",\n      \"updatedAt\": \"2024-01-15T09:30:00.000Z\"\n    }\n  ],\n  \"total\": 1\n}"
+            },
+            {
+              "name": "Invalid UUID",
+              "status": "Bad Request",
+              "code": 400,
+              "body": "{\n  \"status\": false,\n  \"statusCode\": 400,\n  \"error\": \"Validation Error\",\n  \"message\": \"vehicleId: Invalid vehicle ID format\"\n}"
+            },
+            {
+              "name": "Vehicle Not Found",
+              "status": "Not Found",
+              "code": 404,
+              "body": "{\n  \"status\": false,\n  \"statusCode\": 404,\n  \"error\": \"Not Found Error\",\n  \"message\": \"Vehicle not found\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Add Accessory",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"accessoryCode\": \"ACC-001\",\n  \"accessoryName\": \"Roof Rack\",\n  \"accessoryType\": \"Exterior\",\n  \"quantity\": 1,\n  \"unitPrice\": \"2500.00\",\n  \"totalPrice\": \"2500.00\",\n  \"isFactoryFitted\": true\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/vehicles/{{vehicle_id}}/accessories",
+              "host": ["{{base_url}}"],
+              "path": ["api", "vehicles", "{{vehicle_id}}", "accessories"]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "status": "Created",
+              "code": 201,
+              "body": "{\n  \"status\": true,\n  \"message\": \"Accessory added successfully\",\n  \"data\": {\n    \"id\": \"d4e5f6a7-b8c9-0123-def0-123456789abc\",\n    \"vehicleId\": \"b2c3d4e5-f6a7-8901-bcde-f12345678901\",\n    \"accessoryCode\": \"ACC-001\",\n    \"accessoryName\": \"Roof Rack\",\n    \"accessoryType\": \"Exterior\",\n    \"quantity\": 1,\n    \"unitPrice\": \"2500.00\",\n    \"totalPrice\": \"2500.00\",\n    \"isFactoryFitted\": true,\n    \"isActive\": true,\n    \"createdAt\": \"2024-01-15T09:30:00.000Z\",\n    \"updatedAt\": \"2024-01-15T09:30:00.000Z\"\n  }\n}"
+            },
+            {
+              "name": "Validation Error",
+              "status": "Bad Request",
+              "code": 400,
+              "body": "{\n  \"status\": false,\n  \"statusCode\": 400,\n  \"error\": \"Validation Error\",\n  \"message\": \"accessoryCode: Accessory code is required, accessoryName: Accessory name is required\"\n}"
+            },
+            {
+              "name": "Vehicle Not Found",
+              "status": "Not Found",
+              "code": 404,
+              "body": "{\n  \"status\": false,\n  \"statusCode\": 404,\n  \"error\": \"Not Found Error\",\n  \"message\": \"Vehicle not found\"\n}"
+            },
+            {
+              "name": "Duplicate Code",
+              "status": "Conflict",
+              "code": 409,
+              "body": "{\n  \"status\": false,\n  \"statusCode\": 409,\n  \"error\": \"Conflict Error\",\n  \"message\": \"Accessory code \\\"ACC-001\\\" already exists for this vehicle\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Update Accessory",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"accessoryName\": \"Premium Roof Rack\",\n  \"quantity\": 2,\n  \"unitPrice\": \"2500.00\",\n  \"totalPrice\": \"5000.00\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/vehicles/{{vehicle_id}}/accessories/{{accessory_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "vehicles", "{{vehicle_id}}", "accessories", "{{accessory_id}}"]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "status": "OK",
+              "code": 200,
+              "body": "{\n  \"status\": true,\n  \"message\": \"Accessory updated successfully\",\n  \"data\": {\n    \"id\": \"d4e5f6a7-b8c9-0123-def0-123456789abc\",\n    \"vehicleId\": \"b2c3d4e5-f6a7-8901-bcde-f12345678901\",\n    \"accessoryCode\": \"ACC-001\",\n    \"accessoryName\": \"Premium Roof Rack\",\n    \"accessoryType\": \"Exterior\",\n    \"quantity\": 2,\n    \"unitPrice\": \"2500.00\",\n    \"totalPrice\": \"5000.00\",\n    \"isFactoryFitted\": true,\n    \"isActive\": true,\n    \"createdAt\": \"2024-01-15T09:30:00.000Z\",\n    \"updatedAt\": \"2024-01-15T10:00:00.000Z\"\n  }\n}"
+            },
+            {
+              "name": "Validation Error - Empty Body",
+              "status": "Bad Request",
+              "code": 400,
+              "body": "{\n  \"status\": false,\n  \"statusCode\": 400,\n  \"error\": \"Validation Error\",\n  \"message\": \"At least one field must be provided to update\"\n}"
+            },
+            {
+              "name": "Invalid UUID",
+              "status": "Bad Request",
+              "code": 400,
+              "body": "{\n  \"status\": false,\n  \"statusCode\": 400,\n  \"error\": \"Validation Error\",\n  \"message\": \"vehicleId: Invalid vehicle ID format, id: Invalid accessory ID format\"\n}"
+            },
+            {
+              "name": "Not Found",
+              "status": "Not Found",
+              "code": 404,
+              "body": "{\n  \"status\": false,\n  \"statusCode\": 404,\n  \"error\": \"Not Found Error\",\n  \"message\": \"Accessory not found for this vehicle\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Delete Accessory",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/vehicles/{{vehicle_id}}/accessories/{{accessory_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "vehicles", "{{vehicle_id}}", "accessories", "{{accessory_id}}"]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "status": "OK",
+              "code": 200,
+              "body": "{\n  \"status\": true,\n  \"message\": \"Accessory deleted successfully\"\n}"
+            },
+            {
+              "name": "Invalid UUID",
+              "status": "Bad Request",
+              "code": 400,
+              "body": "{\n  \"status\": false,\n  \"statusCode\": 400,\n  \"error\": \"Validation Error\",\n  \"message\": \"vehicleId: Invalid vehicle ID format, id: Invalid accessory ID format\"\n}"
+            },
+            {
+              "name": "Not Found",
+              "status": "Not Found",
+              "code": 404,
+              "body": "{\n  \"status\": false,\n  \"statusCode\": 404,\n  \"error\": \"Not Found Error\",\n  \"message\": \"Accessory not found for this vehicle\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Vehicle Check-Ins",
+      "item": [
+        {
+          "name": "List Check-Ins",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/check-ins?vehicleId={{vehicle_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "check-ins"],
+              "query": [
+                { "key": "vehicleId", "value": "{{vehicle_id}}" },
+                { "key": "status", "value": "IN_QUEUE", "disabled": true }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "status": "OK",
+              "code": 200,
+              "body": "{\n  \"status\": true,\n  \"message\": \"Check-ins fetched successfully\",\n  \"data\": [\n    {\n      \"id\": \"e5f6a7b8-c9d0-1234-ef01-23456789abcd\",\n      \"vehicleId\": \"b2c3d4e5-f6a7-8901-bcde-f12345678901\",\n      \"checkInNumber\": \"CHK-2024-001\",\n      \"odometerReading\": 15230,\n      \"status\": \"IN_QUEUE\",\n      \"checkInTime\": \"2024-01-15T09:30:00.000Z\",\n      \"isActive\": true\n    }\n  ],\n  \"total\": 1\n}"
+            },
+            {
+              "name": "Invalid Vehicle UUID",
+              "status": "Bad Request",
+              "code": 400,
+              "body": "{\n  \"status\": false,\n  \"statusCode\": 400,\n  \"error\": \"Validation Error\",\n  \"message\": \"vehicleId: Invalid vehicle ID format\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get Check-In Details",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/check-ins/{{check_in_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "check-ins", "{{check_in_id}}"]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "status": "OK",
+              "code": 200,
+              "body": "{\n  \"status\": true,\n  \"message\": \"Check-in details fetched successfully\",\n  \"data\": {\n    \"id\": \"e5f6a7b8-c9d0-1234-ef01-23456789abcd\",\n    \"vehicleId\": \"b2c3d4e5-f6a7-8901-bcde-f12345678901\",\n    \"odometerReading\": 15230,\n    \"status\": \"IN_QUEUE\",\n    \"vehicle\": {\n      \"id\": \"...\",\n      \"vin\": \"WBAPH5C52BA123456\",\n      \"registrationNumber\": \"BL00MYZN\",\n      \"brand\": \"BMW\",\n      \"model\": \"3 Series\",\n      \"customerFirstName\": \"Ravi\",\n      \"customerLastName\": \"Varma\"\n    },\n    \"photos\": [...],\n    \"photoCount\": 3\n  }\n}"
+            },
+            {
+              "name": "Invalid UUID",
+              "status": "Bad Request",
+              "code": 400,
+              "body": "{\n  \"status\": false,\n  \"statusCode\": 400,\n  \"error\": \"Validation Error\",\n  \"message\": \"id: Invalid check-in ID format\"\n}"
+            },
+            {
+              "name": "Not Found",
+              "status": "Not Found",
+              "code": 404,
+              "body": "{\n  \"status\": false,\n  \"statusCode\": 404,\n  \"error\": \"Not Found Error\",\n  \"message\": \"Check-in not found\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Create Check-In",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"vehicleId\": \"{{vehicle_id}}\",\n  \"checkInNumber\": \"CHK-2024-001\",\n  \"odometerReading\": 15230,\n  \"notes\": \"Customer reported engine light on\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/check-ins",
+              "host": ["{{base_url}}"],
+              "path": ["api", "check-ins"]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "status": "Created",
+              "code": 201,
+              "body": "{\n  \"status\": true,\n  \"message\": \"Check-in created successfully\",\n  \"data\": {\n    \"id\": \"e5f6a7b8-c9d0-1234-ef01-23456789abcd\",\n    \"vehicleId\": \"b2c3d4e5-f6a7-8901-bcde-f12345678901\",\n    \"checkInNumber\": \"CHK-2024-001\",\n    \"odometerReading\": 15230,\n    \"status\": \"IN_QUEUE\",\n    \"checkInTime\": \"2024-01-15T09:30:00.000Z\"\n  }\n}"
+            },
+            {
+              "name": "Validation Error",
+              "status": "Bad Request",
+              "code": 400,
+              "body": "{\n  \"status\": false,\n  \"statusCode\": 400,\n  \"error\": \"Validation Error\",\n  \"message\": \"vehicleId: Vehicle ID is required, odometerReading: Odometer reading is required\"\n}"
+            },
+            {
+              "name": "Vehicle Not Found",
+              "status": "Not Found",
+              "code": 404,
+              "body": "{\n  \"status\": false,\n  \"statusCode\": 404,\n  \"error\": \"Not Found Error\",\n  \"message\": \"Vehicle not found\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Update Check-In",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"IN_SERVICE\",\n  \"notes\": \"Vehicle currently being inspected\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/check-ins/{{check_in_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "check-ins", "{{check_in_id}}"]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "status": "OK",
+              "code": 200,
+              "body": "{\n  \"status\": true,\n  \"message\": \"Check-in updated successfully\",\n  \"data\": {\n    \"id\": \"e5f6a7b8-c9d0-1234-ef01-23456789abcd\",\n    \"status\": \"IN_SERVICE\",\n    \"notes\": \"Vehicle currently being inspected\"\n  }\n}"
+            },
+            {
+              "name": "Validation Error - Empty Body",
+              "status": "Bad Request",
+              "code": 400,
+              "body": "{\n  \"status\": false,\n  \"statusCode\": 400,\n  \"error\": \"Validation Error\",\n  \"message\": \"At least one field must be provided to update\"\n}"
+            },
+            {
+              "name": "Invalid UUID",
+              "status": "Bad Request",
+              "code": 400,
+              "body": "{\n  \"status\": false,\n  \"statusCode\": 400,\n  \"error\": \"Validation Error\",\n  \"message\": \"id: Invalid check-in ID format\"\n}"
+            },
+            {
+              "name": "Not Found",
+              "status": "Not Found",
+              "code": 404,
+              "body": "{\n  \"status\": false,\n  \"statusCode\": 404,\n  \"error\": \"Not Found Error\",\n  \"message\": \"Check-in not found\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Delete Check-In",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/check-ins/{{check_in_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "check-ins", "{{check_in_id}}"]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "status": "OK",
+              "code": 200,
+              "body": "{\n  \"status\": true,\n  \"message\": \"Check-in and associated photos deleted successfully\"\n}"
+            },
+            {
+              "name": "Invalid UUID",
+              "status": "Bad Request",
+              "code": 400,
+              "body": "{\n  \"status\": false,\n  \"statusCode\": 400,\n  \"error\": \"Validation Error\",\n  \"message\": \"id: Invalid check-in ID format\"\n}"
+            },
+            {
+              "name": "Not Found",
+              "status": "Not Found",
+              "code": 404,
+              "body": "{\n  \"status\": false,\n  \"statusCode\": 404,\n  \"error\": \"Not Found Error\",\n  \"message\": \"Check-in not found\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Upload Check-In Photo",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "images",
+                  "type": "file",
+                  "src": [],
+                  "description": "Select an image file (jpg, jpeg, png, webp)"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/api/check-ins/{{check_in_id}}/photos?photoType=FRONT",
+              "host": ["{{base_url}}"],
+              "path": ["api", "check-ins", "{{check_in_id}}", "photos"],
+              "query": [
+                { "key": "photoType", "value": "FRONT", "description": "FRONT | REAR | LEFT | RIGHT | DASHBOARD | ENGINE | OTHER" }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "status": "Created",
+              "code": 201,
+              "body": "{\n  \"status\": true,\n  \"message\": \"Photo uploaded successfully\",\n  \"data\": {\n    \"photo\": {\n      \"id\": \"f6a7b8c9-d0e1-2345-f012-3456789abcde\",\n      \"vehicleCheckInId\": \"e5f6a7b8-c9d0-1234-ef01-23456789abcd\",\n      \"photoType\": \"FRONT\",\n      \"imageUrl\": \"uploads/uuid.jpg\",\n      \"createdAt\": \"2024-01-15T09:35:00.000Z\"\n    },\n    \"photoCount\": 1\n  }\n}"
+            },
+            {
+              "name": "Invalid Check-In UUID",
+              "status": "Bad Request",
+              "code": 400,
+              "body": "{\n  \"status\": false,\n  \"statusCode\": 400,\n  \"error\": \"Validation Error\",\n  \"message\": \"checkInId: Invalid check-in ID format\"\n}"
+            },
+            {
+              "name": "Check-In Not Found",
+              "status": "Not Found",
+              "code": 404,
+              "body": "{\n  \"status\": false,\n  \"statusCode\": 404,\n  \"error\": \"Not Found Error\",\n  \"message\": \"Check-in not found\"\n}"
+            },
+            {
+              "name": "Invalid Photo Type",
+              "status": "Bad Request",
+              "code": 400,
+              "body": "{\n  \"status\": false,\n  \"statusCode\": 400,\n  \"error\": \"Validation Error\",\n  \"message\": \"photoType: Photo type must be one of: FRONT, REAR, LEFT, RIGHT, DASHBOARD, ENGINE, OTHER\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Delete Check-In Photo",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/check-ins/{{check_in_id}}/photos/{{photo_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "check-ins", "{{check_in_id}}", "photos", "{{photo_id}}"]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "status": "OK",
+              "code": 200,
+              "body": "{\n  \"status\": true,\n  \"message\": \"Photo deleted successfully\"\n}"
+            },
+            {
+              "name": "Invalid UUID",
+              "status": "Bad Request",
+              "code": 400,
+              "body": "{\n  \"status\": false,\n  \"statusCode\": 400,\n  \"error\": \"Validation Error\",\n  \"message\": \"checkInId: Invalid check-in ID format, photoId: Invalid photo ID format\"\n}"
+            },
+            {
+              "name": "Not Found",
+              "status": "Not Found",
+              "code": 404,
+              "body": "{\n  \"status\": false,\n  \"statusCode\": 404,\n  \"error\": \"Not Found Error\",\n  \"message\": \"Photo not found for this check-in\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Confirm Check-In",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/check-ins/{{check_in_id}}/confirm",
+              "host": ["{{base_url}}"],
+              "path": ["api", "check-ins", "{{check_in_id}}", "confirm"]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "status": "OK",
+              "code": 200,
+              "body": "{\n  \"status\": true,\n  \"message\": \"Check-in confirmed successfully\",\n  \"data\": {\n    \"checkInId\": \"e5f6a7b8-c9d0-1234-ef01-23456789abcd\",\n    \"registration\": \"BL00MYZN\",\n    \"vehicle\": \"BMW 3 Series\",\n    \"owner\": \"Ravi Varma\",\n    \"odometerReading\": 15230,\n    \"photosCaptured\": 5,\n    \"checkInTime\": \"09:30 AM\",\n    \"status\": \"READY\"\n  }\n}"
+            },
+            {
+              "name": "Invalid UUID",
+              "status": "Bad Request",
+              "code": 400,
+              "body": "{\n  \"status\": false,\n  \"statusCode\": 400,\n  \"error\": \"Validation Error\",\n  \"message\": \"id: Invalid check-in ID format\"\n}"
+            },
+            {
+              "name": "Already Completed",
+              "status": "Bad Request",
+              "code": 400,
+              "body": "{\n  \"status\": false,\n  \"statusCode\": 400,\n  \"error\": \"Validation Error\",\n  \"message\": \"Cannot confirm a check-in that is already COMPLETED\"\n}"
+            },
+            {
+              "name": "Insufficient Photos",
+              "status": "Bad Request",
+              "code": 400,
+              "body": "{\n  \"status\": false,\n  \"statusCode\": 400,\n  \"error\": \"Validation Error\",\n  \"message\": \"Minimum 4 photos required before confirming. Currently 2 photo(s) uploaded.\"\n}"
+            },
+            {
+              "name": "Not Found",
+              "status": "Not Found",
+              "code": 404,
+              "body": "{\n  \"status\": false,\n  \"statusCode\": 404,\n  \"error\": \"Not Found Error\",\n  \"message\": \"Check-in not found\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Confirm Entry",
+      "item": [
+        {
+          "name": "Confirm Vehicle Entry",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/vehicles/{{vehicle_id}}/confirm",
+              "host": ["{{base_url}}"],
+              "path": ["api", "vehicles", "{{vehicle_id}}", "confirm"]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "status": "OK",
+              "code": 200,
+              "body": "{\n  \"status\": true,\n  \"message\": \"Vehicle ready for confirmation\",\n  \"data\": {\n    \"registration\": \"BL00MYZN\",\n    \"owner\": \"Ravi Varma\",\n    \"photosCaptured\": \"4/8\",\n    \"entryTime\": \"09:30 AM\",\n    \"checkInId\": \"e5f6a7b8-c9d0-1234-ef01-23456789abcd\"\n  }\n}"
+            },
+            {
+              "name": "Invalid UUID",
+              "status": "Bad Request",
+              "code": 400,
+              "body": "{\n  \"status\": false,\n  \"statusCode\": 400,\n  \"error\": \"Validation Error\",\n  \"message\": \"vehicleId: Invalid vehicle ID format\"\n}"
+            },
+            {
+              "name": "Vehicle Not Found",
+              "status": "Not Found",
+              "code": 404,
+              "body": "{\n  \"status\": false,\n  \"statusCode\": 404,\n  \"error\": \"Not Found Error\",\n  \"message\": \"Vehicle not found\"\n}"
+            },
+            {
+              "name": "Insufficient Images",
+              "status": "Bad Request",
+              "code": 400,
+              "body": "{\n  \"status\": false,\n  \"statusCode\": 400,\n  \"error\": \"Validation Error\",\n  \"message\": \"Minimum 4 images required before confirming entry. Currently 2 image(s) uploaded.\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Vehicle Makes & Models",
+      "item": [
+        {
+          "name": "List Makes",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/vehicles/makes",
+              "host": ["{{base_url}}"],
+              "path": ["api", "vehicles", "makes"]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "status": "OK",
+              "code": 200,
+              "body": "{\n  \"status\": true,\n  \"message\": \"Vehicle makes fetched successfully\",\n  \"data\": [\n    {\n      \"id\": \"a1b2c3d4-e5f6-7890-abcd-ef1234567890\",\n      \"name\": \"Maruti Suzuki\"\n    },\n    {\n      \"id\": \"b2c3d4e5-f6a7-8901-bcde-f12345678901\",\n      \"name\": \"Hyundai\"\n    }\n  ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "Add Make",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Lamborghini\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/vehicles/makes",
+              "host": ["{{base_url}}"],
+              "path": ["api", "vehicles", "makes"]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "status": "Created",
+              "code": 201,
+              "body": "{\n  \"status\": true,\n  \"message\": \"Vehicle make added successfully\",\n  \"data\": {\n    \"id\": \"c3d4e5f6-a7b8-9012-cdef-123456789012\",\n    \"name\": \"Lamborghini\",\n    \"createdAt\": \"2026-02-21T10:00:00.000Z\",\n    \"updatedAt\": \"2026-02-21T10:00:00.000Z\"\n  }\n}"
+            },
+            {
+              "name": "Duplicate Make",
+              "status": "Conflict",
+              "code": 409,
+              "body": "{\n  \"status\": false,\n  \"statusCode\": 409,\n  \"error\": \"Conflict\",\n  \"message\": \"This vehicle make already exists\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "List Models by Make",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/vehicles/makes/{{make_id}}/models",
+              "host": ["{{base_url}}"],
+              "path": ["api", "vehicles", "makes", "{{make_id}}", "models"]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "status": "OK",
+              "code": 200,
+              "body": "{\n  \"status\": true,\n  \"message\": \"Vehicle models fetched successfully\",\n  \"data\": [\n    {\n      \"id\": \"d4e5f6a7-b8c9-0123-def0-123456789abc\",\n      \"name\": \"Swift\"\n    },\n    {\n      \"id\": \"e5f6a7b8-c9d0-1234-ef01-23456789abcd\",\n      \"name\": \"Fronx\"\n    },\n    {\n      \"id\": \"f6a7b8c9-d0e1-2345-f012-3456789abcde\",\n      \"name\": \"Baleno\"\n    }\n  ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "Add Model",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"makeId\": \"{{make_id}}\",\n  \"name\": \"Urus\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/vehicles/models",
+              "host": ["{{base_url}}"],
+              "path": ["api", "vehicles", "models"]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "status": "Created",
+              "code": 201,
+              "body": "{\n  \"status\": true,\n  \"message\": \"Vehicle model added successfully\",\n  \"data\": {\n    \"id\": \"a1b2c3d4-0001-0001-0001-000000000001\",\n    \"makeId\": \"c3d4e5f6-a7b8-9012-cdef-123456789012\",\n    \"name\": \"Urus\",\n    \"createdAt\": \"2026-02-21T10:05:00.000Z\",\n    \"updatedAt\": \"2026-02-21T10:05:00.000Z\"\n  }\n}"
+            },
+            {
+              "name": "Make Not Found",
+              "status": "Not Found",
+              "code": 404,
+              "body": "{\n  \"status\": false,\n  \"statusCode\": 404,\n  \"error\": \"Not Found Error\",\n  \"message\": \"Vehicle make not found\"\n}"
+            },
+            {
+              "name": "Duplicate Model",
+              "status": "Conflict",
+              "code": 409,
+              "body": "{\n  \"status\": false,\n  \"statusCode\": 409,\n  \"error\": \"Conflict\",\n  \"message\": \"This model already exists for the selected make\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "QC Inspections",
+      "item": [
+        {
+          "name": "Dashboard",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/qc-inspections/dashboard?page=1&limit=10&sortOrder=asc",
+              "host": ["{{base_url}}"],
+              "path": ["api", "qc-inspections", "dashboard"],
+              "query": [
+                { "key": "page", "value": "1" },
+                { "key": "limit", "value": "10" },
+                { "key": "filter", "value": "ALL", "disabled": true, "description": "ALL | URGENT | DELAYED" },
+                { "key": "sortOrder", "value": "asc" }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "status": "OK",
+              "code": 200,
+              "body": "{\n  \"status\": true,\n  \"message\": \"QC dashboard data fetched successfully\",\n  \"data\": {\n    \"stats\": {\n      \"pendingInspection\": 5,\n      \"inProgress\": 3,\n      \"completed\": 2,\n      \"avgTimeInside\": \"2h 15m\"\n    },\n    \"queue\": [\n      {\n        \"vehicleId\": \"b2c3d4e5-f6a7-8901-bcde-f12345678901\",\n        \"vehicleCheckInId\": \"e5f6a7b8-c9d0-1234-ef01-23456789abcd\",\n        \"inspectionId\": null,\n        \"registrationNumber\": \"BL00MYZN\",\n        \"brand\": \"BMW\",\n        \"model\": \"3 Series\",\n        \"customerName\": \"Ravi Varma\",\n        \"serviceType\": null,\n        \"waitingTime\": \"45 Mins\",\n        \"status\": \"Ready\",\n        \"priority\": \"STANDARD\",\n        \"entryTime\": \"2024-01-15T09:30:00.000Z\"\n      },\n      {\n        \"vehicleId\": \"c3d4e5f6-a7b8-9012-cdef-123456789012\",\n        \"vehicleCheckInId\": \"f6a7b8c9-d0e1-2345-f012-3456789abcde\",\n        \"inspectionId\": \"f1a2b3c4-d5e6-7890-abcd-ef1234567890\",\n        \"registrationNumber\": \"GJ05RB4885\",\n        \"brand\": \"Hyundai\",\n        \"model\": \"Verna\",\n        \"customerName\": \"Ravi Varma\",\n        \"serviceType\": \"Standard Service\",\n        \"waitingTime\": \"2h 30m\",\n        \"status\": \"QC Completed\",\n        \"priority\": \"URGENT\",\n        \"entryTime\": \"2024-01-15T08:00:00.000Z\"\n      }\n    ],\n    \"pagination\": {\n      \"page\": 1,\n      \"limit\": 10,\n      \"total\": 5,\n      \"totalPages\": 1\n    }\n  }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get Next Vehicle",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/qc-inspections/next",
+              "host": ["{{base_url}}"],
+              "path": ["api", "qc-inspections", "next"]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "status": "OK",
+              "code": 200,
+              "body": "{\n  \"status\": true,\n  \"message\": \"Next vehicle fetched successfully\",\n  \"data\": {\n    \"vehicleId\": \"b2c3d4e5-f6a7-8901-bcde-f12345678901\",\n    \"vehicleCheckInId\": \"e5f6a7b8-c9d0-1234-ef01-23456789abcd\",\n    \"registrationNumber\": \"BL00MYZN\",\n    \"brand\": \"BMW\",\n    \"model\": \"3 Series\",\n    \"waitingTime\": \"1h 30m\"\n  }\n}"
+            },
+            {
+              "name": "Empty Queue",
+              "status": "OK",
+              "code": 200,
+              "body": "{\n  \"status\": true,\n  \"message\": \"No vehicles in queue\",\n  \"data\": null\n}"
+            }
+          ]
+        },
+        {
+          "name": "Start Inspection",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"vehicleId\": \"{{vehicle_id}}\",\n  \"serviceType\": \"Standard Service\",\n  \"priority\": \"STANDARD\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/qc-inspections",
+              "host": ["{{base_url}}"],
+              "path": ["api", "qc-inspections"]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "status": "Created",
+              "code": 201,
+              "body": "{\n  \"status\": true,\n  \"message\": \"QC inspection started successfully\",\n  \"data\": {\n    \"inspection\": {\n      \"id\": \"f1a2b3c4-d5e6-7890-abcd-ef1234567890\",\n      \"vehicleCheckInId\": \"e5f6a7b8-c9d0-1234-ef01-23456789abcd\",\n      \"serviceType\": \"Standard Service\",\n      \"priority\": \"STANDARD\",\n      \"status\": \"IN_PROGRESS\",\n      \"currentStep\": 1,\n      \"startedAt\": \"2024-01-15T10:00:00.000Z\"\n    },\n    \"items\": [\n      {\n        \"id\": \"a1b2c3d4-0001-0001-0001-000000000001\",\n        \"inspectionId\": \"f1a2b3c4-d5e6-7890-abcd-ef1234567890\",\n        \"category\": \"EXTERIOR\",\n        \"itemCode\": \"EXT_BODY_PANELS\",\n        \"itemLabel\": \"Body Panels Condition\",\n        \"sortOrder\": 1,\n        \"result\": null,\n        \"comment\": null\n      }\n    ]\n  }\n}"
+            },
+            {
+              "name": "Vehicle Not Ready",
+              "status": "Bad Request",
+              "code": 400,
+              "body": "{\n  \"status\": false,\n  \"statusCode\": 400,\n  \"error\": \"Validation Error\",\n  \"message\": \"Vehicle must be in \\\"In Queue\\\" or \\\"Ready\\\" status to start inspection. Current status: QC In Progress\"\n}"
+            },
+            {
+              "name": "Active Inspection Exists",
+              "status": "Conflict",
+              "code": 409,
+              "body": "{\n  \"status\": false,\n  \"statusCode\": 409,\n  \"error\": \"Conflict Error\",\n  \"message\": \"An active inspection already exists for this vehicle\"\n}"
+            },
+            {
+              "name": "Vehicle Not Found",
+              "status": "Not Found",
+              "code": 404,
+              "body": "{\n  \"status\": false,\n  \"statusCode\": 404,\n  \"error\": \"Not Found Error\",\n  \"message\": \"Vehicle not found\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get Inspection Details",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/qc-inspections/{{inspection_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "qc-inspections", "{{inspection_id}}"]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "status": "OK",
+              "code": 200,
+              "body": "{\n  \"status\": true,\n  \"message\": \"Inspection details fetched successfully\",\n  \"data\": {\n    \"inspection\": {\n      \"id\": \"f1a2b3c4-d5e6-7890-abcd-ef1234567890\",\n      \"vehicleCheckInId\": \"e5f6a7b8-c9d0-1234-ef01-23456789abcd\",\n      \"status\": \"IN_PROGRESS\",\n      \"currentStep\": 1,\n      \"serviceType\": \"Standard Service\",\n      \"priority\": \"STANDARD\"\n    },\n    \"vehicle\": {\n      \"registrationNumber\": \"BL00MYZN\",\n      \"brand\": \"BMW\",\n      \"model\": \"3 Series\",\n      \"vin\": \"WBAPH5C52BA123456\",\n      \"customerName\": \"Ravi Varma\"\n    },\n    \"categories\": {\n      \"EXTERIOR\": [\n        {\n          \"id\": \"item-uuid-1\",\n          \"itemCode\": \"EXT_BODY_PANELS\",\n          \"itemLabel\": \"Body Panels Condition\",\n          \"sortOrder\": 1,\n          \"result\": \"PASS\",\n          \"comment\": null,\n          \"photos\": []\n        }\n      ],\n      \"INTERIOR\": [],\n      \"BRAKE\": []\n    },\n    \"summary\": {\n      \"totalItems\": 16,\n      \"passCount\": 10,\n      \"failCount\": 2,\n      \"naCount\": 1,\n      \"pendingCount\": 3\n    },\n    \"findings\": {\n      \"overallStatus\": null,\n      \"overrideJustification\": null,\n      \"finalRemarks\": null,\n      \"brakeTestSummary\": {\n        \"performance\": null,\n        \"noise\": null,\n        \"vibration\": null\n      },\n      \"failedItems\": [\n        {\n          \"itemCode\": \"EXT_PAINT\",\n          \"itemLabel\": \"Paint condition & scratches\",\n          \"category\": \"EXTERIOR\",\n          \"comment\": \"Deep scratch on driver side door\"\n        }\n      ],\n      \"criticalIssuesDetected\": true\n    }\n  }\n}"
+            },
+            {
+              "name": "Invalid UUID",
+              "status": "Bad Request",
+              "code": 400,
+              "body": "{\n  \"status\": false,\n  \"statusCode\": 400,\n  \"error\": \"Validation Error\",\n  \"message\": \"id: Invalid inspection ID format\"\n}"
+            },
+            {
+              "name": "Not Found",
+              "status": "Not Found",
+              "code": 404,
+              "body": "{\n  \"status\": false,\n  \"statusCode\": 404,\n  \"error\": \"Not Found Error\",\n  \"message\": \"Inspection not found\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Save Step Items (Exterior / Interior / Brake)",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"category\": \"EXTERIOR\",\n  \"items\": [\n    {\n      \"itemId\": \"{{inspection_item_id}}\",\n      \"result\": \"PASS\",\n      \"comment\": null\n    }\n  ]\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/qc-inspections/{{inspection_id}}/items",
+              "host": ["{{base_url}}"],
+              "path": ["api", "qc-inspections", "{{inspection_id}}", "items"]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "status": "OK",
+              "code": 200,
+              "body": "{\n  \"status\": true,\n  \"message\": \"Exterior inspection saved successfully\",\n  \"data\": {\n    \"currentStep\": 2,\n    \"categories\": {\n      \"EXTERIOR\": [\n        {\n          \"id\": \"item-uuid-1\",\n          \"itemCode\": \"EXT_BODY_PANELS\",\n          \"itemLabel\": \"Body Panels Condition\",\n          \"sortOrder\": 1,\n          \"result\": \"PASS\",\n          \"comment\": null,\n          \"photos\": []\n        },\n        {\n          \"id\": \"item-uuid-2\",\n          \"itemCode\": \"EXT_PAINT\",\n          \"itemLabel\": \"Paint condition & scratches\",\n          \"sortOrder\": 2,\n          \"result\": \"FAIL\",\n          \"comment\": \"Deep scratch on driver side door\",\n          \"photos\": [\n            {\n              \"id\": \"photo-uuid-1\",\n              \"inspectionItemId\": \"item-uuid-2\",\n              \"imageUrl\": \"uploads/uuid.jpg\",\n              \"createdAt\": \"2024-01-15T10:15:00.000Z\"\n            }\n          ]\n        }\n      ],\n      \"INTERIOR\": [\n        {\n          \"id\": \"item-uuid-7\",\n          \"itemCode\": \"INT_DASHBOARD\",\n          \"itemLabel\": \"Dashboard condition\",\n          \"sortOrder\": 7,\n          \"result\": null,\n          \"comment\": null,\n          \"photos\": []\n        }\n      ],\n      \"BRAKE\": [\n        {\n          \"id\": \"item-uuid-13\",\n          \"itemCode\": \"BRK_PEDAL\",\n          \"itemLabel\": \"Brake pedal response\",\n          \"sortOrder\": 13,\n          \"result\": null,\n          \"comment\": null,\n          \"photos\": []\n        }\n      ]\n    },\n    \"summary\": {\n      \"totalItems\": 16,\n      \"passCount\": 4,\n      \"failCount\": 1,\n      \"naCount\": 1,\n      \"pendingCount\": 10\n    }\n  }\n}"
+            },
+            {
+              "name": "Inspection Not In Progress",
+              "status": "Bad Request",
+              "code": 400,
+              "body": "{\n  \"status\": false,\n  \"statusCode\": 400,\n  \"error\": \"Validation Error\",\n  \"message\": \"Inspection must be IN_PROGRESS to save items. Current status: COMPLETED\"\n}"
+            },
+            {
+              "name": "Item Not Found",
+              "status": "Bad Request",
+              "code": 400,
+              "body": "{\n  \"status\": false,\n  \"statusCode\": 400,\n  \"error\": \"Validation Error\",\n  \"message\": \"Item abc-123 does not belong to this inspection or category\"\n}"
+            },
+            {
+              "name": "Not Found",
+              "status": "Not Found",
+              "code": 404,
+              "body": "{\n  \"status\": false,\n  \"statusCode\": 404,\n  \"error\": \"Not Found Error\",\n  \"message\": \"Inspection not found\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Save Findings",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"brakePerformance\": \"AVERAGE\",\n  \"brakeNoise\": \"NONE\",\n  \"brakeVibration\": \"NONE\",\n  \"overallStatus\": \"PASS\",\n  \"overrideJustification\": null,\n  \"finalRemarks\": \"Vehicle in good overall condition. Minor paint scratches noted.\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/qc-inspections/{{inspection_id}}/findings",
+              "host": ["{{base_url}}"],
+              "path": ["api", "qc-inspections", "{{inspection_id}}", "findings"]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "status": "OK",
+              "code": 200,
+              "body": "{\n  \"status\": true,\n  \"message\": \"Findings saved successfully\",\n  \"data\": {\n    \"inspection\": {\n      \"id\": \"f1a2b3c4-d5e6-7890-abcd-ef1234567890\",\n      \"brakePerformance\": \"AVERAGE\",\n      \"brakeNoise\": \"NONE\",\n      \"brakeVibration\": \"NONE\",\n      \"overallStatus\": \"PASS\",\n      \"overrideJustification\": null,\n      \"finalRemarks\": \"Vehicle in good overall condition. Minor paint scratches noted.\",\n      \"currentStep\": 5\n    },\n    \"currentStep\": 5\n  }\n}"
+            },
+            {
+              "name": "Validation Error - Missing Overall Status",
+              "status": "Bad Request",
+              "code": 400,
+              "body": "{\n  \"status\": false,\n  \"statusCode\": 400,\n  \"error\": \"Validation Error\",\n  \"message\": \"overallStatus: Overall QC status is required\"\n}"
+            },
+            {
+              "name": "Not Found",
+              "status": "Not Found",
+              "code": 404,
+              "body": "{\n  \"status\": false,\n  \"statusCode\": 404,\n  \"error\": \"Not Found Error\",\n  \"message\": \"Inspection not found\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Submit Inspection",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/qc-inspections/{{inspection_id}}/submit",
+              "host": ["{{base_url}}"],
+              "path": ["api", "qc-inspections", "{{inspection_id}}", "submit"]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "status": "OK",
+              "code": 200,
+              "body": "{\n  \"status\": true,\n  \"message\": \"QC report submitted successfully\",\n  \"data\": {\n    \"inspectionId\": \"f1a2b3c4-d5e6-7890-abcd-ef1234567890\",\n    \"vehicleCheckInId\": \"e5f6a7b8-c9d0-1234-ef01-23456789abcd\",\n    \"registrationNumber\": \"BL00MYZN\",\n    \"vehicleModel\": \"BMW 3 Series\",\n    \"overallStatus\": \"PASS\",\n    \"completedAt\": \"2024-01-15T11:30:00.000Z\",\n    \"vehicleStatus\": \"Pending Service Advisor\"\n  }\n}"
+            },
+            {
+              "name": "Findings Not Saved",
+              "status": "Bad Request",
+              "code": 400,
+              "body": "{\n  \"status\": false,\n  \"statusCode\": 400,\n  \"error\": \"Validation Error\",\n  \"message\": \"Findings must be saved before submitting. Overall status is required.\"\n}"
+            },
+            {
+              "name": "Already Completed",
+              "status": "Bad Request",
+              "code": 400,
+              "body": "{\n  \"status\": false,\n  \"statusCode\": 400,\n  \"error\": \"Validation Error\",\n  \"message\": \"Inspection must be IN_PROGRESS to submit. Current status: COMPLETED\"\n}"
+            },
+            {
+              "name": "Not Found",
+              "status": "Not Found",
+              "code": 404,
+              "body": "{\n  \"status\": false,\n  \"statusCode\": 404,\n  \"error\": \"Not Found Error\",\n  \"message\": \"Inspection not found\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Upload Item Photo",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "images",
+                  "type": "file",
+                  "src": [],
+                  "description": "Select an image file (jpg, jpeg, png, webp)"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/api/qc-inspections/{{inspection_id}}/items/{{inspection_item_id}}/photos",
+              "host": ["{{base_url}}"],
+              "path": ["api", "qc-inspections", "{{inspection_id}}", "items", "{{inspection_item_id}}", "photos"]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "status": "Created",
+              "code": 201,
+              "body": "{\n  \"status\": true,\n  \"message\": \"Photo uploaded successfully\",\n  \"data\": {\n    \"photo\": {\n      \"id\": \"p1a2b3c4-d5e6-7890-abcd-ef1234567890\",\n      \"inspectionItemId\": \"item-uuid-1\",\n      \"imageUrl\": \"uploads/uuid.jpg\",\n      \"createdAt\": \"2024-01-15T10:15:00.000Z\"\n    },\n    \"photoCount\": 1\n  }\n}"
+            },
+            {
+              "name": "Inspection Not Found",
+              "status": "Not Found",
+              "code": 404,
+              "body": "{\n  \"status\": false,\n  \"statusCode\": 404,\n  \"error\": \"Not Found Error\",\n  \"message\": \"Inspection not found\"\n}"
+            },
+            {
+              "name": "Item Not Found",
+              "status": "Not Found",
+              "code": 404,
+              "body": "{\n  \"status\": false,\n  \"statusCode\": 404,\n  \"error\": \"Not Found Error\",\n  \"message\": \"Inspection item not found\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Delete Item Photo",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/qc-inspections/{{inspection_id}}/items/{{inspection_item_id}}/photos/{{inspection_photo_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "qc-inspections", "{{inspection_id}}", "items", "{{inspection_item_id}}", "photos", "{{inspection_photo_id}}"]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "status": "OK",
+              "code": 200,
+              "body": "{\n  \"status\": true,\n  \"message\": \"Photo deleted successfully\"\n}"
+            },
+            {
+              "name": "Not Found",
+              "status": "Not Found",
+              "code": 404,
+              "body": "{\n  \"status\": false,\n  \"statusCode\": 404,\n  \"error\": \"Not Found Error\",\n  \"message\": \"Photo not found\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Service Advisor",
+      "item": [
+        {
+          "name": "Dashboard",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/service-advisor/dashboard?page=1&limit=10&filter=ALL&sortOrder=desc",
+              "host": ["{{base_url}}"],
+              "path": ["api", "service-advisor", "dashboard"],
+              "query": [
+                { "key": "page", "value": "1" },
+                { "key": "limit", "value": "10" },
+                { "key": "filter", "value": "ALL", "description": "ALL | QC_COMPLETE | AWAITING_APPROVAL | IN_SERVICE | READY_FOR_BILLING" },
+                { "key": "sortOrder", "value": "desc" }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "status": "OK",
+              "code": 200,
+              "body": "{\n  \"status\": true,\n  \"message\": \"Service advisor dashboard fetched successfully\",\n  \"data\": {\n    \"stats\": {\n      \"qcComplete\": 5,\n      \"pendingApproval\": 12,\n      \"totalActive\": 17,\n      \"inService\": 5,\n      \"readyForBilling\": 3\n    },\n    \"activeVehicles\": [\n      {\n        \"vehicleId\": \"a1b2c3d4-e5f6-7890-abcd-ef1234567890\",\n        \"registrationNumber\": \"BL 00 MY ZN\",\n        \"brand\": \"Toyota\",\n        \"model\": \"Innova Crysta\",\n        \"customerName\": \"Vikram Mehta\",\n        \"serviceType\": \"Standard Service\",\n        \"waitingTime\": \"45 Mins\",\n        \"status\": \"QC Complete\",\n        \"hasJobCard\": false\n      }\n    ],\n    \"pagination\": {\n      \"page\": 1,\n      \"limit\": 10,\n      \"total\": 60,\n      \"totalPages\": 6\n    }\n  }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Vehicle Details",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/service-advisor/vehicles/{{vehicle_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "service-advisor", "vehicles", "{{vehicle_id}}"]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "status": "OK",
+              "code": 200,
+              "body": "{\n  \"status\": true,\n  \"message\": \"Vehicle details fetched successfully\",\n  \"data\": {\n    \"vehicle\": {\n      \"id\": \"a1b2c3d4-e5f6-7890-abcd-ef1234567890\",\n      \"registrationNumber\": \"BL 00 MY ZN\",\n      \"brand\": \"Toyota\",\n      \"model\": \"Innova Crysta\",\n      \"modelVariant\": null,\n      \"vin\": \"1HGBH41JXMN109186\",\n      \"status\": \"QC Complete\"\n    },\n    \"customer\": {\n      \"name\": \"Vikram Mehta\",\n      \"email\": \"vikram@example.com\",\n      \"phone\": \"+91 98765 43210\"\n    },\n    \"serviceProgress\": {\n      \"entry\": { \"status\": \"completed\" },\n      \"qc\": { \"status\": \"completed\" },\n      \"approval\": { \"status\": \"in_progress\" },\n      \"service\": { \"status\": \"pending\" },\n      \"billing\": { \"status\": \"pending\" }\n    },\n    \"latestInspection\": {\n      \"id\": \"i1b2c3d4-e5f6-7890-abcd-ef1234567890\",\n      \"overallStatus\": \"CONDITIONAL\",\n      \"completedAt\": \"2025-12-15T10:30:00.000Z\"\n    },\n    \"latestJobCard\": null\n  }\n}"
+            },
+            {
+              "name": "Not Found",
+              "status": "Not Found",
+              "code": 404,
+              "body": "{\n  \"status\": false,\n  \"statusCode\": 404,\n  \"error\": \"Not Found Error\",\n  \"message\": \"Vehicle not found\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "QC Report for Vehicle",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/service-advisor/vehicles/{{vehicle_id}}/qc-report",
+              "host": ["{{base_url}}"],
+              "path": ["api", "service-advisor", "vehicles", "{{vehicle_id}}", "qc-report"]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "status": "OK",
+              "code": 200,
+              "body": "{\n  \"status\": true,\n  \"message\": \"QC report fetched successfully\",\n  \"data\": {\n    \"inspectionId\": \"i1b2c3d4-e5f6-7890-abcd-ef1234567890\",\n    \"overallStatus\": \"CONDITIONAL\",\n    \"completedAt\": \"2025-12-15T10:30:00.000Z\",\n    \"brakeTestSummary\": {\n      \"performance\": \"GOOD\",\n      \"noise\": \"NONE\",\n      \"vibration\": \"LOW\"\n    },\n    \"finalRemarks\": \"AC needs attention, brake fluid low\",\n    \"categories\": {\n      \"EXTERIOR\": [\n        { \"id\": \"item-id-1\", \"itemCode\": \"EXT_BODY\", \"itemLabel\": \"Body Panels Condition\", \"result\": \"PASS\", \"comment\": \"Good condition\" },\n        { \"id\": \"item-id-2\", \"itemCode\": \"EXT_PAINT\", \"itemLabel\": \"Paint condition & scratches\", \"result\": \"NA\", \"comment\": \"Good condition\" },\n        { \"id\": \"item-id-3\", \"itemCode\": \"EXT_WINDSHIELD\", \"itemLabel\": \"Windshield & windows\", \"result\": \"PASS\", \"comment\": null },\n        { \"id\": \"item-id-4\", \"itemCode\": \"EXT_LIGHTS\", \"itemLabel\": \"Headlights & tail lights\", \"result\": \"PASS\", \"comment\": null },\n        { \"id\": \"item-id-5\", \"itemCode\": \"EXT_TYRES\", \"itemLabel\": \"Tyres & wheel condition\", \"result\": \"NA\", \"comment\": \"Front left tyre wear 60%\" },\n        { \"id\": \"item-id-6\", \"itemCode\": \"EXT_MIRRORS\", \"itemLabel\": \"Side mirrors\", \"result\": \"PASS\", \"comment\": null }\n      ],\n      \"INTERIOR\": [\n        { \"id\": \"item-id-7\", \"itemCode\": \"INT_DASHBOARD\", \"itemLabel\": \"Dashboard condition\", \"result\": \"PASS\", \"comment\": null },\n        { \"id\": \"item-id-8\", \"itemCode\": \"INT_SEATS\", \"itemLabel\": \"Seat condition\", \"result\": \"PASS\", \"comment\": null },\n        { \"id\": \"item-id-9\", \"itemCode\": \"INT_AC\", \"itemLabel\": \"AC vents & controls\", \"result\": \"FAIL\", \"comment\": \"AC not cooling properly\" },\n        { \"id\": \"item-id-10\", \"itemCode\": \"INT_STEERING\", \"itemLabel\": \"Steering & gear lever\", \"result\": \"PASS\", \"comment\": null },\n        { \"id\": \"item-id-11\", \"itemCode\": \"INT_INFOTAINMENT\", \"itemLabel\": \"Infotainment system\", \"result\": \"PASS\", \"comment\": null },\n        { \"id\": \"item-id-12\", \"itemCode\": \"INT_ENGINE\", \"itemLabel\": \"Engine bay inspection\", \"result\": \"PASS\", \"comment\": null }\n      ],\n      \"BRAKE\": [\n        { \"id\": \"item-id-13\", \"itemCode\": \"BRK_PEDAL\", \"itemLabel\": \"Brake pedal response\", \"result\": \"PASS\", \"comment\": null },\n        { \"id\": \"item-id-14\", \"itemCode\": \"BRK_HANDBRAKE\", \"itemLabel\": \"Handbrake function\", \"result\": \"PASS\", \"comment\": null },\n        { \"id\": \"item-id-15\", \"itemCode\": \"BRK_FLUID\", \"itemLabel\": \"Brake fluid level\", \"result\": \"NA\", \"comment\": \"Level slightly low\" },\n        { \"id\": \"item-id-16\", \"itemCode\": \"BRK_PADS\", \"itemLabel\": \"Brake pad wear\", \"result\": \"PASS\", \"comment\": null }\n      ]\n    },\n    \"summary\": {\n      \"totalItems\": 16,\n      \"passCount\": 12,\n      \"failCount\": 1,\n      \"warningCount\": 3\n    },\n    \"failedItems\": [\n      { \"id\": \"item-id-9\", \"itemCode\": \"INT_AC\", \"itemLabel\": \"AC vents & controls\", \"result\": \"FAIL\", \"comment\": \"AC not cooling properly\" }\n    ]\n  }\n}"
+            },
+            {
+              "name": "No QC Report",
+              "status": "Not Found",
+              "code": 404,
+              "body": "{\n  \"status\": false,\n  \"statusCode\": 404,\n  \"error\": \"Not Found Error\",\n  \"message\": \"No completed QC inspection found for this vehicle\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Vehicle History",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/service-advisor/vehicles/{{vehicle_id}}/history",
+              "host": ["{{base_url}}"],
+              "path": ["api", "service-advisor", "vehicles", "{{vehicle_id}}", "history"]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "status": "OK",
+              "code": 200,
+              "body": "{\n  \"status\": true,\n  \"message\": \"Vehicle service history fetched successfully\",\n  \"data\": {\n    \"history\": [\n      {\n        \"id\": \"h1b2c3d4-e5f6-7890-abcd-ef1234567890\",\n        \"vehicleId\": \"a1b2c3d4-e5f6-7890-abcd-ef1234567890\",\n        \"serviceType\": \"General Service\",\n        \"serviceDate\": \"2025-12-15\",\n        \"technicianName\": \"Ramesh K.\",\n        \"totalCost\": \"8500.00\",\n        \"duration\": \"3h 20m\",\n        \"notes\": null,\n        \"createdAt\": \"2025-12-15T09:00:00.000Z\",\n        \"updatedAt\": \"2025-12-15T09:00:00.000Z\"\n      },\n      {\n        \"id\": \"h2b2c3d4-e5f6-7890-abcd-ef1234567890\",\n        \"vehicleId\": \"a1b2c3d4-e5f6-7890-abcd-ef1234567890\",\n        \"serviceType\": \"AC Repair\",\n        \"serviceDate\": \"2025-09-02\",\n        \"technicianName\": \"Sunil M.\",\n        \"totalCost\": \"4200.00\",\n        \"duration\": \"2h 15m\",\n        \"notes\": null,\n        \"createdAt\": \"2025-09-02T10:00:00.000Z\",\n        \"updatedAt\": \"2025-09-02T10:00:00.000Z\"\n      }\n    ]\n  }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Add Service History",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"serviceType\": \"General Service\",\n  \"serviceDate\": \"2025-12-15\",\n  \"technicianName\": \"Ramesh K.\",\n  \"totalCost\": 8500,\n  \"duration\": \"3h 20m\",\n  \"notes\": \"Oil change, filter replacement\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/service-advisor/vehicles/{{vehicle_id}}/history",
+              "host": ["{{base_url}}"],
+              "path": ["api", "service-advisor", "vehicles", "{{vehicle_id}}", "history"]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "status": "Created",
+              "code": 201,
+              "body": "{\n  \"status\": true,\n  \"message\": \"Service history added successfully\",\n  \"data\": {\n    \"id\": \"h1b2c3d4-e5f6-7890-abcd-ef1234567890\",\n    \"vehicleId\": \"a1b2c3d4-e5f6-7890-abcd-ef1234567890\",\n    \"serviceType\": \"General Service\",\n    \"serviceDate\": \"2025-12-15\",\n    \"technicianName\": \"Ramesh K.\",\n    \"totalCost\": \"8500.00\",\n    \"duration\": \"3h 20m\",\n    \"notes\": \"Oil change, filter replacement\",\n    \"createdAt\": \"2025-12-15T09:00:00.000Z\",\n    \"updatedAt\": \"2025-12-15T09:00:00.000Z\"\n  }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Suggested Jobs (Based on QC)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/service-advisor/vehicles/{{vehicle_id}}/suggested-jobs",
+              "host": ["{{base_url}}"],
+              "path": ["api", "service-advisor", "vehicles", "{{vehicle_id}}", "suggested-jobs"]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "status": "OK",
+              "code": 200,
+              "body": "{\n  \"status\": true,\n  \"message\": \"Suggested jobs fetched successfully\",\n  \"data\": {\n    \"suggestedJobs\": [\n      {\n        \"itemCode\": \"INT_AC\",\n        \"itemLabel\": \"AC vents & controls\",\n        \"category\": \"INTERIOR\",\n        \"result\": \"FAIL\",\n        \"comment\": \"AC not cooling properly\",\n        \"suggestedDescription\": \"AC vents & controls - Repair/Replace\"\n      },\n      {\n        \"itemCode\": \"EXT_PAINT\",\n        \"itemLabel\": \"Paint condition & scratches\",\n        \"category\": \"EXTERIOR\",\n        \"result\": \"NA\",\n        \"comment\": \"Good condition\",\n        \"suggestedDescription\": \"Paint condition & scratches - Inspection\"\n      },\n      {\n        \"itemCode\": \"EXT_TYRES\",\n        \"itemLabel\": \"Tyres & wheel condition\",\n        \"category\": \"EXTERIOR\",\n        \"result\": \"NA\",\n        \"comment\": \"Front left tyre wear 60%\",\n        \"suggestedDescription\": \"Tyres & wheel condition - Inspection\"\n      },\n      {\n        \"itemCode\": \"BRK_FLUID\",\n        \"itemLabel\": \"Brake fluid level\",\n        \"category\": \"BRAKE\",\n        \"result\": \"NA\",\n        \"comment\": \"Level slightly low\",\n        \"suggestedDescription\": \"Brake fluid level - Inspection\"\n      }\n    ]\n  }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Create Job Card",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"inspectionId\": \"{{inspection_id}}\",\n  \"items\": [\n    {\n      \"jobDescription\": \"AC Gas Refill & Cooling Check\",\n      \"partsRequired\": \"Refrigerant Gas R134a\",\n      \"partsCost\": 1500,\n      \"labourCost\": 500,\n      \"quantity\": 1\n    },\n    {\n      \"jobDescription\": \"AC Compressor Inspection\",\n      \"partsRequired\": \"Compressor Seal kit\",\n      \"partsCost\": 800,\n      \"labourCost\": 1200,\n      \"quantity\": 1\n    }\n  ],\n  \"gstPercentage\": 18\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/service-advisor/vehicles/{{vehicle_id}}/job-cards",
+              "host": ["{{base_url}}"],
+              "path": ["api", "service-advisor", "vehicles", "{{vehicle_id}}", "job-cards"]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "status": "Created",
+              "code": 201,
+              "body": "{\n  \"status\": true,\n  \"message\": \"Job card created successfully\",\n  \"data\": {\n    \"jobCard\": {\n      \"id\": \"jc-uuid-1234\",\n      \"vehicleId\": \"a1b2c3d4-e5f6-7890-abcd-ef1234567890\",\n      \"inspectionId\": \"i1b2c3d4-e5f6-7890-abcd-ef1234567890\",\n      \"status\": \"DRAFT\",\n      \"subtotal\": \"4000.00\",\n      \"gstPercentage\": \"18.00\",\n      \"gstAmount\": \"720.00\",\n      \"totalEstimate\": \"4720.00\",\n      \"sharedAt\": null,\n      \"approvedAt\": null,\n      \"createdAt\": \"2025-12-15T11:00:00.000Z\",\n      \"updatedAt\": \"2025-12-15T11:00:00.000Z\"\n    },\n    \"items\": [\n      {\n        \"id\": \"jci-uuid-1\",\n        \"jobCardId\": \"jc-uuid-1234\",\n        \"jobDescription\": \"AC Gas Refill & Cooling Check\",\n        \"partsRequired\": \"Refrigerant Gas R134a\",\n        \"partsCost\": \"1500.00\",\n        \"labourCost\": \"500.00\",\n        \"quantity\": 1,\n        \"lineTotal\": \"2000.00\",\n        \"sortOrder\": 1\n      },\n      {\n        \"id\": \"jci-uuid-2\",\n        \"jobCardId\": \"jc-uuid-1234\",\n        \"jobDescription\": \"AC Compressor Inspection\",\n        \"partsRequired\": \"Compressor Seal kit\",\n        \"partsCost\": \"800.00\",\n        \"labourCost\": \"1200.00\",\n        \"quantity\": 1,\n        \"lineTotal\": \"2000.00\",\n        \"sortOrder\": 2\n      }\n    ]\n  }\n}"
+            },
+            {
+              "name": "Vehicle Not Found",
+              "status": "Not Found",
+              "code": 404,
+              "body": "{\n  \"status\": false,\n  \"statusCode\": 404,\n  \"error\": \"Not Found Error\",\n  \"message\": \"Vehicle not found\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get Vehicle Job Cards",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/service-advisor/vehicles/{{vehicle_id}}/job-cards",
+              "host": ["{{base_url}}"],
+              "path": ["api", "service-advisor", "vehicles", "{{vehicle_id}}", "job-cards"]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "status": "OK",
+              "code": 200,
+              "body": "{\n  \"status\": true,\n  \"message\": \"Job cards fetched successfully\",\n  \"data\": {\n    \"jobCards\": [\n      {\n        \"id\": \"jc-uuid-1234\",\n        \"vehicleId\": \"a1b2c3d4-e5f6-7890-abcd-ef1234567890\",\n        \"inspectionId\": \"i1b2c3d4-e5f6-7890-abcd-ef1234567890\",\n        \"status\": \"DRAFT\",\n        \"subtotal\": \"4000.00\",\n        \"gstPercentage\": \"18.00\",\n        \"gstAmount\": \"720.00\",\n        \"totalEstimate\": \"4720.00\",\n        \"sharedAt\": null,\n        \"approvedAt\": null,\n        \"createdAt\": \"2025-12-15T11:00:00.000Z\",\n        \"updatedAt\": \"2025-12-15T11:00:00.000Z\"\n      }\n    ]\n  }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get Job Card Details",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/service-advisor/job-cards/{{job_card_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "service-advisor", "job-cards", "{{job_card_id}}"]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "status": "OK",
+              "code": 200,
+              "body": "{\n  \"status\": true,\n  \"message\": \"Job card fetched successfully\",\n  \"data\": {\n    \"jobCard\": {\n      \"id\": \"jc-uuid-1234\",\n      \"vehicleId\": \"a1b2c3d4-e5f6-7890-abcd-ef1234567890\",\n      \"inspectionId\": \"i1b2c3d4-e5f6-7890-abcd-ef1234567890\",\n      \"status\": \"DRAFT\",\n      \"subtotal\": \"4000.00\",\n      \"gstPercentage\": \"18.00\",\n      \"gstAmount\": \"720.00\",\n      \"totalEstimate\": \"4720.00\",\n      \"sharedAt\": null,\n      \"approvedAt\": null,\n      \"createdAt\": \"2025-12-15T11:00:00.000Z\",\n      \"updatedAt\": \"2025-12-15T11:00:00.000Z\"\n    },\n    \"items\": [\n      {\n        \"id\": \"jci-uuid-1\",\n        \"jobCardId\": \"jc-uuid-1234\",\n        \"jobDescription\": \"AC Gas Refill & Cooling Check\",\n        \"partsRequired\": \"Refrigerant Gas R134a\",\n        \"partsCost\": \"1500.00\",\n        \"labourCost\": \"500.00\",\n        \"quantity\": 1,\n        \"lineTotal\": \"2000.00\",\n        \"sortOrder\": 1\n      },\n      {\n        \"id\": \"jci-uuid-2\",\n        \"jobCardId\": \"jc-uuid-1234\",\n        \"jobDescription\": \"AC Compressor Inspection\",\n        \"partsRequired\": \"Compressor Seal kit\",\n        \"partsCost\": \"800.00\",\n        \"labourCost\": \"1200.00\",\n        \"quantity\": 1,\n        \"lineTotal\": \"2000.00\",\n        \"sortOrder\": 2\n      }\n    ],\n    \"vehicle\": {\n      \"registrationNumber\": \"BL 00 MY ZN\",\n      \"brand\": \"Toyota\",\n      \"model\": \"Innova Crysta\",\n      \"customerName\": \"Vikram Mehta\"\n    }\n  }\n}"
+            },
+            {
+              "name": "Not Found",
+              "status": "Not Found",
+              "code": 404,
+              "body": "{\n  \"status\": false,\n  \"statusCode\": 404,\n  \"error\": \"Not Found Error\",\n  \"message\": \"Job card not found\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Update Job Card",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"items\": [\n    {\n      \"jobDescription\": \"AC Gas Refill & Cooling Check\",\n      \"partsRequired\": \"Refrigerant Gas R134a\",\n      \"partsCost\": 1500,\n      \"labourCost\": 500,\n      \"quantity\": 1\n    },\n    {\n      \"jobDescription\": \"AC Compressor Inspection\",\n      \"partsRequired\": \"Compressor Seal kit\",\n      \"partsCost\": 800,\n      \"labourCost\": 1200,\n      \"quantity\": 1\n    },\n    {\n      \"jobDescription\": \"Front Tyre Replacement\",\n      \"partsRequired\": \"Bridgestone 205/55 R16\",\n      \"partsCost\": 4500,\n      \"labourCost\": 300,\n      \"quantity\": 1\n    }\n  ],\n  \"gstPercentage\": 18\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/service-advisor/job-cards/{{job_card_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "service-advisor", "job-cards", "{{job_card_id}}"]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "status": "OK",
+              "code": 200,
+              "body": "{\n  \"status\": true,\n  \"message\": \"Job card updated successfully\",\n  \"data\": {\n    \"jobCard\": {\n      \"id\": \"jc-uuid-1234\",\n      \"vehicleId\": \"a1b2c3d4-e5f6-7890-abcd-ef1234567890\",\n      \"status\": \"DRAFT\",\n      \"subtotal\": \"8800.00\",\n      \"gstPercentage\": \"18.00\",\n      \"gstAmount\": \"1584.00\",\n      \"totalEstimate\": \"10384.00\"\n    },\n    \"items\": [...]\n  }\n}"
+            },
+            {
+              "name": "Not Draft",
+              "status": "Bad Request",
+              "code": 400,
+              "body": "{\n  \"status\": false,\n  \"statusCode\": 400,\n  \"error\": \"Validation Error\",\n  \"message\": \"Job card can only be updated in DRAFT status. Current status: SHARED\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Share Estimate with Customer",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/service-advisor/job-cards/{{job_card_id}}/share",
+              "host": ["{{base_url}}"],
+              "path": ["api", "service-advisor", "job-cards", "{{job_card_id}}", "share"]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "status": "OK",
+              "code": 200,
+              "body": "{\n  \"status\": true,\n  \"message\": \"Estimate shared with customer successfully\",\n  \"data\": {\n    \"jobCardId\": \"jc-uuid-1234\",\n    \"status\": \"SHARED\",\n    \"sharedAt\": \"2025-12-15T12:00:00.000Z\",\n    \"vehicleStatus\": \"Awaiting Approval\"\n  }\n}"
+            },
+            {
+              "name": "Not Draft",
+              "status": "Bad Request",
+              "code": 400,
+              "body": "{\n  \"status\": false,\n  \"statusCode\": 400,\n  \"error\": \"Validation Error\",\n  \"message\": \"Only DRAFT job cards can be shared. Current status: SHARED\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Approve Job Card",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/service-advisor/job-cards/{{job_card_id}}/approve",
+              "host": ["{{base_url}}"],
+              "path": ["api", "service-advisor", "job-cards", "{{job_card_id}}", "approve"]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "status": "OK",
+              "code": 200,
+              "body": "{\n  \"status\": true,\n  \"message\": \"Job card approved successfully\",\n  \"data\": {\n    \"jobCardId\": \"jc-uuid-1234\",\n    \"status\": \"APPROVED\",\n    \"approvedAt\": \"2025-12-15T14:00:00.000Z\",\n    \"vehicleStatus\": \"In Service\"\n  }\n}"
+            },
+            {
+              "name": "Not Shared",
+              "status": "Bad Request",
+              "code": 400,
+              "body": "{\n  \"status\": false,\n  \"statusCode\": 400,\n  \"error\": \"Validation Error\",\n  \"message\": \"Only SHARED job cards can be approved. Current status: DRAFT\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Update Vehicle Status",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"Ready for Billing\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/service-advisor/vehicles/{{vehicle_id}}/status",
+              "host": ["{{base_url}}"],
+              "path": ["api", "service-advisor", "vehicles", "{{vehicle_id}}", "status"]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "status": "OK",
+              "code": 200,
+              "body": "{\n  \"status\": true,\n  \"message\": \"Vehicle status updated to \\\"Ready for Billing\\\" successfully\",\n  \"data\": {\n    \"id\": \"a1b2c3d4-e5f6-7890-abcd-ef1234567890\",\n    \"status\": \"Ready for Billing\"\n  }\n}"
+            },
+            {
+              "name": "Invalid Transition",
+              "status": "Bad Request",
+              "code": 400,
+              "body": "{\n  \"status\": false,\n  \"statusCode\": 400,\n  \"error\": \"Validation Error\",\n  \"message\": \"Cannot transition from \\\"Pending Service Advisor\\\" to \\\"Ready for Billing\\\". Allowed: Awaiting Approval\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Parts Manager",
+      "item": [
+        {
+          "name": "Get Dashboard",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{auth_token}}" }],
+            "url": {
+              "raw": "{{base_url}}/api/parts-manager/dashboard",
+              "host": ["{{base_url}}"],
+              "path": ["api", "parts-manager", "dashboard"]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "status": "OK",
+              "code": 200,
+              "body": "{\n  \"status\": true,\n  \"message\": \"Dashboard fetched successfully\",\n  \"data\": {\n    \"stats\": {\n      \"pending\": 2,\n      \"inProgress\": 1,\n      \"available\": 1,\n      \"unavailable\": 1,\n      \"dispatched\": 1\n    },\n    \"partRequests\": [\n      {\n        \"id\": \"part-uuid-1\",\n        \"partName\": \"Refrigerant Gas R134a\",\n        \"partNumber\": \"TYN-AC-001 • Qty: 3\",\n        \"vehicleNumber\": \"KA-01-AB-1234\",\n        \"vehicleModel\": \"Toyota Innova Crysta\",\n        \"serviceDescription\": \"AC Gas Refill & Cooling Check\",\n        \"status\": \"pending\",\n        \"requestTime\": \"10:45 AM\"\n      }\n    ]\n  }\n}"
+            },
+            {
+              "name": "Unauthorized",
+              "status": "Unauthorized",
+              "code": 401,
+              "body": "{\n  \"status\": false,\n  \"statusCode\": 401,\n  \"error\": \"Unauthorized\",\n  \"message\": \"Authentication required\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get Part Requests",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{auth_token}}" }],
+            "url": {
+              "raw": "{{base_url}}/api/parts-manager/parts?status=pending",
+              "host": ["{{base_url}}"],
+              "path": ["api", "parts-manager", "parts"],
+              "query": [
+                {
+                  "key": "status",
+                  "value": "pending",
+                  "description": "Filter by status: pending | in-progress | available | unavailable | dispatched. Omit for all."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "All Requests",
+              "status": "OK",
+              "code": 200,
+              "body": "{\n  \"status\": true,\n  \"message\": \"Part requests fetched successfully\",\n  \"data\": [\n    {\n      \"id\": \"part-uuid-1\",\n      \"partName\": \"Refrigerant Gas R134a\",\n      \"partNumber\": \"TYN-AC-001 • Qty: 3\",\n      \"vehicleNumber\": \"KA-01-AB-1234\",\n      \"vehicleModel\": \"Toyota Innova Crysta\",\n      \"serviceDescription\": \"AC Gas Refill & Cooling Check\",\n      \"status\": \"pending\",\n      \"requestTime\": \"10:45 AM\",\n      \"expectedTime\": null\n    }\n  ]\n}"
+            },
+            {
+              "name": "Filtered by Status",
+              "status": "OK",
+              "code": 200,
+              "body": "{\n  \"status\": true,\n  \"message\": \"Part requests fetched successfully\",\n  \"data\": [\n    {\n      \"id\": \"part-uuid-5\",\n      \"partName\": \"Front Brake Pads\",\n      \"partNumber\": \"MAR-BR-242 • Qty: 1\",\n      \"vehicleNumber\": \"KA-05-FF-9612\",\n      \"vehicleModel\": \"Maruti Swift\",\n      \"serviceDescription\": \"Brake Pad Replacement\",\n      \"status\": \"unavailable\",\n      \"requestTime\": \"9:30 AM\",\n      \"expectedTime\": \"Tomorrow 10:00 AM\"\n    }\n  ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "Mark Part as Available",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData.data && jsonData.data.id) {",
+                  "    pm.collectionVariables.set('part_id', jsonData.data.id);",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{auth_token}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/parts-manager/parts/{{part_id}}/mark-available",
+              "host": ["{{base_url}}"],
+              "path": ["api", "parts-manager", "parts", "{{part_id}}", "mark-available"]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "status": "OK",
+              "code": 200,
+              "body": "{\n  \"status\": true,\n  \"message\": \"Part marked as available\",\n  \"data\": {\n    \"id\": \"part-uuid-1\",\n    \"partName\": \"Refrigerant Gas R134a\",\n    \"status\": \"available\"\n  }\n}"
+            },
+            {
+              "name": "Invalid Transition",
+              "status": "Bad Request",
+              "code": 400,
+              "body": "{\n  \"status\": false,\n  \"statusCode\": 400,\n  \"error\": \"Validation Error\",\n  \"message\": \"Part is not in pending status\"\n}"
+            },
+            {
+              "name": "Not Found",
+              "status": "Not Found",
+              "code": 404,
+              "body": "{\n  \"status\": false,\n  \"statusCode\": 404,\n  \"error\": \"Not Found\",\n  \"message\": \"Part request not found\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Mark Part as Unavailable",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{auth_token}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"expectedTime\": \"Tomorrow 10:00 AM\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/parts-manager/parts/{{part_id}}/mark-unavailable",
+              "host": ["{{base_url}}"],
+              "path": ["api", "parts-manager", "parts", "{{part_id}}", "mark-unavailable"]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "status": "OK",
+              "code": 200,
+              "body": "{\n  \"status\": true,\n  \"message\": \"Part marked as unavailable\",\n  \"data\": {\n    \"id\": \"part-uuid-5\",\n    \"partName\": \"Front Brake Pads\",\n    \"status\": \"unavailable\",\n    \"expectedTime\": \"Tomorrow 10:00 AM\"\n  }\n}"
+            },
+            {
+              "name": "Missing expectedTime",
+              "status": "Bad Request",
+              "code": 400,
+              "body": "{\n  \"status\": false,\n  \"statusCode\": 400,\n  \"error\": \"Validation Error\",\n  \"message\": \"expectedTime: Required\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Dispatch Part to Bay",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{auth_token}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/parts-manager/parts/{{part_id}}/dispatch",
+              "host": ["{{base_url}}"],
+              "path": ["api", "parts-manager", "parts", "{{part_id}}", "dispatch"]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "status": "OK",
+              "code": 200,
+              "body": "{\n  \"status\": true,\n  \"message\": \"Part dispatched to service bay\",\n  \"data\": {\n    \"id\": \"part-uuid-3\",\n    \"partName\": \"Oil Filter\",\n    \"status\": \"dispatched\",\n    \"showDispatchInfo\": true\n  }\n}"
+            },
+            {
+              "name": "Invalid Transition",
+              "status": "Bad Request",
+              "code": 400,
+              "body": "{\n  \"status\": false,\n  \"statusCode\": 400,\n  \"error\": \"Validation Error\",\n  \"message\": \"Part must be in available status before dispatching\"\n}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

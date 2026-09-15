@@ -1,0 +1,29 @@
+export const MODULES = {
+  GATE_ENTRY: 'GATE_ENTRY',
+  QC_INSPECTION: 'QC_INSPECTION',
+  JOB_CARD: 'JOB_CARD',
+  PARTS_MANAGER: 'PARTS_MANAGER',
+  USER_MANAGEMENT: 'USER_MANAGEMENT',
+  ROLE_MANAGEMENT: 'ROLE_MANAGEMENT',
+  DASHBOARD: 'DASHBOARD',
+  APPOINTMENT: 'APPOINTMENT',
+  VEHICLE_360: 'VEHICLE_360',
+  TECHNICIAN: 'TECHNICIAN',
+  WORKSHOP: 'WORKSHOP',
+  QC_OUT: 'QC_OUT',
+  WASHBAY: 'WASHBAY',
+  WARRANTY: 'WARRANTY',
+  INVOICING: 'INVOICING',
+  GATE_RELEASE: 'GATE_RELEASE',
+} as const;
+
+export const ACTIONS = {
+  VIEW: 'view',
+  CREATE: 'create',
+  EDIT: 'edit',
+  DELETE: 'delete',
+  APPROVE: 'approve',
+} as const;
+
+export type Module = (typeof MODULES)[keyof typeof MODULES];
+export type Action = (typeof ACTIONS)[keyof typeof ACTIONS];

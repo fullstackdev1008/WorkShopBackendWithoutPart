@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx --prefix \"/Users/yashdonga/Desktop/React/TrueGear\" tsc --noEmit)",
+      "Bash(node_modules/.bin/tsc --noEmit)",
+      "Bash(\"/Users/yashdonga/Desktop/React/TrueGear/node_modules/.bin/tsc\" --noEmit --project \"/Users/yashdonga/Desktop/React/TrueGear/tsconfig.json\")",
+      "Bash(\"/Users/yashdonga/Desktop/React/TrueGear/node_modules/.bin/tsc\" --version)",
+      "Bash(\"/Users/yashdonga/Desktop/React/TrueGear/node_modules/.bin/tsc\" --noEmit --project \"/Users/yashdonga/Desktop/React/TrueGear/tsconfig.app.json\")",
+      "Bash(echo \"EXIT: $?\")"
+    ],
+    "additionalDirectories": [
+      "/Users/yashdonga/Desktop/React/TrueGear/src/routes",
+      "/Users/yashdonga/Desktop/React/TrueGear/src/components/layout",
+      "/Users/yashdonga/Desktop/React/TrueGear/src"
+    ]
+  }
+}

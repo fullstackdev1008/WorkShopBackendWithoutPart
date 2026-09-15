@@ -1,0 +1,3286 @@
+{
+  "exportedAt": "2026-02-26T06:22:57.106Z",
+  "roles": [
+    {
+      "id": "67357709-78b5-4142-9b2e-c779f059df11",
+      "name": "QC Inspector",
+      "slug": "qc-inspector",
+      "createdAt": "2026-02-24T07:51:01.032Z",
+      "updatedAt": "2026-02-24T07:51:01.032Z"
+    },
+    {
+      "id": "1803783f-4d7a-4462-aa8b-bc06f3421217",
+      "name": "Security Gate Keeper",
+      "slug": "security-gate-keeper",
+      "createdAt": "2026-02-24T07:51:01.037Z",
+      "updatedAt": "2026-02-24T07:51:01.037Z"
+    },
+    {
+      "id": "8131b91b-0cad-497f-90dd-9c005a896030",
+      "name": "Customer",
+      "slug": "customer",
+      "createdAt": "2026-02-24T07:51:01.039Z",
+      "updatedAt": "2026-02-24T07:51:01.039Z"
+    },
+    {
+      "id": "17395508-2f8f-4549-833b-b43d7a1c10e8",
+      "name": "Service Advisor",
+      "slug": "service-advisor",
+      "createdAt": "2026-02-24T10:27:08.759Z",
+      "updatedAt": "2026-02-24T10:27:08.759Z"
+    }
+  ],
+  "users": [
+    {
+      "id": "378ba766-6bd2-4ff7-b5f2-15b5715df3b9",
+      "username": "Alex",
+      "email": "gatekeeper@workshop.com",
+      "password": "$2b$12$jfY066mgg04Brm3BibFebeTIMuoUkX3PjY6U/0ltCgcvTFEIoCMWu",
+      "roleId": "1803783f-4d7a-4462-aa8b-bc06f3421217",
+      "isActive": true,
+      "createdAt": "2026-02-24T07:51:01.623Z",
+      "updatedAt": "2026-02-24T07:51:01.623Z"
+    },
+    {
+      "id": "61d22e81-2ba5-4010-9257-2a60fb200ab5",
+      "username": "John",
+      "email": "qc@workshop.com",
+      "password": "$2b$12$7GUPOQ50Gy7FHJCxPZkVl.17N/7Tl.JYzkpFxZ7RJOcoPmqsOelIK",
+      "roleId": "67357709-78b5-4142-9b2e-c779f059df11",
+      "isActive": true,
+      "createdAt": "2026-02-24T07:51:01.329Z",
+      "updatedAt": "2026-02-24T07:51:01.329Z"
+    },
+    {
+      "id": "e5fb376c-a410-4d58-a3a3-d48781f80760",
+      "username": "Johnson",
+      "email": "advisor@workshop.com",
+      "password": "$2b$12$FKLFnJxJ0u3SAMV6D8GcI.XJtvXJkYmnJWUx6Vv8wPXKn0r1hxz0q",
+      "roleId": "17395508-2f8f-4549-833b-b43d7a1c10e8",
+      "isActive": true,
+      "createdAt": "2026-02-24T10:27:09.084Z",
+      "updatedAt": "2026-02-24T10:27:09.084Z"
+    }
+  ],
+  "permissions": [
+    {
+      "id": "373b1656-c34d-4845-8d11-9519b9bd5bfa",
+      "roleId": "67357709-78b5-4142-9b2e-c779f059df11",
+      "resource": "qc-inspections",
+      "action": "read",
+      "createdAt": "2026-02-24T07:51:01.625Z"
+    },
+    {
+      "id": "7f587640-57f6-47a6-aa82-19178e7f8593",
+      "roleId": "67357709-78b5-4142-9b2e-c779f059df11",
+      "resource": "qc-inspections",
+      "action": "create",
+      "createdAt": "2026-02-24T07:51:01.630Z"
+    },
+    {
+      "id": "a6790097-29fc-4f04-882c-9e87c26b6e56",
+      "roleId": "67357709-78b5-4142-9b2e-c779f059df11",
+      "resource": "qc-inspections",
+      "action": "update",
+      "createdAt": "2026-02-24T07:51:01.631Z"
+    },
+    {
+      "id": "de4fd7ea-53be-4070-9c94-2bc57a2080ef",
+      "roleId": "67357709-78b5-4142-9b2e-c779f059df11",
+      "resource": "qc-inspections",
+      "action": "delete",
+      "createdAt": "2026-02-24T07:51:01.633Z"
+    },
+    {
+      "id": "2facd669-c218-4ea7-becd-a7b710bef47c",
+      "roleId": "1803783f-4d7a-4462-aa8b-bc06f3421217",
+      "resource": "vehicles",
+      "action": "read",
+      "createdAt": "2026-02-24T07:51:01.635Z"
+    },
+    {
+      "id": "02a54603-aab9-46b8-8173-1acf92a5cbc4",
+      "roleId": "1803783f-4d7a-4462-aa8b-bc06f3421217",
+      "resource": "vehicles",
+      "action": "create",
+      "createdAt": "2026-02-24T07:51:01.637Z"
+    },
+    {
+      "id": "df69a5db-2231-40ac-a9f2-248b35084478",
+      "roleId": "1803783f-4d7a-4462-aa8b-bc06f3421217",
+      "resource": "vehicles",
+      "action": "update",
+      "createdAt": "2026-02-24T07:51:01.638Z"
+    },
+    {
+      "id": "95fecfea-3709-448a-a45e-526f824c53b6",
+      "roleId": "1803783f-4d7a-4462-aa8b-bc06f3421217",
+      "resource": "vehicles",
+      "action": "delete",
+      "createdAt": "2026-02-24T07:51:01.638Z"
+    },
+    {
+      "id": "7af3755f-aa0c-4bcb-b90a-f81b40f0b756",
+      "roleId": "1803783f-4d7a-4462-aa8b-bc06f3421217",
+      "resource": "vehicle-images",
+      "action": "create",
+      "createdAt": "2026-02-24T07:51:01.639Z"
+    },
+    {
+      "id": "fafffd09-2e97-4783-8331-eacafb1750d6",
+      "roleId": "1803783f-4d7a-4462-aa8b-bc06f3421217",
+      "resource": "vehicle-images",
+      "action": "update",
+      "createdAt": "2026-02-24T07:51:01.640Z"
+    },
+    {
+      "id": "6c926b86-1d32-445a-96e3-853f39006568",
+      "roleId": "1803783f-4d7a-4462-aa8b-bc06f3421217",
+      "resource": "vehicle-images",
+      "action": "delete",
+      "createdAt": "2026-02-24T07:51:01.640Z"
+    },
+    {
+      "id": "f8d652db-a94c-48a0-823e-d6a3f344d380",
+      "roleId": "1803783f-4d7a-4462-aa8b-bc06f3421217",
+      "resource": "vehicle-accessories",
+      "action": "read",
+      "createdAt": "2026-02-24T07:51:01.641Z"
+    },
+    {
+      "id": "19a0cfa6-e5b2-4bc1-bced-0c5fe717bb68",
+      "roleId": "1803783f-4d7a-4462-aa8b-bc06f3421217",
+      "resource": "vehicle-accessories",
+      "action": "create",
+      "createdAt": "2026-02-24T07:51:01.642Z"
+    },
+    {
+      "id": "d9a03f50-4db3-44fb-9d20-d6beeb3cd449",
+      "roleId": "1803783f-4d7a-4462-aa8b-bc06f3421217",
+      "resource": "vehicle-accessories",
+      "action": "update",
+      "createdAt": "2026-02-24T07:51:01.643Z"
+    },
+    {
+      "id": "eaf86078-625e-410c-939e-df2b964ecdaa",
+      "roleId": "1803783f-4d7a-4462-aa8b-bc06f3421217",
+      "resource": "vehicle-accessories",
+      "action": "delete",
+      "createdAt": "2026-02-24T07:51:01.644Z"
+    },
+    {
+      "id": "46212194-748a-45ea-a078-39db09ddfaa5",
+      "roleId": "1803783f-4d7a-4462-aa8b-bc06f3421217",
+      "resource": "check-ins",
+      "action": "read",
+      "createdAt": "2026-02-24T07:51:01.645Z"
+    },
+    {
+      "id": "7ec959c6-02ee-46b0-bf8f-e9be74eea9f1",
+      "roleId": "1803783f-4d7a-4462-aa8b-bc06f3421217",
+      "resource": "check-ins",
+      "action": "create",
+      "createdAt": "2026-02-24T07:51:01.646Z"
+    },
+    {
+      "id": "4df9a4d7-a060-4928-aceb-9b51ce645a0e",
+      "roleId": "1803783f-4d7a-4462-aa8b-bc06f3421217",
+      "resource": "check-ins",
+      "action": "update",
+      "createdAt": "2026-02-24T07:51:01.646Z"
+    },
+    {
+      "id": "4acecedb-3a8b-4384-8696-68ed4998ca09",
+      "roleId": "1803783f-4d7a-4462-aa8b-bc06f3421217",
+      "resource": "check-ins",
+      "action": "delete",
+      "createdAt": "2026-02-24T07:51:01.647Z"
+    },
+    {
+      "id": "bc7d1b63-49ae-40ea-93af-5f0a831b0b17",
+      "roleId": "1803783f-4d7a-4462-aa8b-bc06f3421217",
+      "resource": "confirm-entry",
+      "action": "create",
+      "createdAt": "2026-02-24T07:51:01.648Z"
+    },
+    {
+      "id": "0504d995-a199-4799-a262-27903d8d336a",
+      "roleId": "8131b91b-0cad-497f-90dd-9c005a896030",
+      "resource": "customers",
+      "action": "read",
+      "createdAt": "2026-02-24T07:51:01.651Z"
+    },
+    {
+      "id": "5ef60997-7cef-43b5-8256-be7409cdc50f",
+      "roleId": "8131b91b-0cad-497f-90dd-9c005a896030",
+      "resource": "customers",
+      "action": "create",
+      "createdAt": "2026-02-24T07:51:01.652Z"
+    },
+    {
+      "id": "ebf60adf-abb5-4ce8-b1ba-b214e8d4f788",
+      "roleId": "8131b91b-0cad-497f-90dd-9c005a896030",
+      "resource": "customers",
+      "action": "update",
+      "createdAt": "2026-02-24T07:51:01.653Z"
+    },
+    {
+      "id": "9bbf3293-1282-4010-a9b0-5e92806b0fb7",
+      "roleId": "8131b91b-0cad-497f-90dd-9c005a896030",
+      "resource": "customers",
+      "action": "delete",
+      "createdAt": "2026-02-24T07:51:01.654Z"
+    },
+    {
+      "id": "af537fe2-c797-43f5-8a17-3400f5b21bce",
+      "roleId": "8131b91b-0cad-497f-90dd-9c005a896030",
+      "resource": "service-advisor",
+      "action": "read",
+      "createdAt": "2026-02-24T07:51:01.655Z"
+    },
+    {
+      "id": "a3555511-76e7-4c48-b78f-4ad20c8487cb",
+      "roleId": "8131b91b-0cad-497f-90dd-9c005a896030",
+      "resource": "service-advisor",
+      "action": "create",
+      "createdAt": "2026-02-24T07:51:01.656Z"
+    },
+    {
+      "id": "e9e1546b-bde3-4bb4-b6d0-41b1cad3b191",
+      "roleId": "8131b91b-0cad-497f-90dd-9c005a896030",
+      "resource": "service-advisor",
+      "action": "update",
+      "createdAt": "2026-02-24T07:51:01.659Z"
+    },
+    {
+      "id": "42ebd2c9-6066-40b2-8d54-4c48072ebf78",
+      "roleId": "1803783f-4d7a-4462-aa8b-bc06f3421217",
+      "resource": "customers",
+      "action": "read",
+      "createdAt": "2026-02-24T09:42:48.673Z"
+    },
+    {
+      "id": "fc734d18-cd98-4c12-bf2b-ab2e0abb7b0f",
+      "roleId": "1803783f-4d7a-4462-aa8b-bc06f3421217",
+      "resource": "customers",
+      "action": "create",
+      "createdAt": "2026-02-24T09:42:48.687Z"
+    },
+    {
+      "id": "857f1e88-5b85-418d-9391-55409fad25e3",
+      "roleId": "1803783f-4d7a-4462-aa8b-bc06f3421217",
+      "resource": "customers",
+      "action": "update",
+      "createdAt": "2026-02-24T09:42:48.689Z"
+    },
+    {
+      "id": "d9c1679e-3467-4ac4-9788-8cb626cdd206",
+      "roleId": "1803783f-4d7a-4462-aa8b-bc06f3421217",
+      "resource": "customers",
+      "action": "delete",
+      "createdAt": "2026-02-24T09:42:48.690Z"
+    },
+    {
+      "id": "9057851d-7dc2-4653-adf4-d544f98a2e83",
+      "roleId": "17395508-2f8f-4549-833b-b43d7a1c10e8",
+      "resource": "service-advisor",
+      "action": "read",
+      "createdAt": "2026-02-24T10:27:09.127Z"
+    },
+    {
+      "id": "19afffc9-ed14-40e0-86c4-8a93e1e34d0c",
+      "roleId": "17395508-2f8f-4549-833b-b43d7a1c10e8",
+      "resource": "service-advisor",
+      "action": "create",
+      "createdAt": "2026-02-24T10:27:09.128Z"
+    },
+    {
+      "id": "78f5b8f8-9cfa-4ea3-8786-b73d75f81776",
+      "roleId": "17395508-2f8f-4549-833b-b43d7a1c10e8",
+      "resource": "service-advisor",
+      "action": "update",
+      "createdAt": "2026-02-24T10:27:09.129Z"
+    },
+    {
+      "id": "f0409568-e5c3-4a5e-be76-43352db45d70",
+      "roleId": "17395508-2f8f-4549-833b-b43d7a1c10e8",
+      "resource": "service-advisor",
+      "action": "delete",
+      "createdAt": "2026-02-24T10:27:09.130Z"
+    }
+  ],
+  "customers": [
+    {
+      "id": "0a4633da-c2a7-4ab9-bd23-42a201b994b2",
+      "crmReferenceNo": "CRM-002",
+      "custSequenceId": "SEQ-002",
+      "customerType": "I",
+      "title": "Mr",
+      "initial": null,
+      "firstName": "Yash",
+      "lastName": "Donga",
+      "companyName": null,
+      "tradingAs": null,
+      "idNumber": "9001015800083",
+      "birthDate": "2000-06-15",
+      "gender": "M",
+      "maritalStatus": null,
+      "language": "E",
+      "citizen": true,
+      "internalCustomer": null,
+      "locked": null,
+      "activeCustomer": true,
+      "customerPersonal": null,
+      "status": null,
+      "financeInstitution": null,
+      "customerSalesType": null,
+      "primaryEmail": "yash@example.com",
+      "secondaryEmail": null,
+      "webAddress": null,
+      "regNo": null,
+      "taxNo": null,
+      "ficNo": null,
+      "currencyCode": null,
+      "leadType": "Walk-in",
+      "leadSource": "Showroom",
+      "defaultTaxCode": null,
+      "fleetNo": null,
+      "notes": null,
+      "sellingDealer": null,
+      "sellingDate": null,
+      "roleId": null,
+      "isActive": true,
+      "createdAt": "2026-02-23T06:46:31.406Z",
+      "updatedAt": "2026-02-23T06:46:31.406Z",
+      "deletedAt": null
+    },
+    {
+      "id": "5c8edb2c-c01a-4c6a-84ae-9b93c6ed8832",
+      "crmReferenceNo": "CRM-001",
+      "custSequenceId": "SEQ-001",
+      "customerType": "I",
+      "title": "Mr",
+      "initial": null,
+      "firstName": "Ravi Kumar",
+      "lastName": "Varma",
+      "companyName": null,
+      "tradingAs": null,
+      "idNumber": "9001015800082",
+      "birthDate": "1990-01-01",
+      "gender": "M",
+      "maritalStatus": null,
+      "language": "E",
+      "citizen": true,
+      "internalCustomer": null,
+      "locked": null,
+      "activeCustomer": true,
+      "customerPersonal": null,
+      "status": null,
+      "financeInstitution": null,
+      "customerSalesType": null,
+      "primaryEmail": "ravi.kumar@example.com",
+      "secondaryEmail": null,
+      "webAddress": null,
+      "regNo": null,
+      "taxNo": null,
+      "ficNo": null,
+      "currencyCode": null,
+      "leadType": "Walk-in",
+      "leadSource": "Showroom",
+      "defaultTaxCode": null,
+      "fleetNo": null,
+      "notes": null,
+      "sellingDealer": null,
+      "sellingDate": null,
+      "roleId": null,
+      "isActive": true,
+      "createdAt": "2026-02-21T13:17:00.262Z",
+      "updatedAt": "2026-02-24T15:36:02.037Z",
+      "deletedAt": null
+    }
+  ],
+  "customerAddresses": [
+    {
+      "id": "b7e87e01-ac2c-43af-a943-e8480daac575",
+      "customerId": "5c8edb2c-c01a-4c6a-84ae-9b93c6ed8832",
+      "addressType": "physical",
+      "addressLine1": "123 Main Road",
+      "addressLine2": null,
+      "addressLine3": null,
+      "city": "Johannesburg",
+      "provinceId": 3,
+      "areaCode": "2000",
+      "country": "South Africa",
+      "createdAt": "2026-02-21T13:17:00.262Z",
+      "updatedAt": "2026-02-21T13:17:00.262Z",
+      "deletedAt": null
+    },
+    {
+      "id": "a0d40c19-f615-44a8-a1f6-d33167d5f29f",
+      "customerId": "0a4633da-c2a7-4ab9-bd23-42a201b994b2",
+      "addressType": "physical",
+      "addressLine1": "123 Main Road",
+      "addressLine2": null,
+      "addressLine3": null,
+      "city": "Johannesburg",
+      "provinceId": 3,
+      "areaCode": "2000",
+      "country": "South Africa",
+      "createdAt": "2026-02-23T06:46:31.406Z",
+      "updatedAt": "2026-02-23T06:46:31.406Z",
+      "deletedAt": null
+    }
+  ],
+  "customerContacts": [
+    {
+      "id": "6e8199c9-e227-4e9d-9872-865d2575ecac",
+      "customerId": "0a4633da-c2a7-4ab9-bd23-42a201b994b2",
+      "contactType": "cell",
+      "countryCode": "+27",
+      "contactNumber": "9879879870",
+      "createdAt": "2026-02-23T06:46:31.406Z",
+      "updatedAt": "2026-02-23T06:46:31.406Z",
+      "deletedAt": null
+    },
+    {
+      "id": "b0ad561a-3405-4c3b-8be3-0fed60cb4d97",
+      "customerId": "0a4633da-c2a7-4ab9-bd23-42a201b994b2",
+      "contactType": "work",
+      "countryCode": "+27",
+      "contactNumber": "0123456789",
+      "createdAt": "2026-02-23T06:46:31.406Z",
+      "updatedAt": "2026-02-23T06:46:31.406Z",
+      "deletedAt": null
+    },
+    {
+      "id": "6a6fa9ae-edbd-47bc-ad5b-e0eb5163e329",
+      "customerId": "5c8edb2c-c01a-4c6a-84ae-9b93c6ed8832",
+      "contactType": "cell",
+      "countryCode": "+27",
+      "contactNumber": "0819876543",
+      "createdAt": "2026-02-24T15:36:02.036Z",
+      "updatedAt": "2026-02-24T15:36:02.036Z",
+      "deletedAt": null
+    }
+  ],
+  "customerProfiles": [
+    {
+      "id": "84d55758-3086-4a38-ab8f-db4eca8d2b7a",
+      "customerId": "5c8edb2c-c01a-4c6a-84ae-9b93c6ed8832",
+      "occupation": "Engineer",
+      "receiveEmail": true,
+      "receiveSms": true,
+      "receivePost": null,
+      "receiveTelemarketing": null,
+      "primaryContact": null,
+      "secondaryContact": null,
+      "receiveMarketingAll": false,
+      "receiveMarketingVehicle": null,
+      "receiveMarketingService": null,
+      "receiveMarketingParts": null,
+      "csiConsentService": true,
+      "csiConsentVehicles": false,
+      "csiConsentSurveys": false,
+      "csiConsentBulkSms": false,
+      "createdAt": "2026-02-21T13:17:00.262Z",
+      "updatedAt": "2026-02-21T13:17:00.262Z",
+      "deletedAt": null
+    },
+    {
+      "id": "ccfc9d4f-8f6f-4e3a-8209-333d63213acb",
+      "customerId": "0a4633da-c2a7-4ab9-bd23-42a201b994b2",
+      "occupation": "Engineer",
+      "receiveEmail": true,
+      "receiveSms": true,
+      "receivePost": null,
+      "receiveTelemarketing": null,
+      "primaryContact": null,
+      "secondaryContact": null,
+      "receiveMarketingAll": false,
+      "receiveMarketingVehicle": null,
+      "receiveMarketingService": null,
+      "receiveMarketingParts": null,
+      "csiConsentService": true,
+      "csiConsentVehicles": false,
+      "csiConsentSurveys": false,
+      "csiConsentBulkSms": false,
+      "createdAt": "2026-02-23T06:46:31.406Z",
+      "updatedAt": "2026-02-23T06:46:31.406Z",
+      "deletedAt": null
+    }
+  ],
+  "vehicleMakes": [
+    {
+      "id": "6c8aa106-045a-4bb6-92b2-a1a73cf3613a",
+      "name": "Audi",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "84d69865-0c22-4789-b2d5-a12d67a82ab9",
+      "name": "BMW",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "ea482e98-c75e-4486-b46a-73b3b6bab44d",
+      "name": "Citroen",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "130c01cd-ff93-44bf-b926-d6494c3fef03",
+      "name": "Ford",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "f42ca9ff-4303-4c8c-ab35-092f3099c9ad",
+      "name": "Honda",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "bf58213b-5847-433d-ab50-28edaec213b4",
+      "name": "Hyundai",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "51b016f1-d70d-45bf-9d86-20adf51ad85d",
+      "name": "Jeep",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "7a642826-0666-48b9-ab52-41a8c18f0765",
+      "name": "Kia",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "7da7bee2-859e-4b08-a9f9-bb3322e4f4f2",
+      "name": "Land Rover",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "53e716e1-353b-4341-931d-8f9bfcde6604",
+      "name": "Mahindra",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "036b39fa-8ef1-4bcb-a320-ad51b1c1870e",
+      "name": "Maruti Suzuki",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "b3878edc-7ecd-4d63-aace-d54fd48ff24f",
+      "name": "Mercedes-Benz",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "d542fbfa-9fd1-423d-8648-5767c11bcb5f",
+      "name": "MG",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "22c74d25-3568-4b86-b5eb-3bbba9082f03",
+      "name": "Nissan",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "5c802e26-fec9-4683-98d4-af07d489b254",
+      "name": "Renault",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "90bf03d5-0d1b-4857-a1e6-4b7a67e1430e",
+      "name": "Skoda",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "d29e0ac3-2581-42fa-8b6b-bbd55f0fc54e",
+      "name": "Tata",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "7a2f762b-8e3e-4d53-aefe-1460c4879cb2",
+      "name": "Toyota",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "7f9cfab2-239a-434f-963f-eae14151701a",
+      "name": "Volkswagen",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "d5ea6226-9d05-46d0-93f1-160cdc92b377",
+      "name": "Volvo",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    }
+  ],
+  "vehicleModels": [
+    {
+      "id": "fa02caa6-4a83-4b10-af4e-d2bcca45d7b1",
+      "makeId": "6c8aa106-045a-4bb6-92b2-a1a73cf3613a",
+      "name": "A3",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "c3ebc4b3-d6c4-4a9b-8094-a8ae6b9f8c96",
+      "makeId": "6c8aa106-045a-4bb6-92b2-a1a73cf3613a",
+      "name": "A4",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "e4bf1806-0e80-4b60-b829-0d5619b3d00e",
+      "makeId": "6c8aa106-045a-4bb6-92b2-a1a73cf3613a",
+      "name": "A6",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "8d1c79e8-0642-4603-bd02-b483f1074776",
+      "makeId": "6c8aa106-045a-4bb6-92b2-a1a73cf3613a",
+      "name": "A8",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "fa477e1e-3b51-4e9d-a6e1-5b1c32440457",
+      "makeId": "6c8aa106-045a-4bb6-92b2-a1a73cf3613a",
+      "name": "Q3",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "7cc524a4-55f8-43b6-a2b0-0690ea593620",
+      "makeId": "6c8aa106-045a-4bb6-92b2-a1a73cf3613a",
+      "name": "Q5",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "84762b33-8dcd-4047-9947-706894088ccb",
+      "makeId": "6c8aa106-045a-4bb6-92b2-a1a73cf3613a",
+      "name": "Q7",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "72766d24-a624-4914-8735-809d10100201",
+      "makeId": "6c8aa106-045a-4bb6-92b2-a1a73cf3613a",
+      "name": "Q8",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "f07415bf-4b79-43fe-aacf-80e0f867e70c",
+      "makeId": "6c8aa106-045a-4bb6-92b2-a1a73cf3613a",
+      "name": "e-tron",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "7dec7d92-5bf3-4a9a-b721-7d98bdc1f7d2",
+      "makeId": "6c8aa106-045a-4bb6-92b2-a1a73cf3613a",
+      "name": "RS5",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "73d8b331-93c4-4917-a102-de302d562739",
+      "makeId": "84d69865-0c22-4789-b2d5-a12d67a82ab9",
+      "name": "3 Series",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "b89cd3b5-3ade-4784-b7a4-508abfa9167b",
+      "makeId": "84d69865-0c22-4789-b2d5-a12d67a82ab9",
+      "name": "5 Series",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "20a85652-da01-4d31-8b5f-89c0e2da2284",
+      "makeId": "84d69865-0c22-4789-b2d5-a12d67a82ab9",
+      "name": "7 Series",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "5652b140-49f9-4d78-91a7-17dbd19939ec",
+      "makeId": "84d69865-0c22-4789-b2d5-a12d67a82ab9",
+      "name": "X1",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "140f774c-609d-4522-9878-435ce0ade28d",
+      "makeId": "84d69865-0c22-4789-b2d5-a12d67a82ab9",
+      "name": "X3",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "031e29fb-48de-4937-9457-06a45f43b357",
+      "makeId": "84d69865-0c22-4789-b2d5-a12d67a82ab9",
+      "name": "X5",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "f0bba303-e066-4b6e-bcb9-27a69976039c",
+      "makeId": "84d69865-0c22-4789-b2d5-a12d67a82ab9",
+      "name": "X7",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "0a5b6264-69ba-456f-a488-8100554bb8c9",
+      "makeId": "84d69865-0c22-4789-b2d5-a12d67a82ab9",
+      "name": "Z4",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "25340e2a-d0d3-4783-a1a7-7d3c5816f1cc",
+      "makeId": "84d69865-0c22-4789-b2d5-a12d67a82ab9",
+      "name": "M3",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "daf30145-e4aa-42f4-95b7-337126bc9df2",
+      "makeId": "84d69865-0c22-4789-b2d5-a12d67a82ab9",
+      "name": "iX",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "545e3b4c-c48b-4687-9547-95f85f69a4ba",
+      "makeId": "ea482e98-c75e-4486-b46a-73b3b6bab44d",
+      "name": "C3",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "66459092-3a1e-4d44-bf83-d3cf282b6ac0",
+      "makeId": "ea482e98-c75e-4486-b46a-73b3b6bab44d",
+      "name": "C3 Aircross",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "88a87706-db48-45b9-84e2-ba94951e5612",
+      "makeId": "ea482e98-c75e-4486-b46a-73b3b6bab44d",
+      "name": "C5 Aircross",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "94f1f38e-523a-4cb6-8fbf-49693248d90e",
+      "makeId": "ea482e98-c75e-4486-b46a-73b3b6bab44d",
+      "name": "eC3",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "8dda4f01-c3df-4019-9b9b-dbd10c5296a0",
+      "makeId": "130c01cd-ff93-44bf-b926-d6494c3fef03",
+      "name": "EcoSport",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "6a4237b3-aace-4e13-84f2-a269d072d88d",
+      "makeId": "130c01cd-ff93-44bf-b926-d6494c3fef03",
+      "name": "Endeavour",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "7c15c417-f9cc-4655-8b46-ef9fd2d2379b",
+      "makeId": "130c01cd-ff93-44bf-b926-d6494c3fef03",
+      "name": "Figo",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "576c7833-b6c5-4a02-9ee3-8c8e0a519a9f",
+      "makeId": "130c01cd-ff93-44bf-b926-d6494c3fef03",
+      "name": "Freestyle",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "85cbaa9d-fbff-49eb-a03f-c78950fc241c",
+      "makeId": "130c01cd-ff93-44bf-b926-d6494c3fef03",
+      "name": "Mustang",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "bdc84380-db90-4b3f-a40a-4003622b6a3a",
+      "makeId": "f42ca9ff-4303-4c8c-ab35-092f3099c9ad",
+      "name": "Amaze",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "c6213105-aed5-450b-959e-fbd64057fd45",
+      "makeId": "f42ca9ff-4303-4c8c-ab35-092f3099c9ad",
+      "name": "City",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "fc419110-fbf8-47c0-bf09-65e971c7626b",
+      "makeId": "f42ca9ff-4303-4c8c-ab35-092f3099c9ad",
+      "name": "Civic",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "cedf67c6-10b1-4783-b146-23bee856a80c",
+      "makeId": "f42ca9ff-4303-4c8c-ab35-092f3099c9ad",
+      "name": "Elevate",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "0d8c6fd0-33cd-4c03-89a3-217ea0b49e17",
+      "makeId": "f42ca9ff-4303-4c8c-ab35-092f3099c9ad",
+      "name": "WR-V",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "83aff5ce-27c8-417d-a90e-640aa2cc083f",
+      "makeId": "bf58213b-5847-433d-ab50-28edaec213b4",
+      "name": "Alcazar",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "c843da5e-fdd0-4777-aeeb-32ef495ff89e",
+      "makeId": "bf58213b-5847-433d-ab50-28edaec213b4",
+      "name": "Creta",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "78bdf5e0-4e38-4702-bd78-0b34c1abdea6",
+      "makeId": "bf58213b-5847-433d-ab50-28edaec213b4",
+      "name": "Exter",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "135026ee-f349-4292-b2d4-32a968cb0d5d",
+      "makeId": "bf58213b-5847-433d-ab50-28edaec213b4",
+      "name": "i20",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "f872a5a5-ed26-42f5-a905-ea9839eb07a3",
+      "makeId": "bf58213b-5847-433d-ab50-28edaec213b4",
+      "name": "Tucson",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "4ceaa5cc-eced-4006-8c31-4a8251a30047",
+      "makeId": "bf58213b-5847-433d-ab50-28edaec213b4",
+      "name": "Venue",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "54846f4d-06ca-458a-9ec9-0a5435cb9341",
+      "makeId": "bf58213b-5847-433d-ab50-28edaec213b4",
+      "name": "Verna",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "d61e911f-b605-4475-a1f4-c23c5556e06f",
+      "makeId": "51b016f1-d70d-45bf-9d86-20adf51ad85d",
+      "name": "Compass",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "f3c79464-4d73-4e75-b2ae-9c58a77e652b",
+      "makeId": "51b016f1-d70d-45bf-9d86-20adf51ad85d",
+      "name": "Grand Cherokee",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "f7b5c114-6f9a-46d7-a51f-74622212c02c",
+      "makeId": "51b016f1-d70d-45bf-9d86-20adf51ad85d",
+      "name": "Meridian",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "629015b1-fe53-42da-b827-ab1e1fb279b3",
+      "makeId": "51b016f1-d70d-45bf-9d86-20adf51ad85d",
+      "name": "Wrangler",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "9c06ebe1-47db-4005-aaac-d29669ae8315",
+      "makeId": "7a642826-0666-48b9-ab52-41a8c18f0765",
+      "name": "Carens",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "9b4bf391-16fd-430f-8a98-42a665a86a36",
+      "makeId": "7a642826-0666-48b9-ab52-41a8c18f0765",
+      "name": "EV6",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "bb54dc26-dfbc-4848-925a-8cf3ddd7a033",
+      "makeId": "7a642826-0666-48b9-ab52-41a8c18f0765",
+      "name": "Seltos",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "7c03944e-a9e0-424c-bb2b-ea80acbce0e3",
+      "makeId": "7a642826-0666-48b9-ab52-41a8c18f0765",
+      "name": "Sonet",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "a22a5680-7acf-4861-bff7-2301b660cbeb",
+      "makeId": "7a642826-0666-48b9-ab52-41a8c18f0765",
+      "name": "Sportage",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "c3b8cc1e-0cc9-497d-92df-6b0b0506c531",
+      "makeId": "7da7bee2-859e-4b08-a9f9-bb3322e4f4f2",
+      "name": "Defender",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "c2597214-7b26-466e-890d-a0aefadc646c",
+      "makeId": "7da7bee2-859e-4b08-a9f9-bb3322e4f4f2",
+      "name": "Discovery",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "e88482d9-06a5-4f6d-b86d-47efe345461a",
+      "makeId": "7da7bee2-859e-4b08-a9f9-bb3322e4f4f2",
+      "name": "Range Rover",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "3991cd36-952d-4ccc-b2d0-25e8b5fd359a",
+      "makeId": "7da7bee2-859e-4b08-a9f9-bb3322e4f4f2",
+      "name": "Range Rover Evoque",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "3acba92c-0ae0-4790-b0dc-731556296f02",
+      "makeId": "7da7bee2-859e-4b08-a9f9-bb3322e4f4f2",
+      "name": "Range Rover Sport",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "81303940-7eaf-460f-af23-18514dbd8ad9",
+      "makeId": "53e716e1-353b-4341-931d-8f9bfcde6604",
+      "name": "Bolero",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "ca69118f-eb40-4584-8b16-88cacf8e1934",
+      "makeId": "53e716e1-353b-4341-931d-8f9bfcde6604",
+      "name": "Scorpio-N",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "5bffe48c-0b71-4087-9fa3-3aa3327ddda0",
+      "makeId": "53e716e1-353b-4341-931d-8f9bfcde6604",
+      "name": "Thar",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "d36de066-6432-40be-b84a-f1b44b8bd81c",
+      "makeId": "53e716e1-353b-4341-931d-8f9bfcde6604",
+      "name": "XUV300",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "ae07e882-b659-46ab-a4eb-d44d6980cbd3",
+      "makeId": "53e716e1-353b-4341-931d-8f9bfcde6604",
+      "name": "XUV400",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "b5b93d3f-c23a-4fb3-af77-fe657dca0c7a",
+      "makeId": "53e716e1-353b-4341-931d-8f9bfcde6604",
+      "name": "XUV700",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "d34a3804-6125-4a8f-9b7a-6ae6ea95bda7",
+      "makeId": "036b39fa-8ef1-4bcb-a320-ad51b1c1870e",
+      "name": "Alto K10",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "1f514851-a014-4b5f-923b-69e755995964",
+      "makeId": "036b39fa-8ef1-4bcb-a320-ad51b1c1870e",
+      "name": "Baleno",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "e13dbf77-e2b7-4618-8c6d-6e36ea5bd2dd",
+      "makeId": "036b39fa-8ef1-4bcb-a320-ad51b1c1870e",
+      "name": "Brezza",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "6d1d0590-6c09-45b8-8eb6-a851e779ffa5",
+      "makeId": "036b39fa-8ef1-4bcb-a320-ad51b1c1870e",
+      "name": "Dzire",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "b3476ef9-baf6-4227-a6f1-ba4b55815a10",
+      "makeId": "036b39fa-8ef1-4bcb-a320-ad51b1c1870e",
+      "name": "Ertiga",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "44c9679b-bbd2-4019-9be3-c59300d69165",
+      "makeId": "036b39fa-8ef1-4bcb-a320-ad51b1c1870e",
+      "name": "Fronx",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "0430ae82-900c-480a-a12d-343d07069770",
+      "makeId": "036b39fa-8ef1-4bcb-a320-ad51b1c1870e",
+      "name": "Grand Vitara",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "6411ed79-9a68-4295-9b4d-b08a96226e21",
+      "makeId": "036b39fa-8ef1-4bcb-a320-ad51b1c1870e",
+      "name": "Swift",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "90832593-6928-4961-855e-bb4c1b828772",
+      "makeId": "036b39fa-8ef1-4bcb-a320-ad51b1c1870e",
+      "name": "WagonR",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "cce22b0b-430a-4b70-a260-09425154bb31",
+      "makeId": "036b39fa-8ef1-4bcb-a320-ad51b1c1870e",
+      "name": "XL6",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "0232d676-9854-4348-b488-7de9c2c4b58b",
+      "makeId": "b3878edc-7ecd-4d63-aace-d54fd48ff24f",
+      "name": "A-Class",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "1dc9405d-426b-4d2c-9d53-a95c69ee2b61",
+      "makeId": "b3878edc-7ecd-4d63-aace-d54fd48ff24f",
+      "name": "C-Class",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "d2e7b0e6-ce32-47a5-8d7d-93298f9537ba",
+      "makeId": "b3878edc-7ecd-4d63-aace-d54fd48ff24f",
+      "name": "E-Class",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "f83502e6-7f42-4f71-9ad1-4daca7ced940",
+      "makeId": "b3878edc-7ecd-4d63-aace-d54fd48ff24f",
+      "name": "GLA",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "5e907740-532c-45f6-99a0-2cfd2bba9b8d",
+      "makeId": "b3878edc-7ecd-4d63-aace-d54fd48ff24f",
+      "name": "GLC",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "b2261092-6895-48d1-b998-d22c1eb9a681",
+      "makeId": "b3878edc-7ecd-4d63-aace-d54fd48ff24f",
+      "name": "GLE",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "530d54bb-12dd-4c2f-a3e3-dd8d0e275afc",
+      "makeId": "b3878edc-7ecd-4d63-aace-d54fd48ff24f",
+      "name": "GLS",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "9af8ae5a-e6e7-4e69-965e-c1bd9576d73c",
+      "makeId": "b3878edc-7ecd-4d63-aace-d54fd48ff24f",
+      "name": "S-Class",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "1096ce25-63df-4c31-b690-ab305fdb67da",
+      "makeId": "b3878edc-7ecd-4d63-aace-d54fd48ff24f",
+      "name": "EQS",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "161d9f8a-f395-4cda-ab3c-c92563ead8bb",
+      "makeId": "b3878edc-7ecd-4d63-aace-d54fd48ff24f",
+      "name": "AMG GT",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "5192babc-8b4d-4675-9009-76811ef4bf03",
+      "makeId": "d542fbfa-9fd1-423d-8648-5767c11bcb5f",
+      "name": "Astor",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "00aafc70-7b87-4017-b1d1-28bbd0c7dacd",
+      "makeId": "d542fbfa-9fd1-423d-8648-5767c11bcb5f",
+      "name": "Comet EV",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "99e6460c-4354-41d8-bbfd-e0d2fcd4037c",
+      "makeId": "d542fbfa-9fd1-423d-8648-5767c11bcb5f",
+      "name": "Gloster",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "b7e34373-bff2-4bdd-9c59-192c5a08e9f8",
+      "makeId": "d542fbfa-9fd1-423d-8648-5767c11bcb5f",
+      "name": "Hector",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "d568552c-30b6-4508-ac17-49915ff3cdc0",
+      "makeId": "d542fbfa-9fd1-423d-8648-5767c11bcb5f",
+      "name": "ZS EV",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "53a00045-8d5f-4b7c-b199-b49287ba4285",
+      "makeId": "22c74d25-3568-4b86-b5eb-3bbba9082f03",
+      "name": "Kicks",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "6ae99497-db6b-4dc2-a9b8-ee77565df392",
+      "makeId": "22c74d25-3568-4b86-b5eb-3bbba9082f03",
+      "name": "Magnite",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "12f9734d-2d63-441d-a87a-1b19c780d96c",
+      "makeId": "22c74d25-3568-4b86-b5eb-3bbba9082f03",
+      "name": "X-Trail",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "1e107a08-a7a5-42e7-8409-88e8d9199a00",
+      "makeId": "5c802e26-fec9-4683-98d4-af07d489b254",
+      "name": "Duster",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "88f13f09-2d78-463d-9a0c-5bb0fe3033cd",
+      "makeId": "5c802e26-fec9-4683-98d4-af07d489b254",
+      "name": "Kiger",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "ae31c98d-f6c3-48a5-a748-e07e8fe5d315",
+      "makeId": "5c802e26-fec9-4683-98d4-af07d489b254",
+      "name": "Kwid",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "88a05110-b05e-4e59-acc3-f6d408ab854c",
+      "makeId": "5c802e26-fec9-4683-98d4-af07d489b254",
+      "name": "Triber",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "5359c1cf-3420-4763-9ab8-a8e1ed1d041b",
+      "makeId": "90bf03d5-0d1b-4857-a1e6-4b7a67e1430e",
+      "name": "Kodiaq",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "9fbddbf3-52d2-4e44-86a0-65074743f436",
+      "makeId": "90bf03d5-0d1b-4857-a1e6-4b7a67e1430e",
+      "name": "Kushaq",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "e8245362-c7a8-4225-a09e-e9bd20e4feb4",
+      "makeId": "90bf03d5-0d1b-4857-a1e6-4b7a67e1430e",
+      "name": "Octavia",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "e5847146-d368-4213-ab63-9d50a654b06a",
+      "makeId": "90bf03d5-0d1b-4857-a1e6-4b7a67e1430e",
+      "name": "Slavia",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "f0f06043-8251-448e-90f5-3cf8737737de",
+      "makeId": "90bf03d5-0d1b-4857-a1e6-4b7a67e1430e",
+      "name": "Superb",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "62e7228b-1fa8-4d7f-bd1a-60b96bcd1e11",
+      "makeId": "d29e0ac3-2581-42fa-8b6b-bbd55f0fc54e",
+      "name": "Altroz",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "d71a2092-c00f-4695-9c0e-8fe6af6bde9b",
+      "makeId": "d29e0ac3-2581-42fa-8b6b-bbd55f0fc54e",
+      "name": "Harrier",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "9acb70ae-de25-4f1f-a839-e6241b934157",
+      "makeId": "d29e0ac3-2581-42fa-8b6b-bbd55f0fc54e",
+      "name": "Nexon",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "800fdd75-d5b1-4dab-a130-866142593fa4",
+      "makeId": "d29e0ac3-2581-42fa-8b6b-bbd55f0fc54e",
+      "name": "Nexon EV",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "ec67be80-878b-4eb3-87e2-95dc8257b73b",
+      "makeId": "d29e0ac3-2581-42fa-8b6b-bbd55f0fc54e",
+      "name": "Punch",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "67185004-cb5a-4806-8c11-9b1a5240ae7e",
+      "makeId": "d29e0ac3-2581-42fa-8b6b-bbd55f0fc54e",
+      "name": "Safari",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "b99ba2b2-701a-4b85-a060-b06545c9351c",
+      "makeId": "d29e0ac3-2581-42fa-8b6b-bbd55f0fc54e",
+      "name": "Tiago",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "af1185e8-e795-4f8c-b0e0-42c2cbc5f327",
+      "makeId": "7a2f762b-8e3e-4d53-aefe-1460c4879cb2",
+      "name": "Camry",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "3a1f1939-9b4d-4f00-ac50-4e8081114311",
+      "makeId": "7a2f762b-8e3e-4d53-aefe-1460c4879cb2",
+      "name": "Fortuner",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "7bdc8fe9-a98c-408c-bc95-01ef851ac3a5",
+      "makeId": "7a2f762b-8e3e-4d53-aefe-1460c4879cb2",
+      "name": "Glanza",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "78bea72f-6eab-49cd-a08a-7389d44e0f90",
+      "makeId": "7a2f762b-8e3e-4d53-aefe-1460c4879cb2",
+      "name": "Hilux",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "56bdcc64-13ec-41f4-a0b4-476c4823a5d1",
+      "makeId": "7a2f762b-8e3e-4d53-aefe-1460c4879cb2",
+      "name": "Hyryder",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "7f9b2395-3a05-44c1-a4fc-9908d41276d6",
+      "makeId": "7a2f762b-8e3e-4d53-aefe-1460c4879cb2",
+      "name": "Innova Crysta",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "46d9bb0e-a663-47b6-bcb5-f1ca51e99c04",
+      "makeId": "7a2f762b-8e3e-4d53-aefe-1460c4879cb2",
+      "name": "Innova Hycross",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "0ec82b60-3549-4677-a149-c2767b973451",
+      "makeId": "7a2f762b-8e3e-4d53-aefe-1460c4879cb2",
+      "name": "Land Cruiser",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "a9775391-2582-4304-9244-385ca14eedbe",
+      "makeId": "7f9cfab2-239a-434f-963f-eae14151701a",
+      "name": "Polo",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "81afed01-675e-4206-ad84-b889fc2fdb83",
+      "makeId": "7f9cfab2-239a-434f-963f-eae14151701a",
+      "name": "Taigun",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "5c2ce2e0-7cb7-4719-977f-e27c3823d92d",
+      "makeId": "7f9cfab2-239a-434f-963f-eae14151701a",
+      "name": "Tiguan",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "c8eb0e61-ad9c-4a0d-bec6-ea749ef7578a",
+      "makeId": "7f9cfab2-239a-434f-963f-eae14151701a",
+      "name": "Virtus",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "78df46b1-2c57-442d-bcde-9a7c8982ab47",
+      "makeId": "d5ea6226-9d05-46d0-93f1-160cdc92b377",
+      "name": "S60",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "a2e80a3b-77fb-4dfc-8be7-dc3fe3adb4f8",
+      "makeId": "d5ea6226-9d05-46d0-93f1-160cdc92b377",
+      "name": "S90",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "22d740bb-cd4f-4bea-ac67-d7c5947daaf7",
+      "makeId": "d5ea6226-9d05-46d0-93f1-160cdc92b377",
+      "name": "XC40",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "b979d9f8-58d9-445e-87fc-0d65721842f0",
+      "makeId": "d5ea6226-9d05-46d0-93f1-160cdc92b377",
+      "name": "XC60",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    },
+    {
+      "id": "4c57145b-93d8-4eff-ac27-4b165bd8b9f2",
+      "makeId": "d5ea6226-9d05-46d0-93f1-160cdc92b377",
+      "name": "XC90",
+      "createdAt": "2026-02-24T09:55:15.044Z",
+      "updatedAt": "2026-02-24T09:55:15.044Z"
+    }
+  ],
+  "vehicles": [
+    {
+      "id": "799d9f58-8bb0-4e79-a38f-e59a20c07767",
+      "customerId": "5c8edb2c-c01a-4c6a-84ae-9b93c6ed8832",
+      "dealerId": null,
+      "oemModel": null,
+      "brand": "Audi",
+      "model": "A3",
+      "modelVariant": null,
+      "manufacturingYear": 2025,
+      "vin": "gj012345",
+      "engineNumber": null,
+      "registrationNumber": "gj012345",
+      "extColour": null,
+      "intColour": null,
+      "fuelType": null,
+      "transmissionType": null,
+      "odometerLast": 12345,
+      "deliveryDate": null,
+      "vehStockNo": null,
+      "vehGlobalStockNo": null,
+      "factoryJobNo": null,
+      "seriesDescription": null,
+      "modelDescription": null,
+      "registrationDate": null,
+      "defaultTaxCode": null,
+      "purchaseTranCode": null,
+      "dateStocked": null,
+      "condition": null,
+      "vehicleLocation": null,
+      "nscNumber": null,
+      "microdotNumber": null,
+      "mmCode": null,
+      "passengerCommercial": null,
+      "bodyType": null,
+      "engineCapacity": null,
+      "totalInvoiceCostExcl": null,
+      "lessAdvertisingExp": null,
+      "lessHoldback": null,
+      "estimatedReconditioning": null,
+      "retailPrice": null,
+      "totalMsrp": null,
+      "addendumAmount": null,
+      "currentPrice": null,
+      "depreciationPerc": null,
+      "bookRetailAmount": null,
+      "bookTradeAmount": null,
+      "availableForResale": false,
+      "certificationNo": null,
+      "certifiedPreOwned": false,
+      "daysStockedAtLocation": null,
+      "daysStockedBranch": null,
+      "daysStockedCategoryChanged": null,
+      "daysStockedGroup": null,
+      "dealerCertified": false,
+      "deliveryKilometers": null,
+      "driverContactNo": null,
+      "driverName": null,
+      "fleetContractNo": null,
+      "fleetController": null,
+      "fullServiceHistory": false,
+      "importedVehicle": false,
+      "mvCertificationDate": null,
+      "mvCertificationNumber": null,
+      "mvRegistrationDate": null,
+      "mvRegistrationNumber": null,
+      "comments": null,
+      "previousOwners": null,
+      "rentalContract": null,
+      "rentalStartDatetime": null,
+      "rentalEndDatetime": null,
+      "rentalItemCategory": null,
+      "reservedFor": null,
+      "reservedForBy": null,
+      "telematicsId": null,
+      "telematicsAssetId": null,
+      "telematicsLocation": null,
+      "telematicsService": null,
+      "warrantyAcceptanceCert": false,
+      "warrantyAcceptanceCertDate": null,
+      "warrantyActive": false,
+      "warrantyNumber": null,
+      "warrantyStartDate": null,
+      "keyNumber": null,
+      "keyNumber2": null,
+      "batteryVoltage": null,
+      "dateBuilt": null,
+      "dateFirstSold": null,
+      "drive": null,
+      "eTagNumber": null,
+      "grossVehicleMass": null,
+      "immobiliserNumber": null,
+      "inServiceKilometers": null,
+      "noOfCylinders": null,
+      "noOfDoors": null,
+      "noOfPassengers": null,
+      "noOfAxles": null,
+      "odoType": null,
+      "oemWarrantyEnd": null,
+      "provinceRegistered": null,
+      "radioPin": null,
+      "sellingDealerCode": null,
+      "serviceKey": null,
+      "traderId": null,
+      "traderReference": null,
+      "unladenWeight": null,
+      "vehicleTrim": null,
+      "entryTime": "2026-02-24T10:09:28.132Z",
+      "status": "Awaiting Approval",
+      "priority": "URGENT",
+      "isActive": true,
+      "createdAt": "2026-02-24T10:09:28.132Z",
+      "updatedAt": "2026-02-25T05:21:53.076Z",
+      "deletedAt": null
+    },
+    {
+      "id": "0ad4685f-7623-4d2b-8110-c60a207c7978",
+      "customerId": "5c8edb2c-c01a-4c6a-84ae-9b93c6ed8832",
+      "dealerId": null,
+      "oemModel": null,
+      "brand": "BMW",
+      "model": "3 Series",
+      "modelVariant": null,
+      "manufacturingYear": 2025,
+      "vin": "WBAPH4vwrv553",
+      "engineNumber": null,
+      "registrationNumber": "WBAPH4vwrv553",
+      "extColour": null,
+      "intColour": null,
+      "fuelType": null,
+      "transmissionType": null,
+      "odometerLast": 12345,
+      "deliveryDate": null,
+      "vehStockNo": null,
+      "vehGlobalStockNo": null,
+      "factoryJobNo": null,
+      "seriesDescription": null,
+      "modelDescription": null,
+      "registrationDate": null,
+      "defaultTaxCode": null,
+      "purchaseTranCode": null,
+      "dateStocked": null,
+      "condition": null,
+      "vehicleLocation": null,
+      "nscNumber": null,
+      "microdotNumber": null,
+      "mmCode": null,
+      "passengerCommercial": null,
+      "bodyType": null,
+      "engineCapacity": null,
+      "totalInvoiceCostExcl": null,
+      "lessAdvertisingExp": null,
+      "lessHoldback": null,
+      "estimatedReconditioning": null,
+      "retailPrice": null,
+      "totalMsrp": null,
+      "addendumAmount": null,
+      "currentPrice": null,
+      "depreciationPerc": null,
+      "bookRetailAmount": null,
+      "bookTradeAmount": null,
+      "availableForResale": false,
+      "certificationNo": null,
+      "certifiedPreOwned": false,
+      "daysStockedAtLocation": null,
+      "daysStockedBranch": null,
+      "daysStockedCategoryChanged": null,
+      "daysStockedGroup": null,
+      "dealerCertified": false,
+      "deliveryKilometers": null,
+      "driverContactNo": null,
+      "driverName": null,
+      "fleetContractNo": null,
+      "fleetController": null,
+      "fullServiceHistory": false,
+      "importedVehicle": false,
+      "mvCertificationDate": null,
+      "mvCertificationNumber": null,
+      "mvRegistrationDate": null,
+      "mvRegistrationNumber": null,
+      "comments": null,
+      "previousOwners": null,
+      "rentalContract": null,
+      "rentalStartDatetime": null,
+      "rentalEndDatetime": null,
+      "rentalItemCategory": null,
+      "reservedFor": null,
+      "reservedForBy": null,
+      "telematicsId": null,
+      "telematicsAssetId": null,
+      "telematicsLocation": null,
+      "telematicsService": null,
+      "warrantyAcceptanceCert": false,
+      "warrantyAcceptanceCertDate": null,
+      "warrantyActive": false,
+      "warrantyNumber": null,
+      "warrantyStartDate": null,
+      "keyNumber": null,
+      "keyNumber2": null,
+      "batteryVoltage": null,
+      "dateBuilt": null,
+      "dateFirstSold": null,
+      "drive": null,
+      "eTagNumber": null,
+      "grossVehicleMass": null,
+      "immobiliserNumber": null,
+      "inServiceKilometers": null,
+      "noOfCylinders": null,
+      "noOfDoors": null,
+      "noOfPassengers": null,
+      "noOfAxles": null,
+      "odoType": null,
+      "oemWarrantyEnd": null,
+      "provinceRegistered": null,
+      "radioPin": null,
+      "sellingDealerCode": null,
+      "serviceKey": null,
+      "traderId": null,
+      "traderReference": null,
+      "unladenWeight": null,
+      "vehicleTrim": null,
+      "entryTime": "2026-02-26T05:02:07.697Z",
+      "status": "Awaiting Approval",
+      "priority": "BASIC",
+      "isActive": true,
+      "createdAt": "2026-02-26T05:02:07.697Z",
+      "updatedAt": "2026-02-26T05:14:15.226Z",
+      "deletedAt": null
+    },
+    {
+      "id": "4087613e-a90e-4690-a7ef-b1070db4dc67",
+      "customerId": "0a4633da-c2a7-4ab9-bd23-42a201b994b2",
+      "dealerId": null,
+      "oemModel": null,
+      "brand": "Ford",
+      "model": "EcoSport",
+      "modelVariant": null,
+      "manufacturingYear": 2026,
+      "vin": "WBAPH4vwrv5534",
+      "engineNumber": null,
+      "registrationNumber": "WBAPH4vwrv5534",
+      "extColour": null,
+      "intColour": null,
+      "fuelType": null,
+      "transmissionType": null,
+      "odometerLast": 12345,
+      "deliveryDate": null,
+      "vehStockNo": null,
+      "vehGlobalStockNo": null,
+      "factoryJobNo": null,
+      "seriesDescription": null,
+      "modelDescription": null,
+      "registrationDate": null,
+      "defaultTaxCode": null,
+      "purchaseTranCode": null,
+      "dateStocked": null,
+      "condition": null,
+      "vehicleLocation": null,
+      "nscNumber": null,
+      "microdotNumber": null,
+      "mmCode": null,
+      "passengerCommercial": null,
+      "bodyType": null,
+      "engineCapacity": null,
+      "totalInvoiceCostExcl": null,
+      "lessAdvertisingExp": null,
+      "lessHoldback": null,
+      "estimatedReconditioning": null,
+      "retailPrice": null,
+      "totalMsrp": null,
+      "addendumAmount": null,
+      "currentPrice": null,
+      "depreciationPerc": null,
+      "bookRetailAmount": null,
+      "bookTradeAmount": null,
+      "availableForResale": false,
+      "certificationNo": null,
+      "certifiedPreOwned": false,
+      "daysStockedAtLocation": null,
+      "daysStockedBranch": null,
+      "daysStockedCategoryChanged": null,
+      "daysStockedGroup": null,
+      "dealerCertified": false,
+      "deliveryKilometers": null,
+      "driverContactNo": null,
+      "driverName": null,
+      "fleetContractNo": null,
+      "fleetController": null,
+      "fullServiceHistory": false,
+      "importedVehicle": false,
+      "mvCertificationDate": null,
+      "mvCertificationNumber": null,
+      "mvRegistrationDate": null,
+      "mvRegistrationNumber": null,
+      "comments": null,
+      "previousOwners": null,
+      "rentalContract": null,
+      "rentalStartDatetime": null,
+      "rentalEndDatetime": null,
+      "rentalItemCategory": null,
+      "reservedFor": null,
+      "reservedForBy": null,
+      "telematicsId": null,
+      "telematicsAssetId": null,
+      "telematicsLocation": null,
+      "telematicsService": null,
+      "warrantyAcceptanceCert": false,
+      "warrantyAcceptanceCertDate": null,
+      "warrantyActive": false,
+      "warrantyNumber": null,
+      "warrantyStartDate": null,
+      "keyNumber": null,
+      "keyNumber2": null,
+      "batteryVoltage": null,
+      "dateBuilt": null,
+      "dateFirstSold": null,
+      "drive": null,
+      "eTagNumber": null,
+      "grossVehicleMass": null,
+      "immobiliserNumber": null,
+      "inServiceKilometers": null,
+      "noOfCylinders": null,
+      "noOfDoors": null,
+      "noOfPassengers": null,
+      "noOfAxles": null,
+      "odoType": null,
+      "oemWarrantyEnd": null,
+      "provinceRegistered": null,
+      "radioPin": null,
+      "sellingDealerCode": null,
+      "serviceKey": null,
+      "traderId": null,
+      "traderReference": null,
+      "unladenWeight": null,
+      "vehicleTrim": null,
+      "entryTime": "2026-02-26T05:36:34.928Z",
+      "status": "Awaiting Approval",
+      "priority": "URGENT",
+      "isActive": true,
+      "createdAt": "2026-02-26T05:36:34.928Z",
+      "updatedAt": "2026-02-26T05:41:08.996Z",
+      "deletedAt": null
+    }
+  ],
+  "vehicleImages": [
+    {
+      "id": "8913ffb8-80ca-4c0b-9595-da19aef63bac",
+      "vehicleId": "799d9f58-8bb0-4e79-a38f-e59a20c07767",
+      "imageCategory": "Vehicle Registration No",
+      "imagePath": "uploads/ce72e4cf-d410-4d3c-a86c-9db85c947984.png",
+      "createdAt": "2026-02-24T10:09:40.464Z"
+    },
+    {
+      "id": "7765349f-1d46-49f4-b6d9-69bf5a3d11b9",
+      "vehicleId": "799d9f58-8bb0-4e79-a38f-e59a20c07767",
+      "imageCategory": "Odometer Reading (KM)",
+      "imagePath": "uploads/d1babf6c-273a-4a54-84e7-549f80116d16.jpg",
+      "createdAt": "2026-02-24T10:09:43.811Z"
+    },
+    {
+      "id": "fb7baf15-8e1e-4f8b-83ec-911a512b3375",
+      "vehicleId": "799d9f58-8bb0-4e79-a38f-e59a20c07767",
+      "imageCategory": "Front View",
+      "imagePath": "uploads/487470a7-8db3-4223-bfe7-52459bc34dc9.webp",
+      "createdAt": "2026-02-24T10:09:50.032Z"
+    },
+    {
+      "id": "07ed2b27-480b-4f5a-96dc-0219131904f5",
+      "vehicleId": "799d9f58-8bb0-4e79-a38f-e59a20c07767",
+      "imageCategory": "Rear View",
+      "imagePath": "uploads/088afe10-1d12-4050-94cd-7f9371691a35.jpg",
+      "createdAt": "2026-02-24T10:09:53.112Z"
+    },
+    {
+      "id": "47b2d909-3806-479c-b4f9-565d34972982",
+      "vehicleId": "799d9f58-8bb0-4e79-a38f-e59a20c07767",
+      "imageCategory": "Left View",
+      "imagePath": "uploads/ef4834b3-5fb5-47f3-9208-bcb0bda21d5e.png",
+      "createdAt": "2026-02-24T10:10:00.101Z"
+    },
+    {
+      "id": "dc9d2359-87f3-490b-ac61-ce3585e0b744",
+      "vehicleId": "799d9f58-8bb0-4e79-a38f-e59a20c07767",
+      "imageCategory": "Right View",
+      "imagePath": "uploads/b6628e34-12b2-46d4-a789-678ec883f993.jpg",
+      "createdAt": "2026-02-24T10:10:04.573Z"
+    },
+    {
+      "id": "2b9e6ded-c7c6-43b2-9d47-2e51413b06c9",
+      "vehicleId": "799d9f58-8bb0-4e79-a38f-e59a20c07767",
+      "imageCategory": "Dashboard View",
+      "imagePath": "uploads/b2d66f50-f3bb-4d38-be9b-9707d8833dc3.jpg",
+      "createdAt": "2026-02-24T10:10:16.575Z"
+    },
+    {
+      "id": "e8880c0e-927b-4fdb-8906-12e3511ecf8a",
+      "vehicleId": "799d9f58-8bb0-4e79-a38f-e59a20c07767",
+      "imageCategory": "Engine View",
+      "imagePath": "uploads/d1347d1b-b9ab-493b-812f-07b24d99fadf.jpg",
+      "createdAt": "2026-02-24T10:10:20.334Z"
+    },
+    {
+      "id": "0b446c2b-adc9-4b68-8ed3-eb217185e061",
+      "vehicleId": "0ad4685f-7623-4d2b-8110-c60a207c7978",
+      "imageCategory": "Vehicle Registration No",
+      "imagePath": "uploads/44e45966-c5b5-4c79-b8eb-8bfe5ba7b336.png",
+      "createdAt": "2026-02-26T05:02:20.290Z"
+    },
+    {
+      "id": "241e7abc-fb8c-43a9-a885-4d007049a38b",
+      "vehicleId": "0ad4685f-7623-4d2b-8110-c60a207c7978",
+      "imageCategory": "Odometer Reading (KM)",
+      "imagePath": "uploads/379ad7f7-d370-4d48-aa8b-0243d77d220f.jpg",
+      "createdAt": "2026-02-26T05:02:25.395Z"
+    },
+    {
+      "id": "d36a4c73-29e3-4745-a31f-f06ae7288ef1",
+      "vehicleId": "0ad4685f-7623-4d2b-8110-c60a207c7978",
+      "imageCategory": "Front View",
+      "imagePath": "uploads/b5680460-d121-4e0b-bb04-7625723baed6.webp",
+      "createdAt": "2026-02-26T05:02:28.941Z"
+    },
+    {
+      "id": "28114c51-ca26-44ed-8914-c7ae1e02b73e",
+      "vehicleId": "0ad4685f-7623-4d2b-8110-c60a207c7978",
+      "imageCategory": "Rear View",
+      "imagePath": "uploads/baa02913-e787-43d2-a7b0-d7f44ee7940a.jpg",
+      "createdAt": "2026-02-26T05:02:33.637Z"
+    },
+    {
+      "id": "2ab00635-7434-49be-8ad9-4af5c3c762d9",
+      "vehicleId": "4087613e-a90e-4690-a7ef-b1070db4dc67",
+      "imageCategory": "Vehicle Registration No",
+      "imagePath": "uploads/6b088b3a-61c6-42fb-b025-dc2256df530e.png",
+      "createdAt": "2026-02-26T05:36:42.690Z"
+    },
+    {
+      "id": "73a6d36a-82c6-4e37-b3e9-83bca209a615",
+      "vehicleId": "4087613e-a90e-4690-a7ef-b1070db4dc67",
+      "imageCategory": "Odometer Reading (KM)",
+      "imagePath": "uploads/8cbb80de-d863-4ce5-910e-ea0c4f553ecd.jpg",
+      "createdAt": "2026-02-26T05:36:46.916Z"
+    },
+    {
+      "id": "fe917f9a-5637-4969-b25c-578f0dde8911",
+      "vehicleId": "4087613e-a90e-4690-a7ef-b1070db4dc67",
+      "imageCategory": "Front View",
+      "imagePath": "uploads/7b111aa3-ccd1-4747-a2d6-943c594788f2.webp",
+      "createdAt": "2026-02-26T05:36:55.256Z"
+    },
+    {
+      "id": "55d7294a-5959-4f57-ac71-770a4d92e12f",
+      "vehicleId": "4087613e-a90e-4690-a7ef-b1070db4dc67",
+      "imageCategory": "Rear View",
+      "imagePath": "uploads/dc78a1e5-e1ef-41e7-b000-529ee10f290b.jpg",
+      "createdAt": "2026-02-26T05:37:01.399Z"
+    }
+  ],
+  "vehicleAccessories": [],
+  "vehicleCheckIns": [
+    {
+      "id": "02a1afd9-6efd-4348-86cc-a4294862e6c5",
+      "vehicleId": "799d9f58-8bb0-4e79-a38f-e59a20c07767",
+      "checkInNumber": null,
+      "odometerReading": 12345,
+      "status": "READY",
+      "checkInTime": "2026-02-24T10:10:25.190Z",
+      "isActive": true,
+      "confirmedAt": "2026-02-24T10:10:25.190Z",
+      "completedAt": null,
+      "notes": null,
+      "createdAt": "2026-02-24T10:10:25.191Z",
+      "updatedAt": "2026-02-24T10:10:25.191Z",
+      "deletedAt": null
+    },
+    {
+      "id": "ca8e2e4d-4468-4651-a3fa-5af80cbc2fc1",
+      "vehicleId": "0ad4685f-7623-4d2b-8110-c60a207c7978",
+      "checkInNumber": null,
+      "odometerReading": 12345,
+      "status": "READY",
+      "checkInTime": "2026-02-26T05:02:37.671Z",
+      "isActive": true,
+      "confirmedAt": "2026-02-26T05:02:37.671Z",
+      "completedAt": null,
+      "notes": null,
+      "createdAt": "2026-02-26T05:02:37.672Z",
+      "updatedAt": "2026-02-26T05:02:37.672Z",
+      "deletedAt": null
+    },
+    {
+      "id": "40dbdbe3-3487-4391-b2d5-0dbdf3b5c374",
+      "vehicleId": "4087613e-a90e-4690-a7ef-b1070db4dc67",
+      "checkInNumber": null,
+      "odometerReading": 12345,
+      "status": "READY",
+      "checkInTime": "2026-02-26T05:37:06.758Z",
+      "isActive": true,
+      "confirmedAt": "2026-02-26T05:37:06.758Z",
+      "completedAt": null,
+      "notes": null,
+      "createdAt": "2026-02-26T05:37:06.758Z",
+      "updatedAt": "2026-02-26T05:37:06.758Z",
+      "deletedAt": null
+    }
+  ],
+  "vehicleCheckInPhotos": [],
+  "qcInspections": [
+    {
+      "id": "0b04e76e-bb3f-4623-8af2-92f9648c4f94",
+      "vehicleCheckInId": "02a1afd9-6efd-4348-86cc-a4294862e6c5",
+      "serviceType": null,
+      "priority": "URGENT",
+      "status": "COMPLETED",
+      "currentStep": 5,
+      "brakePerformance": null,
+      "brakeNoise": null,
+      "brakeVibration": null,
+      "overallStatus": "PASS",
+      "overrideJustification": null,
+      "finalRemarks": null,
+      "startedAt": "2026-02-24T10:15:34.523Z",
+      "completedAt": "2026-02-24T10:19:33.567Z",
+      "createdAt": "2026-02-24T10:15:34.523Z",
+      "updatedAt": "2026-02-24T10:19:33.567Z"
+    },
+    {
+      "id": "ac0e1ab6-383f-4c4c-95d6-d2ed08e2af1f",
+      "vehicleCheckInId": "ca8e2e4d-4468-4651-a3fa-5af80cbc2fc1",
+      "serviceType": null,
+      "priority": "BASIC",
+      "status": "COMPLETED",
+      "currentStep": 5,
+      "brakePerformance": null,
+      "brakeNoise": null,
+      "brakeVibration": null,
+      "overallStatus": "PASS",
+      "overrideJustification": null,
+      "finalRemarks": null,
+      "startedAt": "2026-02-26T05:03:10.468Z",
+      "completedAt": "2026-02-26T05:04:20.506Z",
+      "createdAt": "2026-02-26T05:03:10.469Z",
+      "updatedAt": "2026-02-26T05:04:20.506Z"
+    },
+    {
+      "id": "0d699bf9-d21c-4ec1-9f14-18320bf9a197",
+      "vehicleCheckInId": "40dbdbe3-3487-4391-b2d5-0dbdf3b5c374",
+      "serviceType": null,
+      "priority": "URGENT",
+      "status": "COMPLETED",
+      "currentStep": 5,
+      "brakePerformance": null,
+      "brakeNoise": null,
+      "brakeVibration": null,
+      "overallStatus": "PASS",
+      "overrideJustification": null,
+      "finalRemarks": null,
+      "startedAt": "2026-02-26T05:39:16.192Z",
+      "completedAt": "2026-02-26T05:39:58.313Z",
+      "createdAt": "2026-02-26T05:39:16.193Z",
+      "updatedAt": "2026-02-26T05:39:58.313Z"
+    }
+  ],
+  "qcInspectionItems": [
+    {
+      "id": "f5c1d566-ade4-40ba-bc67-28bd4a0927f6",
+      "inspectionId": "0b04e76e-bb3f-4623-8af2-92f9648c4f94",
+      "category": "EXTERIOR",
+      "itemCode": "EXT_BODY_PANELS",
+      "itemLabel": "Body Panels Condition",
+      "sortOrder": 1,
+      "result": "PASS",
+      "comment": null,
+      "createdAt": "2026-02-24T10:15:34.523Z",
+      "updatedAt": "2026-02-24T10:15:57.770Z"
+    },
+    {
+      "id": "3bf10471-db7f-45d7-bc63-cfbcd9904f1b",
+      "inspectionId": "0b04e76e-bb3f-4623-8af2-92f9648c4f94",
+      "category": "EXTERIOR",
+      "itemCode": "EXT_PAINT",
+      "itemLabel": "Paint condition & scratches",
+      "sortOrder": 2,
+      "result": "FAIL",
+      "comment": null,
+      "createdAt": "2026-02-24T10:15:34.523Z",
+      "updatedAt": "2026-02-24T10:15:57.773Z"
+    },
+    {
+      "id": "fd34227b-4189-468c-b8a1-4ead68cdbb9a",
+      "inspectionId": "0b04e76e-bb3f-4623-8af2-92f9648c4f94",
+      "category": "EXTERIOR",
+      "itemCode": "EXT_WINDSHIELD",
+      "itemLabel": "Windshield & windows",
+      "sortOrder": 3,
+      "result": "PASS",
+      "comment": null,
+      "createdAt": "2026-02-24T10:15:34.523Z",
+      "updatedAt": "2026-02-24T10:15:57.773Z"
+    },
+    {
+      "id": "47f2f8a1-bbf1-4af7-89df-de3442fcb054",
+      "inspectionId": "0b04e76e-bb3f-4623-8af2-92f9648c4f94",
+      "category": "EXTERIOR",
+      "itemCode": "EXT_HEADLIGHTS",
+      "itemLabel": "Headlights & tail lights",
+      "sortOrder": 4,
+      "result": "FAIL",
+      "comment": null,
+      "createdAt": "2026-02-24T10:15:34.523Z",
+      "updatedAt": "2026-02-24T10:15:57.774Z"
+    },
+    {
+      "id": "29e1b6e5-2c05-4241-ab9c-fe4da1264c67",
+      "inspectionId": "0b04e76e-bb3f-4623-8af2-92f9648c4f94",
+      "category": "EXTERIOR",
+      "itemCode": "EXT_TYRES",
+      "itemLabel": "Tyres & wheel condition",
+      "sortOrder": 5,
+      "result": "PASS",
+      "comment": null,
+      "createdAt": "2026-02-24T10:15:34.523Z",
+      "updatedAt": "2026-02-24T10:15:57.775Z"
+    },
+    {
+      "id": "3f34ba29-5dc0-4632-8812-30136295528d",
+      "inspectionId": "0b04e76e-bb3f-4623-8af2-92f9648c4f94",
+      "category": "EXTERIOR",
+      "itemCode": "EXT_SIDE_MIRRORS",
+      "itemLabel": "Side mirrors",
+      "sortOrder": 6,
+      "result": "PASS",
+      "comment": null,
+      "createdAt": "2026-02-24T10:15:34.523Z",
+      "updatedAt": "2026-02-24T10:15:57.776Z"
+    },
+    {
+      "id": "92ed2d45-cebb-49e5-b261-ffaa12a562a8",
+      "inspectionId": "0b04e76e-bb3f-4623-8af2-92f9648c4f94",
+      "category": "INTERIOR",
+      "itemCode": "INT_DASHBOARD",
+      "itemLabel": "Dashboard condition",
+      "sortOrder": 1,
+      "result": "PASS",
+      "comment": null,
+      "createdAt": "2026-02-24T10:15:34.523Z",
+      "updatedAt": "2026-02-24T10:18:41.555Z"
+    },
+    {
+      "id": "c1b47491-651e-4f2f-a08a-f5d54d1df7b6",
+      "inspectionId": "0b04e76e-bb3f-4623-8af2-92f9648c4f94",
+      "category": "INTERIOR",
+      "itemCode": "INT_SEATS",
+      "itemLabel": "Seat condition",
+      "sortOrder": 2,
+      "result": "FAIL",
+      "comment": null,
+      "createdAt": "2026-02-24T10:15:34.523Z",
+      "updatedAt": "2026-02-24T10:18:41.556Z"
+    },
+    {
+      "id": "2bad5154-6551-4d7a-b9bc-8450f1abe5e8",
+      "inspectionId": "0b04e76e-bb3f-4623-8af2-92f9648c4f94",
+      "category": "INTERIOR",
+      "itemCode": "INT_AC_VENTS",
+      "itemLabel": "AC vents & controls",
+      "sortOrder": 3,
+      "result": "PASS",
+      "comment": null,
+      "createdAt": "2026-02-24T10:15:34.523Z",
+      "updatedAt": "2026-02-24T10:18:41.559Z"
+    },
+    {
+      "id": "fc39bd5f-4d3f-46df-ace0-d30dd7a75978",
+      "inspectionId": "0b04e76e-bb3f-4623-8af2-92f9648c4f94",
+      "category": "INTERIOR",
+      "itemCode": "INT_STEERING",
+      "itemLabel": "Steering & gear lever",
+      "sortOrder": 4,
+      "result": "PASS",
+      "comment": null,
+      "createdAt": "2026-02-24T10:15:34.523Z",
+      "updatedAt": "2026-02-24T10:18:41.560Z"
+    },
+    {
+      "id": "8db9c597-c3cd-4546-9734-e6ef2870d4e3",
+      "inspectionId": "0b04e76e-bb3f-4623-8af2-92f9648c4f94",
+      "category": "INTERIOR",
+      "itemCode": "INT_INFOTAINMENT",
+      "itemLabel": "Infotainment system",
+      "sortOrder": 5,
+      "result": "PASS",
+      "comment": null,
+      "createdAt": "2026-02-24T10:15:34.523Z",
+      "updatedAt": "2026-02-24T10:18:41.560Z"
+    },
+    {
+      "id": "5995eefc-ab00-4053-8e73-8d6026ae3899",
+      "inspectionId": "0b04e76e-bb3f-4623-8af2-92f9648c4f94",
+      "category": "INTERIOR",
+      "itemCode": "INT_ENGINE_BAY",
+      "itemLabel": "Engine bay inspection",
+      "sortOrder": 6,
+      "result": "PASS",
+      "comment": null,
+      "createdAt": "2026-02-24T10:15:34.523Z",
+      "updatedAt": "2026-02-24T10:18:41.561Z"
+    },
+    {
+      "id": "4c31fb46-9d10-47a7-b9cc-f93950ade6d5",
+      "inspectionId": "0b04e76e-bb3f-4623-8af2-92f9648c4f94",
+      "category": "BRAKE",
+      "itemCode": "BRK_PEDAL_RESPONSE",
+      "itemLabel": "Brake pedal response",
+      "sortOrder": 1,
+      "result": "PASS",
+      "comment": null,
+      "createdAt": "2026-02-24T10:15:34.523Z",
+      "updatedAt": "2026-02-24T10:19:08.482Z"
+    },
+    {
+      "id": "a1e1dd01-281e-4278-b8fc-0c40aa3e6d9a",
+      "inspectionId": "0b04e76e-bb3f-4623-8af2-92f9648c4f94",
+      "category": "BRAKE",
+      "itemCode": "BRK_HANDBRAKE",
+      "itemLabel": "Handbrake function",
+      "sortOrder": 2,
+      "result": "PASS",
+      "comment": null,
+      "createdAt": "2026-02-24T10:15:34.523Z",
+      "updatedAt": "2026-02-24T10:19:08.483Z"
+    },
+    {
+      "id": "bec90110-1f2c-4b23-a394-ad24eb24668a",
+      "inspectionId": "0b04e76e-bb3f-4623-8af2-92f9648c4f94",
+      "category": "BRAKE",
+      "itemCode": "BRK_FLUID_LEVEL",
+      "itemLabel": "Brake fluid level",
+      "sortOrder": 3,
+      "result": "FAIL",
+      "comment": null,
+      "createdAt": "2026-02-24T10:15:34.523Z",
+      "updatedAt": "2026-02-24T10:19:08.483Z"
+    },
+    {
+      "id": "38a263b8-4e45-46bc-83da-a25cd8b03f1b",
+      "inspectionId": "0b04e76e-bb3f-4623-8af2-92f9648c4f94",
+      "category": "BRAKE",
+      "itemCode": "BRK_PAD_WEAR",
+      "itemLabel": "Brake pad wear",
+      "sortOrder": 4,
+      "result": "FAIL",
+      "comment": null,
+      "createdAt": "2026-02-24T10:15:34.523Z",
+      "updatedAt": "2026-02-24T10:19:08.484Z"
+    },
+    {
+      "id": "1116be1a-4d84-4aef-999e-b54fce9e95d3",
+      "inspectionId": "ac0e1ab6-383f-4c4c-95d6-d2ed08e2af1f",
+      "category": "EXTERIOR",
+      "itemCode": "EXT_BODY_PANELS",
+      "itemLabel": "Body Panels Condition",
+      "sortOrder": 1,
+      "result": "PASS",
+      "comment": null,
+      "createdAt": "2026-02-26T05:03:10.469Z",
+      "updatedAt": "2026-02-26T05:03:40.039Z"
+    },
+    {
+      "id": "10a82634-0c81-47b1-9b54-416671f23913",
+      "inspectionId": "ac0e1ab6-383f-4c4c-95d6-d2ed08e2af1f",
+      "category": "EXTERIOR",
+      "itemCode": "EXT_PAINT",
+      "itemLabel": "Paint condition & scratches",
+      "sortOrder": 2,
+      "result": "FAIL",
+      "comment": null,
+      "createdAt": "2026-02-26T05:03:10.469Z",
+      "updatedAt": "2026-02-26T05:03:40.043Z"
+    },
+    {
+      "id": "50877646-cd4d-47d7-a857-4f5a9ed0ae50",
+      "inspectionId": "ac0e1ab6-383f-4c4c-95d6-d2ed08e2af1f",
+      "category": "EXTERIOR",
+      "itemCode": "EXT_WINDSHIELD",
+      "itemLabel": "Windshield & windows",
+      "sortOrder": 3,
+      "result": "PASS",
+      "comment": null,
+      "createdAt": "2026-02-26T05:03:10.469Z",
+      "updatedAt": "2026-02-26T05:03:40.044Z"
+    },
+    {
+      "id": "3fdce5ad-5126-4e32-8f16-58e85854a16c",
+      "inspectionId": "ac0e1ab6-383f-4c4c-95d6-d2ed08e2af1f",
+      "category": "EXTERIOR",
+      "itemCode": "EXT_HEADLIGHTS",
+      "itemLabel": "Headlights & tail lights",
+      "sortOrder": 4,
+      "result": "PASS",
+      "comment": null,
+      "createdAt": "2026-02-26T05:03:10.469Z",
+      "updatedAt": "2026-02-26T05:03:40.045Z"
+    },
+    {
+      "id": "f6413dd2-1096-445e-a2de-120aefc6fd82",
+      "inspectionId": "ac0e1ab6-383f-4c4c-95d6-d2ed08e2af1f",
+      "category": "EXTERIOR",
+      "itemCode": "EXT_TYRES",
+      "itemLabel": "Tyres & wheel condition",
+      "sortOrder": 5,
+      "result": "FAIL",
+      "comment": null,
+      "createdAt": "2026-02-26T05:03:10.469Z",
+      "updatedAt": "2026-02-26T05:03:40.046Z"
+    },
+    {
+      "id": "d26a3613-6ae3-4fcf-9750-13019b99b6c2",
+      "inspectionId": "ac0e1ab6-383f-4c4c-95d6-d2ed08e2af1f",
+      "category": "EXTERIOR",
+      "itemCode": "EXT_SIDE_MIRRORS",
+      "itemLabel": "Side mirrors",
+      "sortOrder": 6,
+      "result": "PASS",
+      "comment": null,
+      "createdAt": "2026-02-26T05:03:10.469Z",
+      "updatedAt": "2026-02-26T05:03:40.046Z"
+    },
+    {
+      "id": "3dec7287-b09e-4ec6-9d01-6d225b3b95b3",
+      "inspectionId": "ac0e1ab6-383f-4c4c-95d6-d2ed08e2af1f",
+      "category": "INTERIOR",
+      "itemCode": "INT_DASHBOARD",
+      "itemLabel": "Dashboard condition",
+      "sortOrder": 1,
+      "result": "PASS",
+      "comment": null,
+      "createdAt": "2026-02-26T05:03:10.469Z",
+      "updatedAt": "2026-02-26T05:04:00.127Z"
+    },
+    {
+      "id": "8a6e0e2d-b246-48dd-a339-ac7698f91702",
+      "inspectionId": "ac0e1ab6-383f-4c4c-95d6-d2ed08e2af1f",
+      "category": "INTERIOR",
+      "itemCode": "INT_SEATS",
+      "itemLabel": "Seat condition",
+      "sortOrder": 2,
+      "result": "FAIL",
+      "comment": null,
+      "createdAt": "2026-02-26T05:03:10.469Z",
+      "updatedAt": "2026-02-26T05:04:00.130Z"
+    },
+    {
+      "id": "786493a1-5056-452b-be95-be4ac8764841",
+      "inspectionId": "ac0e1ab6-383f-4c4c-95d6-d2ed08e2af1f",
+      "category": "INTERIOR",
+      "itemCode": "INT_AC_VENTS",
+      "itemLabel": "AC vents & controls",
+      "sortOrder": 3,
+      "result": "FAIL",
+      "comment": null,
+      "createdAt": "2026-02-26T05:03:10.469Z",
+      "updatedAt": "2026-02-26T05:04:00.131Z"
+    },
+    {
+      "id": "933470b9-427c-4fcc-9771-adc09ba7f476",
+      "inspectionId": "ac0e1ab6-383f-4c4c-95d6-d2ed08e2af1f",
+      "category": "INTERIOR",
+      "itemCode": "INT_STEERING",
+      "itemLabel": "Steering & gear lever",
+      "sortOrder": 4,
+      "result": "PASS",
+      "comment": null,
+      "createdAt": "2026-02-26T05:03:10.469Z",
+      "updatedAt": "2026-02-26T05:04:00.132Z"
+    },
+    {
+      "id": "c0740996-faa2-42cf-a440-e4bee7baf05a",
+      "inspectionId": "ac0e1ab6-383f-4c4c-95d6-d2ed08e2af1f",
+      "category": "INTERIOR",
+      "itemCode": "INT_INFOTAINMENT",
+      "itemLabel": "Infotainment system",
+      "sortOrder": 5,
+      "result": "PASS",
+      "comment": null,
+      "createdAt": "2026-02-26T05:03:10.469Z",
+      "updatedAt": "2026-02-26T05:04:00.132Z"
+    },
+    {
+      "id": "61b1f3d7-65dd-4af3-82b7-eb76b3327daf",
+      "inspectionId": "ac0e1ab6-383f-4c4c-95d6-d2ed08e2af1f",
+      "category": "INTERIOR",
+      "itemCode": "INT_ENGINE_BAY",
+      "itemLabel": "Engine bay inspection",
+      "sortOrder": 6,
+      "result": "PASS",
+      "comment": null,
+      "createdAt": "2026-02-26T05:03:10.469Z",
+      "updatedAt": "2026-02-26T05:04:00.133Z"
+    },
+    {
+      "id": "fc5d3cd0-bf21-43af-a31e-9edc163968aa",
+      "inspectionId": "ac0e1ab6-383f-4c4c-95d6-d2ed08e2af1f",
+      "category": "BRAKE",
+      "itemCode": "BRK_PEDAL_RESPONSE",
+      "itemLabel": "Brake pedal response",
+      "sortOrder": 1,
+      "result": "PASS",
+      "comment": null,
+      "createdAt": "2026-02-26T05:03:10.469Z",
+      "updatedAt": "2026-02-26T05:04:14.000Z"
+    },
+    {
+      "id": "1356a317-758e-444d-ad0a-c147c211fc6b",
+      "inspectionId": "ac0e1ab6-383f-4c4c-95d6-d2ed08e2af1f",
+      "category": "BRAKE",
+      "itemCode": "BRK_HANDBRAKE",
+      "itemLabel": "Handbrake function",
+      "sortOrder": 2,
+      "result": "FAIL",
+      "comment": null,
+      "createdAt": "2026-02-26T05:03:10.469Z",
+      "updatedAt": "2026-02-26T05:04:14.001Z"
+    },
+    {
+      "id": "fcd4c82b-70e1-40cb-8d6f-00e989727e42",
+      "inspectionId": "ac0e1ab6-383f-4c4c-95d6-d2ed08e2af1f",
+      "category": "BRAKE",
+      "itemCode": "BRK_FLUID_LEVEL",
+      "itemLabel": "Brake fluid level",
+      "sortOrder": 3,
+      "result": "NA",
+      "comment": null,
+      "createdAt": "2026-02-26T05:03:10.469Z",
+      "updatedAt": "2026-02-26T05:04:14.002Z"
+    },
+    {
+      "id": "11bbf59e-7301-4540-8394-2631781d44c5",
+      "inspectionId": "ac0e1ab6-383f-4c4c-95d6-d2ed08e2af1f",
+      "category": "BRAKE",
+      "itemCode": "BRK_PAD_WEAR",
+      "itemLabel": "Brake pad wear",
+      "sortOrder": 4,
+      "result": "PASS",
+      "comment": null,
+      "createdAt": "2026-02-26T05:03:10.469Z",
+      "updatedAt": "2026-02-26T05:04:14.004Z"
+    },
+    {
+      "id": "ae401807-a026-4e1b-9128-aad0ed4d8cda",
+      "inspectionId": "0d699bf9-d21c-4ec1-9f14-18320bf9a197",
+      "category": "EXTERIOR",
+      "itemCode": "EXT_BODY_PANELS",
+      "itemLabel": "Body Panels Condition",
+      "sortOrder": 1,
+      "result": "PASS",
+      "comment": null,
+      "createdAt": "2026-02-26T05:39:16.193Z",
+      "updatedAt": "2026-02-26T05:39:38.599Z"
+    },
+    {
+      "id": "7070c759-4b50-468c-baed-f8cc55745acb",
+      "inspectionId": "0d699bf9-d21c-4ec1-9f14-18320bf9a197",
+      "category": "EXTERIOR",
+      "itemCode": "EXT_PAINT",
+      "itemLabel": "Paint condition & scratches",
+      "sortOrder": 2,
+      "result": "FAIL",
+      "comment": null,
+      "createdAt": "2026-02-26T05:39:16.193Z",
+      "updatedAt": "2026-02-26T05:39:38.602Z"
+    },
+    {
+      "id": "40d2c40c-1708-461a-b7fb-867ee3d9beac",
+      "inspectionId": "0d699bf9-d21c-4ec1-9f14-18320bf9a197",
+      "category": "EXTERIOR",
+      "itemCode": "EXT_WINDSHIELD",
+      "itemLabel": "Windshield & windows",
+      "sortOrder": 3,
+      "result": "PASS",
+      "comment": null,
+      "createdAt": "2026-02-26T05:39:16.193Z",
+      "updatedAt": "2026-02-26T05:39:38.602Z"
+    },
+    {
+      "id": "02c7ccd6-f760-439b-beaf-78508b32ecdb",
+      "inspectionId": "0d699bf9-d21c-4ec1-9f14-18320bf9a197",
+      "category": "EXTERIOR",
+      "itemCode": "EXT_HEADLIGHTS",
+      "itemLabel": "Headlights & tail lights",
+      "sortOrder": 4,
+      "result": "PASS",
+      "comment": null,
+      "createdAt": "2026-02-26T05:39:16.193Z",
+      "updatedAt": "2026-02-26T05:39:38.603Z"
+    },
+    {
+      "id": "61970828-e906-43ca-9432-1dd01e79aa38",
+      "inspectionId": "0d699bf9-d21c-4ec1-9f14-18320bf9a197",
+      "category": "EXTERIOR",
+      "itemCode": "EXT_TYRES",
+      "itemLabel": "Tyres & wheel condition",
+      "sortOrder": 5,
+      "result": "PASS",
+      "comment": null,
+      "createdAt": "2026-02-26T05:39:16.193Z",
+      "updatedAt": "2026-02-26T05:39:38.603Z"
+    },
+    {
+      "id": "bbc79742-8794-4877-abd8-250f1b10a9f8",
+      "inspectionId": "0d699bf9-d21c-4ec1-9f14-18320bf9a197",
+      "category": "EXTERIOR",
+      "itemCode": "EXT_SIDE_MIRRORS",
+      "itemLabel": "Side mirrors",
+      "sortOrder": 6,
+      "result": "PASS",
+      "comment": null,
+      "createdAt": "2026-02-26T05:39:16.193Z",
+      "updatedAt": "2026-02-26T05:39:38.604Z"
+    },
+    {
+      "id": "868c2d63-719c-49d4-a3bc-5a5ea4d51ede",
+      "inspectionId": "0d699bf9-d21c-4ec1-9f14-18320bf9a197",
+      "category": "INTERIOR",
+      "itemCode": "INT_DASHBOARD",
+      "itemLabel": "Dashboard condition",
+      "sortOrder": 1,
+      "result": "PASS",
+      "comment": null,
+      "createdAt": "2026-02-26T05:39:16.193Z",
+      "updatedAt": "2026-02-26T05:39:45.086Z"
+    },
+    {
+      "id": "f8449236-9ee2-4674-b774-1fb48608a3da",
+      "inspectionId": "0d699bf9-d21c-4ec1-9f14-18320bf9a197",
+      "category": "INTERIOR",
+      "itemCode": "INT_SEATS",
+      "itemLabel": "Seat condition",
+      "sortOrder": 2,
+      "result": "PASS",
+      "comment": null,
+      "createdAt": "2026-02-26T05:39:16.193Z",
+      "updatedAt": "2026-02-26T05:39:45.086Z"
+    },
+    {
+      "id": "10fc87fa-dc56-4b09-9108-9c8f81f886ed",
+      "inspectionId": "0d699bf9-d21c-4ec1-9f14-18320bf9a197",
+      "category": "INTERIOR",
+      "itemCode": "INT_AC_VENTS",
+      "itemLabel": "AC vents & controls",
+      "sortOrder": 3,
+      "result": "PASS",
+      "comment": null,
+      "createdAt": "2026-02-26T05:39:16.193Z",
+      "updatedAt": "2026-02-26T05:39:45.087Z"
+    },
+    {
+      "id": "2f3be1db-ff8c-4df7-993e-993ba30d4c58",
+      "inspectionId": "0d699bf9-d21c-4ec1-9f14-18320bf9a197",
+      "category": "INTERIOR",
+      "itemCode": "INT_STEERING",
+      "itemLabel": "Steering & gear lever",
+      "sortOrder": 4,
+      "result": "PASS",
+      "comment": null,
+      "createdAt": "2026-02-26T05:39:16.193Z",
+      "updatedAt": "2026-02-26T05:39:45.087Z"
+    },
+    {
+      "id": "9c46ce51-8965-4937-9496-1fc8a1269edf",
+      "inspectionId": "0d699bf9-d21c-4ec1-9f14-18320bf9a197",
+      "category": "INTERIOR",
+      "itemCode": "INT_INFOTAINMENT",
+      "itemLabel": "Infotainment system",
+      "sortOrder": 5,
+      "result": "PASS",
+      "comment": null,
+      "createdAt": "2026-02-26T05:39:16.193Z",
+      "updatedAt": "2026-02-26T05:39:45.087Z"
+    },
+    {
+      "id": "4833a036-b105-4053-84af-0be7c12b1f62",
+      "inspectionId": "0d699bf9-d21c-4ec1-9f14-18320bf9a197",
+      "category": "INTERIOR",
+      "itemCode": "INT_ENGINE_BAY",
+      "itemLabel": "Engine bay inspection",
+      "sortOrder": 6,
+      "result": "PASS",
+      "comment": null,
+      "createdAt": "2026-02-26T05:39:16.193Z",
+      "updatedAt": "2026-02-26T05:39:45.088Z"
+    },
+    {
+      "id": "966217e1-21ca-4068-bc45-bbf5934389b8",
+      "inspectionId": "0d699bf9-d21c-4ec1-9f14-18320bf9a197",
+      "category": "BRAKE",
+      "itemCode": "BRK_PEDAL_RESPONSE",
+      "itemLabel": "Brake pedal response",
+      "sortOrder": 1,
+      "result": "PASS",
+      "comment": null,
+      "createdAt": "2026-02-26T05:39:16.193Z",
+      "updatedAt": "2026-02-26T05:39:48.529Z"
+    },
+    {
+      "id": "778f4835-9e8d-490b-ae92-391826a27bc9",
+      "inspectionId": "0d699bf9-d21c-4ec1-9f14-18320bf9a197",
+      "category": "BRAKE",
+      "itemCode": "BRK_HANDBRAKE",
+      "itemLabel": "Handbrake function",
+      "sortOrder": 2,
+      "result": "PASS",
+      "comment": null,
+      "createdAt": "2026-02-26T05:39:16.193Z",
+      "updatedAt": "2026-02-26T05:39:48.529Z"
+    },
+    {
+      "id": "f99ff437-2cfb-4346-a7dc-7a49956233f6",
+      "inspectionId": "0d699bf9-d21c-4ec1-9f14-18320bf9a197",
+      "category": "BRAKE",
+      "itemCode": "BRK_FLUID_LEVEL",
+      "itemLabel": "Brake fluid level",
+      "sortOrder": 3,
+      "result": "PASS",
+      "comment": null,
+      "createdAt": "2026-02-26T05:39:16.193Z",
+      "updatedAt": "2026-02-26T05:39:48.530Z"
+    },
+    {
+      "id": "3927ec72-1f9d-4d7e-9d32-920e011cd165",
+      "inspectionId": "0d699bf9-d21c-4ec1-9f14-18320bf9a197",
+      "category": "BRAKE",
+      "itemCode": "BRK_PAD_WEAR",
+      "itemLabel": "Brake pad wear",
+      "sortOrder": 4,
+      "result": "PASS",
+      "comment": null,
+      "createdAt": "2026-02-26T05:39:16.193Z",
+      "updatedAt": "2026-02-26T05:39:48.530Z"
+    }
+  ],
+  "qcInspectionPhotos": [
+    {
+      "id": "288adcab-946b-4e5a-b7f3-7b2a3f8c2ca6",
+      "inspectionItemId": "f5c1d566-ade4-40ba-bc67-28bd4a0927f6",
+      "imageUrl": "uploads/22639ab5-9baf-4cb4-bd69-5195ed367a2a.png",
+      "createdAt": "2026-02-24T10:15:44.779Z"
+    },
+    {
+      "id": "00fa905e-e605-43a6-9ae4-17849c91f3d4",
+      "inspectionItemId": "3bf10471-db7f-45d7-bc63-cfbcd9904f1b",
+      "imageUrl": "uploads/473a3415-fe23-4b1f-9a54-23e0d5358959.jpg",
+      "createdAt": "2026-02-24T10:15:47.292Z"
+    },
+    {
+      "id": "3c03720a-7d40-476b-94c5-19dc4c53c7a8",
+      "inspectionItemId": "fd34227b-4189-468c-b8a1-4ead68cdbb9a",
+      "imageUrl": "uploads/68f4f6b1-d9a9-4230-bcce-7248dacfa7c3.png",
+      "createdAt": "2026-02-24T10:15:49.249Z"
+    },
+    {
+      "id": "b8c2cb22-4024-47bf-a695-da17856bb637",
+      "inspectionItemId": "47f2f8a1-bbf1-4af7-89df-de3442fcb054",
+      "imageUrl": "uploads/4520feae-475c-4396-b67d-4a31afe8bef1.jpg",
+      "createdAt": "2026-02-24T10:15:51.067Z"
+    },
+    {
+      "id": "41c4ef8e-f5c7-4438-837e-d22d0ec0991a",
+      "inspectionItemId": "29e1b6e5-2c05-4241-ab9c-fe4da1264c67",
+      "imageUrl": "uploads/c39ce605-7c77-4fc1-8d0e-dd89a25d2047.jpg",
+      "createdAt": "2026-02-24T10:15:53.182Z"
+    },
+    {
+      "id": "0a0b39f8-679d-4201-aef2-ebebbc83a80d",
+      "inspectionItemId": "3f34ba29-5dc0-4632-8812-30136295528d",
+      "imageUrl": "uploads/36f5f685-2472-4cd9-8798-8246f35f3972.jpg",
+      "createdAt": "2026-02-24T10:15:55.802Z"
+    },
+    {
+      "id": "dd8aac20-c1e7-4243-b409-dc1a0d83227c",
+      "inspectionItemId": "92ed2d45-cebb-49e5-b261-ffaa12a562a8",
+      "imageUrl": "uploads/8892aa81-4637-4f43-b2f7-8d150292e8a5.jpg",
+      "createdAt": "2026-02-24T10:18:27.267Z"
+    },
+    {
+      "id": "3c434933-b7d3-4595-aa5b-68ff8f6626c2",
+      "inspectionItemId": "c1b47491-651e-4f2f-a08a-f5d54d1df7b6",
+      "imageUrl": "uploads/f66109ca-c8ae-4088-add9-20ce597ffda0.jpg",
+      "createdAt": "2026-02-24T10:18:29.062Z"
+    },
+    {
+      "id": "a9c2b390-7017-4950-88f7-ea40dbd5b7e3",
+      "inspectionItemId": "2bad5154-6551-4d7a-b9bc-8450f1abe5e8",
+      "imageUrl": "uploads/f5efc56e-4d5e-43d1-9597-5325ebc5d23a.jpg",
+      "createdAt": "2026-02-24T10:18:30.927Z"
+    },
+    {
+      "id": "91e7dc7c-cc36-4907-9add-be7b593cc2d3",
+      "inspectionItemId": "fc39bd5f-4d3f-46df-ace0-d30dd7a75978",
+      "imageUrl": "uploads/edc6634e-ae45-4315-8096-3bbe45151e3f.png",
+      "createdAt": "2026-02-24T10:18:32.744Z"
+    },
+    {
+      "id": "4b5f268a-d445-4ab7-ba0f-6d85be8af7ee",
+      "inspectionItemId": "8db9c597-c3cd-4546-9734-e6ef2870d4e3",
+      "imageUrl": "uploads/21215641-a08c-4a00-8d77-6f0efdc07fbc.jpg",
+      "createdAt": "2026-02-24T10:18:35.406Z"
+    },
+    {
+      "id": "192d90f7-2c65-446b-b54f-9aac07265112",
+      "inspectionItemId": "5995eefc-ab00-4053-8e73-8d6026ae3899",
+      "imageUrl": "uploads/a17037eb-ad41-4528-ae02-4dce1c9cb356.jpg",
+      "createdAt": "2026-02-24T10:18:39.109Z"
+    },
+    {
+      "id": "be9fe805-920b-4d13-9a28-52e895559909",
+      "inspectionItemId": "4c31fb46-9d10-47a7-b9cc-f93950ade6d5",
+      "imageUrl": "uploads/f5572fd8-5405-48d5-ac20-689bd5d6ce60.jpg",
+      "createdAt": "2026-02-24T10:18:58.788Z"
+    },
+    {
+      "id": "1a5feb41-7919-4e33-83ed-841a6ebbf22b",
+      "inspectionItemId": "a1e1dd01-281e-4278-b8fc-0c40aa3e6d9a",
+      "imageUrl": "uploads/384c344f-7e8e-442f-82ae-2c4f8a568f0d.png",
+      "createdAt": "2026-02-24T10:19:00.664Z"
+    },
+    {
+      "id": "3e740ceb-b7c4-4fbe-b8be-5f187e5ff877",
+      "inspectionItemId": "bec90110-1f2c-4b23-a394-ad24eb24668a",
+      "imageUrl": "uploads/94fdec2d-38f3-4da6-832f-c39f17652877.jpg",
+      "createdAt": "2026-02-24T10:19:02.709Z"
+    },
+    {
+      "id": "607bf8df-b071-430b-8856-b027606acf0e",
+      "inspectionItemId": "38a263b8-4e45-46bc-83da-a25cd8b03f1b",
+      "imageUrl": "uploads/f0c61500-8a96-45c8-9010-88a2666a9ab6.jpg",
+      "createdAt": "2026-02-24T10:19:04.577Z"
+    },
+    {
+      "id": "badb86a6-1293-4195-9b7f-fe94ef03e5c0",
+      "inspectionItemId": "1116be1a-4d84-4aef-999e-b54fce9e95d3",
+      "imageUrl": "uploads/8bfebe2c-eb8e-416e-bf41-d4db7fbafebd.png",
+      "createdAt": "2026-02-26T05:03:25.824Z"
+    },
+    {
+      "id": "3bf54750-0273-48ec-82f2-6b599f19196b",
+      "inspectionItemId": "10a82634-0c81-47b1-9b54-416671f23913",
+      "imageUrl": "uploads/6836781f-b921-4bdb-8d70-b1fc8fc09c22.jpg",
+      "createdAt": "2026-02-26T05:03:28.947Z"
+    },
+    {
+      "id": "e01d48b8-4405-4d15-8cb0-d46e5749b550",
+      "inspectionItemId": "50877646-cd4d-47d7-a857-4f5a9ed0ae50",
+      "imageUrl": "uploads/966e8472-b4d4-491b-b408-1efdfe4af116.jpg",
+      "createdAt": "2026-02-26T05:03:31.162Z"
+    },
+    {
+      "id": "f651d6b6-4e91-4b1d-8578-879fae9bd5e5",
+      "inspectionItemId": "3fdce5ad-5126-4e32-8f16-58e85854a16c",
+      "imageUrl": "uploads/d962145f-62b7-4df8-821e-583f7e9d300e.jpg",
+      "createdAt": "2026-02-26T05:03:33.833Z"
+    },
+    {
+      "id": "0bcd4e02-b62f-422d-add0-d0899747b2dc",
+      "inspectionItemId": "f6413dd2-1096-445e-a2de-120aefc6fd82",
+      "imageUrl": "uploads/12814f6a-921c-4b42-9318-27ff08800fdd.jpg",
+      "createdAt": "2026-02-26T05:03:36.118Z"
+    },
+    {
+      "id": "ae2735ba-8ff6-474a-82db-c5a669dbc1bd",
+      "inspectionItemId": "d26a3613-6ae3-4fcf-9750-13019b99b6c2",
+      "imageUrl": "uploads/de248ec7-2010-4989-8d81-004bf93251f2.jpg",
+      "createdAt": "2026-02-26T05:03:39.210Z"
+    },
+    {
+      "id": "a2577571-58a5-49ff-81db-8d8c11f2eafe",
+      "inspectionItemId": "3dec7287-b09e-4ec6-9d01-6d225b3b95b3",
+      "imageUrl": "uploads/00832c08-e965-46cd-9919-faa3e84def22.jpg",
+      "createdAt": "2026-02-26T05:03:49.688Z"
+    },
+    {
+      "id": "8db49ab3-51ae-4dfc-9aeb-f1dd926811c1",
+      "inspectionItemId": "8a6e0e2d-b246-48dd-a339-ac7698f91702",
+      "imageUrl": "uploads/6bbf1554-fcc3-4be1-87e8-1698097a290f.png",
+      "createdAt": "2026-02-26T05:03:51.811Z"
+    },
+    {
+      "id": "1e531cf3-330a-4b8c-8570-f9e580b53293",
+      "inspectionItemId": "786493a1-5056-452b-be95-be4ac8764841",
+      "imageUrl": "uploads/f1f18b19-4367-44e6-9a83-ad8f577390da.jpg",
+      "createdAt": "2026-02-26T05:03:53.587Z"
+    },
+    {
+      "id": "8796e3d2-8a7a-4921-83aa-20bb486e97d5",
+      "inspectionItemId": "933470b9-427c-4fcc-9771-adc09ba7f476",
+      "imageUrl": "uploads/447f9a74-eef1-4c25-9966-9b5e1d888ffe.jpg",
+      "createdAt": "2026-02-26T05:03:55.516Z"
+    },
+    {
+      "id": "a42c2d4b-8b33-43cd-a169-c7fd1fb1bba3",
+      "inspectionItemId": "c0740996-faa2-42cf-a440-e4bee7baf05a",
+      "imageUrl": "uploads/9d35ed29-bd03-4020-9fa9-b728d1398b6a.jpg",
+      "createdAt": "2026-02-26T05:03:57.753Z"
+    },
+    {
+      "id": "bf5557f6-5603-44a7-af88-a1155bf09dec",
+      "inspectionItemId": "61b1f3d7-65dd-4af3-82b7-eb76b3327daf",
+      "imageUrl": "uploads/64f55f85-f120-40f2-8559-5ecf05b32d97.jpg",
+      "createdAt": "2026-02-26T05:03:59.605Z"
+    },
+    {
+      "id": "5acee931-62a9-44a4-9e93-814de552e927",
+      "inspectionItemId": "fcd4c82b-70e1-40cb-8d6f-00e989727e42",
+      "imageUrl": "uploads/9d1cc833-f241-479e-8152-b0c13c83c2d0.jpg",
+      "createdAt": "2026-02-26T05:04:07.214Z"
+    },
+    {
+      "id": "d166d3af-cd2f-4e12-b360-4a0aeabcd30a",
+      "inspectionItemId": "1356a317-758e-444d-ad0a-c147c211fc6b",
+      "imageUrl": "uploads/bddd737b-5a45-40a3-a2c0-514825688982.jpg",
+      "createdAt": "2026-02-26T05:04:09.096Z"
+    },
+    {
+      "id": "5a76ab87-1694-4c69-97da-e6ef9f791fad",
+      "inspectionItemId": "fc5d3cd0-bf21-43af-a31e-9edc163968aa",
+      "imageUrl": "uploads/b1210339-f0db-4b4c-8460-a5f402df790c.jpg",
+      "createdAt": "2026-02-26T05:04:11.311Z"
+    },
+    {
+      "id": "8d223011-a391-4ae5-88b1-29fc7a5df158",
+      "inspectionItemId": "11bbf59e-7301-4540-8394-2631781d44c5",
+      "imageUrl": "uploads/cc16a2a8-c9be-4b92-bc83-7afb140ade87.jpg",
+      "createdAt": "2026-02-26T05:04:13.277Z"
+    }
+  ],
+  "jobCards": [
+    {
+      "id": "bc9ff52e-27db-4cad-b6ab-7ae63888fc38",
+      "vehicleId": "799d9f58-8bb0-4e79-a38f-e59a20c07767",
+      "inspectionId": "0b04e76e-bb3f-4623-8af2-92f9648c4f94",
+      "status": "SHARED",
+      "subtotal": "0.00",
+      "taxLabel": "Tax",
+      "taxPercentage": "10.00",
+      "taxAmount": "0.00",
+      "totalEstimate": "0.00",
+      "sharedAt": "2026-02-24T11:29:54.616Z",
+      "approvedAt": null,
+      "createdAt": "2026-02-24T11:29:44.963Z",
+      "updatedAt": "2026-02-24T11:29:54.616Z"
+    },
+    {
+      "id": "a02cc76e-5b41-45b0-8963-b25ee57b69de",
+      "vehicleId": "799d9f58-8bb0-4e79-a38f-e59a20c07767",
+      "inspectionId": "0b04e76e-bb3f-4623-8af2-92f9648c4f94",
+      "status": "SHARED",
+      "subtotal": "155.00",
+      "taxLabel": "Tax",
+      "taxPercentage": "10.00",
+      "taxAmount": "15.50",
+      "totalEstimate": "170.50",
+      "sharedAt": "2026-02-24T12:00:12.667Z",
+      "approvedAt": null,
+      "createdAt": "2026-02-24T12:00:04.191Z",
+      "updatedAt": "2026-02-24T12:00:12.667Z"
+    },
+    {
+      "id": "9f21c7f1-23c3-40c6-9182-e639ce6e1379",
+      "vehicleId": "799d9f58-8bb0-4e79-a38f-e59a20c07767",
+      "inspectionId": "0b04e76e-bb3f-4623-8af2-92f9648c4f94",
+      "status": "SHARED",
+      "subtotal": "0.00",
+      "taxLabel": "GST",
+      "taxPercentage": "18.00",
+      "taxAmount": "0.00",
+      "totalEstimate": "0.00",
+      "sharedAt": "2026-02-25T04:49:15.013Z",
+      "approvedAt": null,
+      "createdAt": "2026-02-25T04:49:12.021Z",
+      "updatedAt": "2026-02-25T04:49:15.013Z"
+    },
+    {
+      "id": "7264fe43-531f-4889-8d09-713e6a11ec14",
+      "vehicleId": "799d9f58-8bb0-4e79-a38f-e59a20c07767",
+      "inspectionId": "0b04e76e-bb3f-4623-8af2-92f9648c4f94",
+      "status": "SHARED",
+      "subtotal": "0.00",
+      "taxLabel": "Tax",
+      "taxPercentage": "10.00",
+      "taxAmount": "0.00",
+      "totalEstimate": "0.00",
+      "sharedAt": "2026-02-25T05:21:42.797Z",
+      "approvedAt": null,
+      "createdAt": "2026-02-25T04:52:35.397Z",
+      "updatedAt": "2026-02-25T05:21:42.797Z"
+    },
+    {
+      "id": "97f08455-52b4-418c-8f57-a85469fa1c40",
+      "vehicleId": "799d9f58-8bb0-4e79-a38f-e59a20c07767",
+      "inspectionId": "0b04e76e-bb3f-4623-8af2-92f9648c4f94",
+      "status": "SHARED",
+      "subtotal": "0.00",
+      "taxLabel": "GST",
+      "taxPercentage": "18.00",
+      "taxAmount": "0.00",
+      "totalEstimate": "0.00",
+      "sharedAt": "2026-02-25T05:21:53.076Z",
+      "approvedAt": null,
+      "createdAt": "2026-02-25T04:50:31.365Z",
+      "updatedAt": "2026-02-25T05:21:53.076Z"
+    },
+    {
+      "id": "5690d99c-067f-4bcd-bb25-1e66a0ebb69f",
+      "vehicleId": "0ad4685f-7623-4d2b-8110-c60a207c7978",
+      "inspectionId": "ac0e1ab6-383f-4c4c-95d6-d2ed08e2af1f",
+      "status": "SHARED",
+      "subtotal": "7.00",
+      "taxLabel": "Tax",
+      "taxPercentage": "10.00",
+      "taxAmount": "0.70",
+      "totalEstimate": "7.70",
+      "sharedAt": "2026-02-26T05:14:15.226Z",
+      "approvedAt": null,
+      "createdAt": "2026-02-26T05:13:40.782Z",
+      "updatedAt": "2026-02-26T05:14:15.226Z"
+    },
+    {
+      "id": "862a1901-ec65-49c3-b823-8310e9541aee",
+      "vehicleId": "4087613e-a90e-4690-a7ef-b1070db4dc67",
+      "inspectionId": "0d699bf9-d21c-4ec1-9f14-18320bf9a197",
+      "status": "SHARED",
+      "subtotal": "7.00",
+      "taxLabel": "Tax",
+      "taxPercentage": "10.00",
+      "taxAmount": "0.70",
+      "totalEstimate": "7.70",
+      "sharedAt": "2026-02-26T05:41:08.996Z",
+      "approvedAt": null,
+      "createdAt": "2026-02-26T05:41:03.732Z",
+      "updatedAt": "2026-02-26T05:41:08.996Z"
+    }
+  ],
+  "jobCardItems": [
+    {
+      "id": "b4b06000-40a0-4f02-8800-e55f77ac702d",
+      "jobCardId": "bc9ff52e-27db-4cad-b6ab-7ae63888fc38",
+      "jobDescription": "Paint condition & scratches - Repair/Replace",
+      "partsRequired": null,
+      "partsCost": "0.00",
+      "labourCost": "0.00",
+      "quantity": 1,
+      "lineTotal": "0.00",
+      "sortOrder": 1,
+      "createdAt": "2026-02-24T11:29:44.963Z",
+      "updatedAt": "2026-02-24T11:29:44.963Z"
+    },
+    {
+      "id": "1cc1f44d-2145-4d3b-b749-56817b536fac",
+      "jobCardId": "bc9ff52e-27db-4cad-b6ab-7ae63888fc38",
+      "jobDescription": "Seat condition - Repair/Replace",
+      "partsRequired": null,
+      "partsCost": "0.00",
+      "labourCost": "0.00",
+      "quantity": 1,
+      "lineTotal": "0.00",
+      "sortOrder": 2,
+      "createdAt": "2026-02-24T11:29:44.963Z",
+      "updatedAt": "2026-02-24T11:29:44.963Z"
+    },
+    {
+      "id": "c15d6757-49cb-4cfe-8406-b3bc9b6f2d90",
+      "jobCardId": "bc9ff52e-27db-4cad-b6ab-7ae63888fc38",
+      "jobDescription": "Brake fluid level - Repair/Replace",
+      "partsRequired": null,
+      "partsCost": "0.00",
+      "labourCost": "0.00",
+      "quantity": 1,
+      "lineTotal": "0.00",
+      "sortOrder": 3,
+      "createdAt": "2026-02-24T11:29:44.963Z",
+      "updatedAt": "2026-02-24T11:29:44.963Z"
+    },
+    {
+      "id": "2c39638e-4e9f-4197-9aac-47d8e37a180b",
+      "jobCardId": "bc9ff52e-27db-4cad-b6ab-7ae63888fc38",
+      "jobDescription": "Headlights & tail lights - Repair/Replace",
+      "partsRequired": null,
+      "partsCost": "0.00",
+      "labourCost": "0.00",
+      "quantity": 1,
+      "lineTotal": "0.00",
+      "sortOrder": 4,
+      "createdAt": "2026-02-24T11:29:44.963Z",
+      "updatedAt": "2026-02-24T11:29:44.963Z"
+    },
+    {
+      "id": "f31cbfc9-249c-4742-924c-49b412874a91",
+      "jobCardId": "bc9ff52e-27db-4cad-b6ab-7ae63888fc38",
+      "jobDescription": "Brake pad wear - Repair/Replace",
+      "partsRequired": null,
+      "partsCost": "0.00",
+      "labourCost": "0.00",
+      "quantity": 1,
+      "lineTotal": "0.00",
+      "sortOrder": 5,
+      "createdAt": "2026-02-24T11:29:44.963Z",
+      "updatedAt": "2026-02-24T11:29:44.963Z"
+    },
+    {
+      "id": "e0ff5480-f15d-4ea0-8322-3d98fdd0d970",
+      "jobCardId": "a02cc76e-5b41-45b0-8963-b25ee57b69de",
+      "jobDescription": "Paint condition & scratches - Repair/Replace",
+      "partsRequired": null,
+      "partsCost": "12.00",
+      "labourCost": "2.00",
+      "quantity": 1,
+      "lineTotal": "14.00",
+      "sortOrder": 1,
+      "createdAt": "2026-02-24T12:00:04.191Z",
+      "updatedAt": "2026-02-24T12:00:04.191Z"
+    },
+    {
+      "id": "9db5c65a-5812-4be8-8ff9-9118c7c2db12",
+      "jobCardId": "a02cc76e-5b41-45b0-8963-b25ee57b69de",
+      "jobDescription": "Seat condition - Repair/Replace",
+      "partsRequired": null,
+      "partsCost": "23.00",
+      "labourCost": "5.00",
+      "quantity": 1,
+      "lineTotal": "28.00",
+      "sortOrder": 2,
+      "createdAt": "2026-02-24T12:00:04.191Z",
+      "updatedAt": "2026-02-24T12:00:04.191Z"
+    },
+    {
+      "id": "ec26ed87-acaf-4ddd-9611-6388937e77a2",
+      "jobCardId": "a02cc76e-5b41-45b0-8963-b25ee57b69de",
+      "jobDescription": "Brake fluid level - Repair/Replace",
+      "partsRequired": null,
+      "partsCost": "23.00",
+      "labourCost": "4.00",
+      "quantity": 1,
+      "lineTotal": "27.00",
+      "sortOrder": 3,
+      "createdAt": "2026-02-24T12:00:04.191Z",
+      "updatedAt": "2026-02-24T12:00:04.191Z"
+    },
+    {
+      "id": "119daef6-eb32-4c74-b8fa-529f4bbc5828",
+      "jobCardId": "a02cc76e-5b41-45b0-8963-b25ee57b69de",
+      "jobDescription": "Headlights & tail lights - Repair/Replace",
+      "partsRequired": null,
+      "partsCost": "54.00",
+      "labourCost": "10.00",
+      "quantity": 1,
+      "lineTotal": "64.00",
+      "sortOrder": 4,
+      "createdAt": "2026-02-24T12:00:04.191Z",
+      "updatedAt": "2026-02-24T12:00:04.191Z"
+    },
+    {
+      "id": "fdac8fa2-6e9d-4a38-82f1-4a00e76c4a41",
+      "jobCardId": "a02cc76e-5b41-45b0-8963-b25ee57b69de",
+      "jobDescription": "Brake pad wear - Repair/Replace",
+      "partsRequired": null,
+      "partsCost": "20.00",
+      "labourCost": "2.00",
+      "quantity": 1,
+      "lineTotal": "22.00",
+      "sortOrder": 5,
+      "createdAt": "2026-02-24T12:00:04.191Z",
+      "updatedAt": "2026-02-24T12:00:04.191Z"
+    },
+    {
+      "id": "11d84f5b-9d55-4ec5-bb9d-6c1db47d4e14",
+      "jobCardId": "9f21c7f1-23c3-40c6-9182-e639ce6e1379",
+      "jobDescription": "Paint condition & scratches - Repair/Replace",
+      "partsRequired": null,
+      "partsCost": "0.00",
+      "labourCost": "0.00",
+      "quantity": 1,
+      "lineTotal": "0.00",
+      "sortOrder": 1,
+      "createdAt": "2026-02-25T04:49:12.021Z",
+      "updatedAt": "2026-02-25T04:49:12.021Z"
+    },
+    {
+      "id": "05533c96-1e32-4a67-8f48-78890e487b99",
+      "jobCardId": "9f21c7f1-23c3-40c6-9182-e639ce6e1379",
+      "jobDescription": "Seat condition - Repair/Replace",
+      "partsRequired": null,
+      "partsCost": "0.00",
+      "labourCost": "0.00",
+      "quantity": 1,
+      "lineTotal": "0.00",
+      "sortOrder": 2,
+      "createdAt": "2026-02-25T04:49:12.021Z",
+      "updatedAt": "2026-02-25T04:49:12.021Z"
+    },
+    {
+      "id": "874c8ecf-31ee-4837-909a-f31d07188c2b",
+      "jobCardId": "9f21c7f1-23c3-40c6-9182-e639ce6e1379",
+      "jobDescription": "Brake fluid level - Repair/Replace",
+      "partsRequired": null,
+      "partsCost": "0.00",
+      "labourCost": "0.00",
+      "quantity": 1,
+      "lineTotal": "0.00",
+      "sortOrder": 3,
+      "createdAt": "2026-02-25T04:49:12.021Z",
+      "updatedAt": "2026-02-25T04:49:12.021Z"
+    },
+    {
+      "id": "3a16c077-2f46-4774-a896-c16f3436bf4d",
+      "jobCardId": "9f21c7f1-23c3-40c6-9182-e639ce6e1379",
+      "jobDescription": "Headlights & tail lights - Repair/Replace",
+      "partsRequired": null,
+      "partsCost": "0.00",
+      "labourCost": "0.00",
+      "quantity": 1,
+      "lineTotal": "0.00",
+      "sortOrder": 4,
+      "createdAt": "2026-02-25T04:49:12.021Z",
+      "updatedAt": "2026-02-25T04:49:12.021Z"
+    },
+    {
+      "id": "67439639-366b-4283-a003-60f0bd72270c",
+      "jobCardId": "9f21c7f1-23c3-40c6-9182-e639ce6e1379",
+      "jobDescription": "Brake pad wear - Repair/Replace",
+      "partsRequired": null,
+      "partsCost": "0.00",
+      "labourCost": "0.00",
+      "quantity": 1,
+      "lineTotal": "0.00",
+      "sortOrder": 5,
+      "createdAt": "2026-02-25T04:49:12.021Z",
+      "updatedAt": "2026-02-25T04:49:12.021Z"
+    },
+    {
+      "id": "fec63470-0ead-4b21-ad8b-5c1b06c76f1d",
+      "jobCardId": "97f08455-52b4-418c-8f57-a85469fa1c40",
+      "jobDescription": "Paint condition & scratches - Repair/Replace",
+      "partsRequired": null,
+      "partsCost": "0.00",
+      "labourCost": "0.00",
+      "quantity": 1,
+      "lineTotal": "0.00",
+      "sortOrder": 1,
+      "createdAt": "2026-02-25T04:50:31.365Z",
+      "updatedAt": "2026-02-25T04:50:31.365Z"
+    },
+    {
+      "id": "2cd24adf-83f4-49ab-b161-43821bdc5759",
+      "jobCardId": "97f08455-52b4-418c-8f57-a85469fa1c40",
+      "jobDescription": "Seat condition - Repair/Replace",
+      "partsRequired": null,
+      "partsCost": "0.00",
+      "labourCost": "0.00",
+      "quantity": 1,
+      "lineTotal": "0.00",
+      "sortOrder": 2,
+      "createdAt": "2026-02-25T04:50:31.365Z",
+      "updatedAt": "2026-02-25T04:50:31.365Z"
+    },
+    {
+      "id": "3f610350-6723-40c8-a603-e4960e565835",
+      "jobCardId": "97f08455-52b4-418c-8f57-a85469fa1c40",
+      "jobDescription": "Brake fluid level - Repair/Replace",
+      "partsRequired": null,
+      "partsCost": "0.00",
+      "labourCost": "0.00",
+      "quantity": 1,
+      "lineTotal": "0.00",
+      "sortOrder": 3,
+      "createdAt": "2026-02-25T04:50:31.365Z",
+      "updatedAt": "2026-02-25T04:50:31.365Z"
+    },
+    {
+      "id": "d0f9fc47-ce82-4c44-90fd-8876268ecb25",
+      "jobCardId": "97f08455-52b4-418c-8f57-a85469fa1c40",
+      "jobDescription": "Headlights & tail lights - Repair/Replace",
+      "partsRequired": null,
+      "partsCost": "0.00",
+      "labourCost": "0.00",
+      "quantity": 1,
+      "lineTotal": "0.00",
+      "sortOrder": 4,
+      "createdAt": "2026-02-25T04:50:31.365Z",
+      "updatedAt": "2026-02-25T04:50:31.365Z"
+    },
+    {
+      "id": "f7788b30-a2d6-4b8a-9fc6-a2ee23e32ea3",
+      "jobCardId": "97f08455-52b4-418c-8f57-a85469fa1c40",
+      "jobDescription": "Brake pad wear - Repair/Replace",
+      "partsRequired": null,
+      "partsCost": "0.00",
+      "labourCost": "0.00",
+      "quantity": 1,
+      "lineTotal": "0.00",
+      "sortOrder": 5,
+      "createdAt": "2026-02-25T04:50:31.365Z",
+      "updatedAt": "2026-02-25T04:50:31.365Z"
+    },
+    {
+      "id": "523914f6-63c1-482a-9d37-7a8e0921bfff",
+      "jobCardId": "7264fe43-531f-4889-8d09-713e6a11ec14",
+      "jobDescription": "Paint condition & scratches - Repair/Replace",
+      "partsRequired": null,
+      "partsCost": "0.00",
+      "labourCost": "0.00",
+      "quantity": 1,
+      "lineTotal": "0.00",
+      "sortOrder": 1,
+      "createdAt": "2026-02-25T04:52:35.397Z",
+      "updatedAt": "2026-02-25T04:52:35.397Z"
+    },
+    {
+      "id": "99c702c9-8fc6-4493-889d-cd067117af92",
+      "jobCardId": "7264fe43-531f-4889-8d09-713e6a11ec14",
+      "jobDescription": "Seat condition - Repair/Replace",
+      "partsRequired": null,
+      "partsCost": "0.00",
+      "labourCost": "0.00",
+      "quantity": 1,
+      "lineTotal": "0.00",
+      "sortOrder": 2,
+      "createdAt": "2026-02-25T04:52:35.397Z",
+      "updatedAt": "2026-02-25T04:52:35.397Z"
+    },
+    {
+      "id": "e6277cdf-4756-4e77-977e-fdb49b18d741",
+      "jobCardId": "7264fe43-531f-4889-8d09-713e6a11ec14",
+      "jobDescription": "Brake fluid level - Repair/Replace",
+      "partsRequired": null,
+      "partsCost": "0.00",
+      "labourCost": "0.00",
+      "quantity": 1,
+      "lineTotal": "0.00",
+      "sortOrder": 3,
+      "createdAt": "2026-02-25T04:52:35.397Z",
+      "updatedAt": "2026-02-25T04:52:35.397Z"
+    },
+    {
+      "id": "277a42df-46f1-4a43-b572-bd26b91360bb",
+      "jobCardId": "7264fe43-531f-4889-8d09-713e6a11ec14",
+      "jobDescription": "Headlights & tail lights - Repair/Replace",
+      "partsRequired": null,
+      "partsCost": "0.00",
+      "labourCost": "0.00",
+      "quantity": 1,
+      "lineTotal": "0.00",
+      "sortOrder": 4,
+      "createdAt": "2026-02-25T04:52:35.397Z",
+      "updatedAt": "2026-02-25T04:52:35.397Z"
+    },
+    {
+      "id": "04e2dbb4-6a07-4800-a4ca-96dc999927db",
+      "jobCardId": "7264fe43-531f-4889-8d09-713e6a11ec14",
+      "jobDescription": "Brake pad wear - Repair/Replace",
+      "partsRequired": null,
+      "partsCost": "0.00",
+      "labourCost": "0.00",
+      "quantity": 1,
+      "lineTotal": "0.00",
+      "sortOrder": 5,
+      "createdAt": "2026-02-25T04:52:35.397Z",
+      "updatedAt": "2026-02-25T04:52:35.397Z"
+    },
+    {
+      "id": "7cf5e392-08c3-4b79-9a59-9e497e1b16c5",
+      "jobCardId": "5690d99c-067f-4bcd-bb25-1e66a0ebb69f",
+      "jobDescription": "Tyres & wheel condition - Repair/Replace",
+      "partsRequired": "puncture",
+      "partsCost": "5.00",
+      "labourCost": "2.00",
+      "quantity": 1,
+      "lineTotal": "7.00",
+      "sortOrder": 1,
+      "createdAt": "2026-02-26T05:13:40.782Z",
+      "updatedAt": "2026-02-26T05:13:40.782Z"
+    },
+    {
+      "id": "8361a5f1-d546-43dd-b75b-bcbe63ac3b65",
+      "jobCardId": "862a1901-ec65-49c3-b823-8310e9541aee",
+      "jobDescription": "Paint condition & scratches - Repair/Replace",
+      "partsRequired": "color",
+      "partsCost": "5.00",
+      "labourCost": "2.00",
+      "quantity": 1,
+      "lineTotal": "7.00",
+      "sortOrder": 1,
+      "createdAt": "2026-02-26T05:41:03.732Z",
+      "updatedAt": "2026-02-26T05:41:03.732Z"
+    }
+  ],
+  "vehicleServiceHistory": []
+}
